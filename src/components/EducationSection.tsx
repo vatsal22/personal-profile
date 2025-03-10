@@ -183,7 +183,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                             } mb-4`}
                         >
                             {education.description ||
-                                "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (WinDriver), security systems (Escrypt), and trading platforms (Oanda)."}
+                                "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (Windriver), security systems (Escrypt), and trading platforms (Oanda)."}
                         </p>
 
                         {isUWaterloo && (
