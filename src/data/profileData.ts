@@ -1,18 +1,30 @@
+import { ThemeType } from "@/context/ThemeContext";
+
+export interface Experience {
+    id: string;
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+    technologies: string[];
+    themeKey: ThemeType;
+}
+
 export const profileData = {
     name: "John Doe",
-    title: "Senior Frontend Developer",
-    bio: "Passionate frontend developer with 5+ years of experience in building modern web applications. Specialized in React, TypeScript, and modern UI frameworks.",
+    title: "Engine Release Engineer at Roblox",
+    bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
     avatar: "/profile-placeholder.jpg",
-    location: "San Francisco, CA",
+    location: "San Mateo, CA",
     email: "john.doe@example.com",
     skills: [
-        "React",
+        "C++",
+        "C#",
+        "Python",
         "TypeScript",
-        "Next.js",
-        "TailwindCSS",
-        "Node.js",
-        "GraphQL",
-        "REST APIs",
+        "Java",
+        "Assembly",
+        "React",
         "Git",
     ],
     socialLinks: {
@@ -20,4 +32,82 @@ export const profileData = {
         linkedin: "https://linkedin.com/in/johndoe",
         twitter: "https://twitter.com/johndoe",
     },
+    education: {
+        university: "University of Waterloo",
+        degree: "Computer Engineering",
+        period: "2015-2020",
+        themeKey: "uwaterloo" as ThemeType,
+    },
+    experiences: [
+        {
+            id: "roblox",
+            title: "Engine Release Engineer",
+            company: "Roblox",
+            period: "2021-Present (3 years)",
+            description:
+                "Working on the Engine Release Team, focused on the release, flags, and channels system. Primary responsibilities include developing and maintaining C++ components for client/server changes, C# for backend systems, and occasional Python/TypeScript scripting for build automation.",
+            technologies: ["C++", "C#", "Python", "TypeScript"],
+            themeKey: "roblox" as ThemeType,
+        },
+        {
+            id: "oanda",
+            title: "Software Engineer",
+            company: "Oanda",
+            period: "2020 (4 months)",
+            description:
+                "Worked on the hedging team, primarily using C++ to develop and optimize financial algorithms and systems.",
+            technologies: ["C++", "Financial Systems"],
+            themeKey: "oanda" as ThemeType,
+        },
+        {
+            id: "imagine",
+            title: "Software Developer",
+            company: "Imagine Communications",
+            period: "2019 (4 months)",
+            description:
+                "Contributed to Magellan Navigator, a control and monitoring solution for broadcast media infrastructure, primarily using C#.",
+            technologies: ["C#", "Broadcast Media Systems"],
+            themeKey: "imagine" as ThemeType,
+        },
+        {
+            id: "escrypt",
+            title: "Security Engineer",
+            company: "Escrypt",
+            period: "2019 (4 months)",
+            description:
+                "Worked on the keyless car entry and truck fleet management team, developing embedded C and C# solutions, and briefly on C++ for a driver for an automotive ECU security module.",
+            technologies: ["Embedded C", "C#", "C++", "Security"],
+            themeKey: "escrypt" as ThemeType,
+        },
+        {
+            id: "thomson",
+            title: "Backend Developer",
+            company: "Thomson Reuters",
+            period: "2018 (4 months)",
+            description:
+                "Worked on the tax software team, primarily developing backend API services using C#.",
+            technologies: ["C#", "API Development", "Tax Software"],
+            themeKey: "thomson" as ThemeType,
+        },
+        {
+            id: "hubhead",
+            title: "Software Engineer",
+            company: "Hubhead",
+            period: "2018 (4 months)",
+            description:
+                "Worked at a startup revamping the installation and update system using an open source library called Getdown, primarily using Java.",
+            technologies: ["Java", "Getdown", "Software Distribution"],
+            themeKey: "hubhead" as ThemeType,
+        },
+        {
+            id: "windriver",
+            title: "Software Developer",
+            company: "Wind River",
+            period: "2017 (4 months)",
+            description:
+                "Worked on the VxWorks operating system, focusing on debugging and manual testing of C and assembly code. Developed Python scripts for automating and gathering status of test machines.",
+            technologies: ["C", "Assembly", "Python", "VxWorks OS"],
+            themeKey: "windriver" as ThemeType,
+        },
+    ],
 };
