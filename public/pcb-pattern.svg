@@ -1,0 +1,83 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Grid -->
+  <rect width="100" height="100" fill="none" />
+  
+  <!-- Circuit Board Pattern -->
+  <g fill="none" stroke="#865DA4" stroke-width="0.7" opacity="0.3">
+    <!-- Horizontal lines -->
+    <line x1="0" y1="10" x2="100" y2="10" />
+    <line x1="0" y1="30" x2="100" y2="30" />
+    <line x1="0" y1="50" x2="100" y2="50" />
+    <line x1="0" y1="70" x2="100" y2="70" />
+    <line x1="0" y1="90" x2="100" y2="90" />
+    
+    <!-- Vertical lines -->
+    <line x1="10" y1="0" x2="10" y2="100" />
+    <line x1="30" y1="0" x2="30" y2="100" />
+    <line x1="50" y1="0" x2="50" y2="100" />
+    <line x1="70" y1="0" x2="70" y2="100" />
+    <line x1="90" y1="0" x2="90" y2="100" />
+    
+    <!-- Circuit elements -->
+    <circle cx="10" cy="10" r="2" />
+    <circle cx="30" cy="30" r="2" />
+    <circle cx="50" cy="50" r="2" />
+    <circle cx="70" cy="70" r="2" />
+    <circle cx="90" cy="90" r="2" />
+    <circle cx="10" cy="90" r="2" />
+    <circle cx="90" cy="10" r="2" />
+    <circle cx="50" cy="10" r="2" />
+    <circle cx="10" cy="50" r="2" />
+    <circle cx="90" cy="50" r="2" />
+    <circle cx="50" cy="90" r="2" />
+    
+    <!-- Circuit traces -->
+    <path d="M10,10 L30,10 L30,30" />
+    <path d="M30,30 L50,30 L50,50" />
+    <path d="M50,50 L70,50 L70,70" />
+    <path d="M70,70 L90,70 L90,90" />
+    <path d="M10,90 L30,90 L30,70 L50,70 L50,90" />
+    <path d="M90,10 L70,10 L70,30 L90,30" />
+    <path d="M10,50 L30,50" />
+    <path d="M70,50 L90,50" />
+    <path d="M50,10 L50,30" />
+    <path d="M50,70 L50,90" />
+    
+    <!-- IC and component representations -->
+    <rect x="35" y="35" width="30" height="30" rx="2" />
+    <rect x="5" y="65" width="10" height="20" rx="1" />
+    <rect x="85" y="15" width="10" height="10" rx="1" />
+    <rect x="45" y="85" width="10" height="10" rx="1" />
+    <rect x="65" y="5" width="20" height="10" rx="1" />
+  </g>
+  
+  <!-- Smaller detailed circuits with purple colors -->
+  <g fill="none" stroke="#A05DCB" stroke-width="0.5" opacity="0.3">
+    <circle cx="40" cy="40" r="1" />
+    <circle cx="45" cy="40" r="1" />
+    <circle cx="50" cy="40" r="1" />
+    <circle cx="55" cy="40" r="1" />
+    <circle cx="60" cy="40" r="1" />
+    <circle cx="40" cy="45" r="1" />
+    <circle cx="60" cy="45" r="1" />
+    <circle cx="40" cy="50" r="1" />
+    <circle cx="60" cy="50" r="1" />
+    <circle cx="40" cy="55" r="1" />
+    <circle cx="60" cy="55" r="1" />
+    <circle cx="40" cy="60" r="1" />
+    <circle cx="45" cy="60" r="1" />
+    <circle cx="50" cy="60" r="1" />
+    <circle cx="55" cy="60" r="1" />
+    <circle cx="60" cy="60" r="1" />
+  </g>
+  
+  <!-- Special connections/pads - using UWaterloo primary purple -->
+  <g fill="#5D0096" stroke="none" opacity="0.6">
+    <circle cx="10" cy="10" r="1" />
+    <circle cx="50" cy="50" r="1" />
+    <circle cx="90" cy="90" r="1" />
+    <circle cx="10" cy="90" r="1" />
+    <circle cx="90" cy="10" r="1" />
+    <rect x="42" y="42" width="16" height="16" rx="1" />
+  </g>
+</svg> 

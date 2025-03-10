@@ -22,6 +22,13 @@ export interface ThemeColors {
     text: string;
     cardBg: string;
     accent: string;
+    // Enhanced theme properties
+    specialBackground?: string; // For special background patterns/effects
+    headerStyle?: string; // Style for headers
+    borderStyle?: string; // Style for borders
+    cardHoverEffect?: string; // Hover effects for cards
+    iconStyle?: string; // Style for icons
+    buttonStyle?: string; // Style for buttons
 }
 
 // Theme definitions for each experience
@@ -35,12 +42,22 @@ export const themes: Record<ThemeType, ThemeColors> = {
         accent: "bg-blue-100 text-blue-700",
     },
     uwaterloo: {
-        primary: "from-yellow-50 to-yellow-100",
-        secondary: "text-yellow-800",
-        background: "bg-yellow-50",
-        text: "text-yellow-900",
+        // UWaterloo Engineering official purple color theme
+        primary: "from-purple-50 to-purple-100",
+        secondary: "text-purple-700",
+        background: "bg-purple-50",
+        text: "text-gray-900",
         cardBg: "bg-white",
-        accent: "bg-yellow-100 text-yellow-800",
+        accent: "bg-purple-100 text-purple-800",
+
+        // Enhanced theme elements with PCB pattern - removing border styles
+        specialBackground:
+            "bg-[url('/pcb-pattern.svg')] bg-repeat bg-opacity-10", // Purple PCB pattern
+        headerStyle: "text-[#5D0096] border-b-2 border-[#5D0096] pb-2", // UWaterloo Engineering Level 4 color
+        borderStyle: "border border-gray-200", // Removing purple borders
+        cardHoverEffect: "hover:shadow-md transition-all duration-300", // Simple hover effect without purple glow
+        iconStyle: "text-[#A05DCB]", // UWaterloo Engineering Level 2 color
+        buttonStyle: "bg-[#5D0096] text-white px-4 py-2 rounded-md", // Simple purple button
     },
     windriver: {
         primary: "from-blue-50 to-blue-100",
