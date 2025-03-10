@@ -41,11 +41,11 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
             {experiences.map((experience) => (
                 <div
                     key={experience.id}
-                    className={`p-4 border rounded-lg mb-4 cursor-pointer transition-all duration-300 hover:shadow-md ${
+                    className={`p-4 border rounded-lg mb-4 cursor-pointer transition-all duration-300 ${
                         expandedItem === experience.id
                             ? `border-${
                                   experience.id === "roblox"
-                                      ? "red"
+                                      ? "gray-400"
                                       : experience.id === "oanda"
                                       ? "indigo"
                                       : experience.id === "imagine"
@@ -59,6 +59,10 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
                                       : "blue"
                               }-400 shadow-md ${colors.background}`
                             : "border-gray-200"
+                    } ${
+                        expandedItem === experience.id && colors.cardHoverEffect
+                            ? colors.cardHoverEffect
+                            : "hover:shadow-md"
                     }`}
                     onClick={() =>
                         handleExperienceClick(

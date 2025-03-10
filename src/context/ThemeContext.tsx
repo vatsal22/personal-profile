@@ -108,12 +108,22 @@ export const themes: Record<ThemeType, ThemeColors> = {
         accent: "bg-indigo-100 text-indigo-700",
     },
     roblox: {
-        primary: "from-red-50 to-red-100",
-        secondary: "text-red-700",
-        background: "bg-red-50",
-        text: "text-red-900",
+        primary: "from-gray-200 to-gray-300",
+        secondary: "text-gray-800",
+        background: "bg-gray-100",
+        text: "text-gray-900",
         cardBg: "bg-white",
-        accent: "bg-red-100 text-red-700",
+        accent: "bg-black text-white",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-gray-100 to-gray-300",
+        headerStyle: "text-black border-b-2 border-gray-400 pb-2",
+        borderStyle: "border border-gray-300",
+        cardHoverEffect:
+            "hover:shadow-lg hover:rotate-1 transition-all duration-300",
+        iconStyle: "text-black",
+        buttonStyle:
+            "bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-black",
     },
 };
 
