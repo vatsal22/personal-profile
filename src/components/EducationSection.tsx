@@ -85,14 +85,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                 aria-label={`${education.university} - ${education.degree}`}
                 role="button"
             >
-                {/* UWaterloo engineering PCB component label - modified to match mockup better */}
-                {isUWaterloo && isExpanded && (
-                    <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
-                        <div className="bg-[#5D0096] text-white transform rotate-45 text-xs font-bold py-1 px-6 text-center absolute top-2 right-[-20px]">
-                            ENG 2020
-                        </div>
-                    </div>
-                )}
+                {/* UWaterloo engineering PCB component label - removed */}
 
                 <div className="flex justify-between items-center">
                     <div>
