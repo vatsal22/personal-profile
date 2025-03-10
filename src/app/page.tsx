@@ -1,6 +1,7 @@
 "use client";
 
 import { AboutSection } from "@/components/AboutSection";
+import { CanadaGoose } from "@/components/CanadaGoose";
 import { ContactSection } from "@/components/ContactSection";
 import { EducationSection } from "@/components/EducationSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
@@ -29,6 +30,9 @@ export default function Home() {
         <>
             {/* UWaterloo purple PCB background overlay */}
             {waterlooPurplePCB}
+
+            {/* Canada Goose that bounces around when UWaterloo theme is active */}
+            <CanadaGoose />
 
             <main
                 className={`relative z-10 min-h-screen bg-gradient-to-b ${colors.primary} py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500`}
