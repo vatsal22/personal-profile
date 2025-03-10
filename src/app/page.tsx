@@ -3,12 +3,13 @@
 import { AboutSection } from "@/components/AboutSection";
 import { CanadaGoose } from "@/components/CanadaGoose";
 import { ContactSection } from "@/components/ContactSection";
+import { CoopExperienceSection } from "@/components/CoopExperienceSection";
 import { EducationSection } from "@/components/EducationSection";
-import { ExperienceSection } from "@/components/ExperienceSection";
+import { ProfessionalExperienceSection } from "@/components/ProfessionalExperienceSection";
 import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
 import { useTheme } from "@/context/ThemeContext";
-import { profileData } from "@/data/profileData";
+import { Experience, profileData } from "@/data/profileData";
 
 export default function Home() {
     const { colors, currentTheme, expandedItem } = useTheme();
@@ -46,7 +47,16 @@ export default function Home() {
                     />
                     <AboutSection bio={profileData.bio} />
                     <EducationSection education={profileData.education} />
-                    <ExperienceSection experiences={profileData.experiences} />
+                    <ProfessionalExperienceSection
+                        experiences={
+                            profileData.professionalExperiences as Experience[]
+                        }
+                    />
+                    <CoopExperienceSection
+                        experiences={
+                            profileData.coopExperiences as Experience[]
+                        }
+                    />
                     <SkillsSection skills={profileData.skills} />
                     <ContactSection
                         email={profileData.email}

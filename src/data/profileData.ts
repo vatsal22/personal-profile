@@ -41,7 +41,7 @@ export interface Education {
 
 export const profileData = {
     name: "Vatsal Solanki",
-    title: "Engine Release Engineer at Roblox",
+    title: "Software Engineer",
     bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
     avatar: "/profile-placeholder.jpg",
     location: "San Mateo, CA",
@@ -59,6 +59,7 @@ export const profileData = {
     socialLinks: {
         github: "https://github.com/vatsal22",
         linkedin: "https://linkedin.com/in/vatsal-solanki",
+        twitter: "https://twitter.com/vatsolanka",
     },
     education: {
         university: "University of Waterloo",
@@ -66,7 +67,7 @@ export const profileData = {
         period: "2017-2022",
         themeKey: "uwaterloo" as ThemeType,
         description:
-            "Elective focus on systems programming and infrastructure development, with co-op experience across a wide range of domains including real-time operating systems (WindRiver), security systems (Escrypt), and trading platforms (Oanda).",
+            "Elective focus on systems programming and scalable infrastructure, with co-op experience across a wide range of domains including real-time operating systems (WindRiver), security systems (Escrypt), and trading platforms (Oanda).",
         coursework: [
             "Real-Time Operating Systems: Core systems architecture and concurrency management",
             "Distributed Computing: Large-scale service deployment and coordination",
@@ -130,7 +131,7 @@ export const profileData = {
             ],
         },
     },
-    experiences: [
+    professionalExperiences: [
         {
             id: "roblox",
             title: "Engine Release Engineer",
@@ -141,6 +142,8 @@ export const profileData = {
             technologies: ["C++", "C#", "Python", "TypeScript"],
             themeKey: "roblox" as ThemeType,
         },
+    ],
+    coopExperiences: [
         {
             id: "oanda",
             title: "Software Engineer",
