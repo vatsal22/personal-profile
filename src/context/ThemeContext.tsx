@@ -100,16 +100,21 @@ export const themes: Record<ThemeType, ThemeColors> = {
     },
 };
 
+export type ExpandedItemType = "education" | string | null;
+
 interface ThemeContextProps {
     currentTheme: ThemeType;
     setTheme: (theme: ThemeType) => void;
     colors: ThemeColors;
+    expandedItem: ExpandedItemType;
+    setExpandedItem: (item: ExpandedItemType) => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [currentTheme, setCurrentTheme] = useState<ThemeType>("default");
+    const [expandedItem, setExpandedItem] = useState<ExpandedItemType>(null);
 
     const setTheme = (theme: ThemeType) => {
         setCurrentTheme(theme);
@@ -119,6 +124,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         currentTheme,
         setTheme,
         colors: themes[currentTheme],
+        expandedItem,
+        setExpandedItem,
     };
 
     return (

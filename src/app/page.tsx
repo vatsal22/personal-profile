@@ -2,6 +2,7 @@
 
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
+import { EducationSection } from "@/components/EducationSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
@@ -23,10 +24,8 @@ export default function Home() {
                     location={profileData.location}
                 />
                 <AboutSection bio={profileData.bio} />
-                <ExperienceSection
-                    experiences={profileData.experiences}
-                    education={profileData.education}
-                />
+                <EducationSection education={profileData.education} />
+                <ExperienceSection experiences={profileData.experiences} />
                 <SkillsSection skills={profileData.skills} />
                 <ContactSection
                     email={profileData.email}

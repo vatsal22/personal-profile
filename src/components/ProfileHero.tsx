@@ -1,3 +1,6 @@
+"use client";
+
+import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 
 type ProfileHeroProps = {
@@ -13,9 +16,11 @@ export const ProfileHero = ({
     avatar,
     location,
 }: ProfileHeroProps) => {
+    const { colors } = useTheme();
+
     return (
         <div className="text-center mb-16">
-            <div className="relative w-32 h-32 mx-auto mb-8">
+            <div className="relative w-32 h-32 mx-auto mb-8 ring-4 ring-white">
                 <Image
                     src={avatar}
                     alt={name}
@@ -24,9 +29,11 @@ export const ProfileHero = ({
                     priority
                 />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">{name}</h1>
-            <p className="text-xl text-gray-600 mb-4">{title}</p>
-            <p className="text-gray-500 flex items-center justify-center gap-2">
+            <h1 className={`text-4xl font-bold ${colors.text} mb-2`}>{name}</h1>
+            <p className={`text-xl ${colors.secondary} mb-4`}>{title}</p>
+            <p
+                className={`${colors.secondary} flex items-center justify-center gap-2`}
+            >
                 <svg
                     className="w-5 h-5"
                     fill="none"
