@@ -4,9 +4,6 @@ import { useTheme } from "@/context/ThemeContext";
 import { Education, profileData } from "@/data/profileData";
 import { useState } from "react";
 
-// Remove the local constant as we now have the data in profileData.ts
-// const eyeFlyGalleryImages = [...]
-
 type EducationSectionProps = {
     education: Education;
 };
@@ -205,29 +202,6 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                             (course, index) => (
                                                 <li key={index}>{course}</li>
                                             )
-                                        ) || (
-                                            <>
-                                                <li>
-                                                    Real-Time Operating Systems:
-                                                    Core systems architecture
-                                                    and concurrency management
-                                                </li>
-                                                <li>
-                                                    Distributed Computing:
-                                                    Large-scale service
-                                                    deployment and coordination
-                                                </li>
-                                                <li>
-                                                    Programming for Performance:
-                                                    Optimization techniques for
-                                                    high-performance systems
-                                                </li>
-                                                <li>
-                                                    Computer Networks: Design
-                                                    and implementation of
-                                                    networked systems
-                                                </li>
-                                            </>
                                         )}
                                     </ul>
                                 </div>
@@ -238,12 +212,10 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                         <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
                                     </div>
                                     <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
-                                        Capstone Project:{" "}
-                                        {eyeFlyProject?.name || "EyeFly"}
+                                        Capstone Project: {eyeFlyProject?.name}
                                     </h4>
                                     <p className="text-sm text-gray-700 relative z-10 mb-4">
-                                        {eyeFlyProject?.description ||
-                                            "Capstone project - An autonomous surveillance drone with AI-powered detection capabilities"}
+                                        {eyeFlyProject?.description}
                                     </p>
                                     <div className="mt-2 flex flex-wrap gap-2">
                                         {eyeFlyProject?.technologies.map(
@@ -260,9 +232,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     <div className="mt-3">
                                         <a
                                             href={
-                                                eyeFlyProject?.links
-                                                    ?.capstone ||
-                                                "https://uwaterloo.ca/capstone-design/"
+                                                eyeFlyProject?.links?.capstone
                                             }
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -275,8 +245,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                 handleKeyDown(e, () => {
                                                     window.open(
                                                         eyeFlyProject?.links
-                                                            ?.capstone ||
-                                                            "https://uwaterloo.ca/capstone-design/",
+                                                            ?.capstone,
                                                         "_blank"
                                                     );
                                                 });
