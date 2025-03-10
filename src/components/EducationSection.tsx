@@ -1,9 +1,8 @@
 "use client";
 
 import { ThemeType, useTheme } from "@/context/ThemeContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-// Create dummy data for the EyeFly gallery
 const eyeFlyGalleryImages = [
     {
         id: 1,
@@ -38,7 +37,7 @@ const eyeFlyGalleryImages = [
         src: "/eyefly/eyefly_system_block_diagram.webp",
         alt: "EyeFly System Architecture",
         caption:
-            "System block diagram showing the drone's communication architecture",
+            "System block diagram of entire system, including drone and backend infrastructure.",
     },
 ];
 
@@ -54,20 +53,6 @@ type EducationSectionProps = {
 export const EducationSection = ({ education }: EducationSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-    // Auto-play functionality for the carousel
-    useEffect(() => {
-        if (!isAutoPlaying) return;
-
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) =>
-                prevIndex === eyeFlyGalleryImages.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, [isAutoPlaying]);
 
     const handleEducationClick = () => {
         if (expandedItem === "education") {
@@ -82,21 +67,18 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
     };
 
     const handlePrevImage = () => {
-        setIsAutoPlaying(false);
         setCurrentImageIndex((prevIndex) =>
             prevIndex === 0 ? eyeFlyGalleryImages.length - 1 : prevIndex - 1
         );
     };
 
     const handleNextImage = () => {
-        setIsAutoPlaying(false);
         setCurrentImageIndex((prevIndex) =>
             prevIndex === eyeFlyGalleryImages.length - 1 ? 0 : prevIndex + 1
         );
     };
 
     const handleThumbnailClick = (index: number) => {
-        setIsAutoPlaying(false);
         setCurrentImageIndex(index);
     };
 
