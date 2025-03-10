@@ -42,6 +42,7 @@ export default function Home() {
                     <ProfileHero
                         name={profileData.name}
                         title={profileData.title}
+                        themeTitles={profileData.themeTitles}
                         avatar={profileData.avatar}
                         location={profileData.location}
                     />

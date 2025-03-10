@@ -417,27 +417,6 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                 </div>
                             </>
                         )}
-
-                        <div className="flex flex-wrap gap-2 mt-2">
-                            {[
-                                "Systems Programming",
-                                "Distributed Systems",
-                                "Performance Optimization",
-                                "Embedded Systems",
-                                "Computer Networks",
-                            ].map((skill) => (
-                                <span
-                                    key={skill}
-                                    className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                        isUWaterloo
-                                            ? "bg-purple-100 text-purple-800"
-                                            : colors.accent
-                                    }`}
-                                >
-                                    {skill}
-                                </span>
-                            ))}
-                        </div>
                     </div>
                 )}
             </div>

@@ -1,11 +1,12 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
+import { ThemeType, useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 
 type ProfileHeroProps = {
     name: string;
     title: string;
+    themeTitles: Record<ThemeType, string>;
     avatar: string;
     location: string;
 };
@@ -13,10 +14,14 @@ type ProfileHeroProps = {
 export const ProfileHero = ({
     name,
     title,
+    themeTitles,
     avatar,
     location,
 }: ProfileHeroProps) => {
-    const { colors } = useTheme();
+    const { colors, currentTheme } = useTheme();
+
+    // Get the title based on the current theme
+    const displayTitle = themeTitles[currentTheme] || title;
 
     return (
         <div className="text-center mb-16">
@@ -30,7 +35,7 @@ export const ProfileHero = ({
                 />
             </div>
             <h1 className={`text-4xl font-bold ${colors.text} mb-2`}>{name}</h1>
-            <p className={`text-xl ${colors.secondary} mb-4`}>{title}</p>
+            <p className={`text-xl ${colors.secondary} mb-4`}>{displayTitle}</p>
             <p
                 className={`${colors.secondary} flex items-center justify-center gap-2`}
             >

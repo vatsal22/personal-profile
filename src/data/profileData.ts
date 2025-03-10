@@ -42,9 +42,20 @@ export interface Education {
 export const profileData = {
     name: "Vatsal Solanki",
     title: "Software Engineer",
+    themeTitles: {
+        default: "Software Engineer",
+        uwaterloo: "Professional Lazeez Enjoyer",
+        roblox: "Professional Sev-0 Causer",
+        windriver: "Professional Bug Developer",
+        hubhead: "Professional Bug Developer",
+        thomson: "Professional Bug Developer",
+        escrypt: "Professional Bug Developer",
+        imagine: "Professional Bug Developer",
+        oanda: "Professional Bug Developer",
+    },
     bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
     avatar: "/profile-placeholder.jpg",
-    location: "San Mateo, CA",
+    location: "San Francisco, CA",
     email: "john.doe@example.com",
     skills: [
         "C++",
@@ -58,8 +69,8 @@ export const profileData = {
     ],
     socialLinks: {
         github: "https://github.com/vatsal22",
-        linkedin: "https://linkedin.com/in/vatsal-solanki",
-        twitter: "https://twitter.com/vatsolanka",
+        linkedin: "https://www.linkedin.com/in/vatsal-solanki/",
+        twitter: "https://twitter.com/vatsalsolanki22",
     },
     education: {
         university: "University of Waterloo",
