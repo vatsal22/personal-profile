@@ -1,58 +1,25 @@
 "use client";
 
-import { ThemeType, useTheme } from "@/context/ThemeContext";
+import { useTheme } from "@/context/ThemeContext";
+import { Education, profileData } from "@/data/profileData";
 import { useState } from "react";
 
-const eyeFlyGalleryImages = [
-    {
-        id: 1,
-        src: "/eyefly/eyefly_assembled_drone.webp",
-        alt: "EyeFly Assembled Drone",
-        caption: "Fully assembled EyeFly drone prototype with camera module",
-    },
-    {
-        id: 2,
-        src: "/eyefly/eyeflye_person_detected_flying.png",
-        alt: "Person Detection System in Action",
-        caption:
-            "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard. ",
-    },
-
-    {
-        id: 3,
-        src: "/eyefly/eyefly_dashboard.webp",
-        alt: "EyeFly Control Dashboard",
-        caption:
-            "Real-time monitoring dashboard for monitoring drone vitals and status.",
-    },
-    {
-        id: 4,
-        src: "/eyefly/eyefly_drone_pdb_component.webp",
-        alt: "EyeFly PDB Component",
-        caption:
-            "Central power distribution board (PDB) component for prototype drone.",
-    },
-    {
-        id: 5,
-        src: "/eyefly/eyefly_system_block_diagram.webp",
-        alt: "EyeFly System Architecture",
-        caption:
-            "System block diagram of entire system, including drone and backend infrastructure.",
-    },
-];
+// Remove the local constant as we now have the data in profileData.ts
+// const eyeFlyGalleryImages = [...]
 
 type EducationSectionProps = {
-    education: {
-        university: string;
-        degree: string;
-        period: string;
-        themeKey: ThemeType;
-    };
+    education: Education;
 };
 
 export const EducationSection = ({ education }: EducationSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Get the eyeFly project data from profileData
+    const eyeFlyProject = profileData.projects.find(
+        (project) => project.id === "eyefly"
+    );
+    const eyeFlyGalleryImages = eyeFlyProject?.images || [];
 
     const handleEducationClick = () => {
         if (expandedItem === "education") {
@@ -215,17 +182,12 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                 {isExpanded && (
                     <div className="mt-4 pt-4 border-t border-gray-200">
                         <p
-                            className={`${
-                                isUWaterloo
-                                    ? "text-[#A05DCB]"
-                                    : colors.secondary
+                            className={`text-sm ${
+                                isExpanded ? "text-[#A05DCB]" : colors.secondary
                             } mb-4`}
                         >
-                            Computer engineering elective focus on systems
-                            programming and infrastructure development, with
-                            co-op experience across operating systems
-                            (WinDriver), security systems (Escrypt), and trading
-                            platforms (Oanda).
+                            {education.description ||
+                                "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (WinDriver), security systems (Escrypt), and trading platforms (Oanda)."}
                         </p>
 
                         {isUWaterloo && (
@@ -239,29 +201,34 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                         Notable Coursework
                                     </h4>
                                     <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
-                                        <li>
-                                            Real-Time Operating Systems: Core
-                                            systems architecture and concurrency
-                                            management
-                                        </li>
-                                        <li>
-                                            Distributed Computing: Large-scale
-                                            service deployment and coordination
-                                        </li>
-                                        <li>
-                                            Programming for Performance:
-                                            Optimization techniques for
-                                            high-performance systems
-                                        </li>
-                                        <li>
-                                            Computer Networks: Design and
-                                            implementation of networked systems
-                                        </li>
-                                        <li>
-                                            Computer Security: Security
-                                            engineering for platform
-                                            infrastructure
-                                        </li>
+                                        {education.coursework?.map(
+                                            (course, index) => (
+                                                <li key={index}>{course}</li>
+                                            )
+                                        ) || (
+                                            <>
+                                                <li>
+                                                    Real-Time Operating Systems:
+                                                    Core systems architecture
+                                                    and concurrency management
+                                                </li>
+                                                <li>
+                                                    Distributed Computing:
+                                                    Large-scale service
+                                                    deployment and coordination
+                                                </li>
+                                                <li>
+                                                    Programming for Performance:
+                                                    Optimization techniques for
+                                                    high-performance systems
+                                                </li>
+                                                <li>
+                                                    Computer Networks: Design
+                                                    and implementation of
+                                                    networked systems
+                                                </li>
+                                            </>
+                                        )}
                                     </ul>
                                 </div>
 
@@ -271,33 +238,45 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                         <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
                                     </div>
                                     <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
-                                        Capstone Project: EyeFly
+                                        Capstone Project:{" "}
+                                        {eyeFlyProject?.name || "EyeFly"}
                                     </h4>
                                     <p className="text-sm text-gray-700 relative z-10 mb-4">
-                                        Led development of a search and rescue
-                                        drone system featuring real-time
-                                        computer vision for person detection,
-                                        monitoring dashboard powered by a robust
-                                        communication infrastructure, and
-                                        custom-designed hardware components.
+                                        {eyeFlyProject?.description ||
+                                            "Capstone project - An autonomous surveillance drone with AI-powered detection capabilities"}
                                     </p>
-                                    <div className="mb-4 relative z-20">
+                                    <div className="mt-2 flex flex-wrap gap-2">
+                                        {eyeFlyProject?.technologies.map(
+                                            (tech, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="px-2 py-1 bg-purple-100 text-purple-800 rounded-md text-sm"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            )
+                                        )}
+                                    </div>
+                                    <div className="mt-3">
                                         <a
-                                            href="https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants#https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342"
+                                            href={
+                                                eyeFlyProject?.links
+                                                    ?.capstone ||
+                                                "https://uwaterloo.ca/capstone-design/"
+                                            }
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#5D0096] hover:text-[#7E2EAF] text-sm flex items-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md px-1 py-0.5 -ml-1"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                            }}
-                                            onKeyDown={(e) => {
-                                                if (
-                                                    e.key === "Enter" ||
-                                                    e.key === " "
-                                                ) {
-                                                    e.stopPropagation();
-                                                }
-                                            }}
+                                            className="inline-flex items-center text-sm text-purple-700 hover:text-purple-900 transition-colors"
+                                            tabIndex={0}
+                                            aria-label="View project on UWaterloo Engineering Capstone Design website"
+                                            onKeyDown={(e) =>
+                                                handleKeyDown(e, () => {
+                                                    window.open(
+                                                        "https://uwaterloo.ca/capstone-design/",
+                                                        "_blank"
+                                                    );
+                                                })
+                                            }
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -486,14 +465,6 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                 </span>
                             ))}
                         </div>
-
-                        {isUWaterloo && (
-                            <div className="mt-6">
-                                <button className="bg-[#5D0096] text-white px-4 py-2 rounded">
-                                    View Transcript
-                                </button>
-                            </div>
-                        )}
                     </div>
                 )}
             </div>
