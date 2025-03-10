@@ -1,6 +1,46 @@
 "use client";
 
 import { ThemeType, useTheme } from "@/context/ThemeContext";
+import { useEffect, useState } from "react";
+
+// Create dummy data for the EyeFly gallery
+const eyeFlyGalleryImages = [
+    {
+        id: 1,
+        src: "/eyefly/eyefly_assembled_drone.webp",
+        alt: "EyeFly Assembled Drone",
+        caption: "Fully assembled EyeFly drone prototype with camera module",
+    },
+    {
+        id: 2,
+        src: "/eyefly/eyeflye_person_detected_flying.png",
+        alt: "Person Detection System in Action",
+        caption:
+            "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard. ",
+    },
+
+    {
+        id: 3,
+        src: "/eyefly/eyefly_dashboard.webp",
+        alt: "EyeFly Control Dashboard",
+        caption:
+            "Real-time monitoring dashboard for monitoring drone vitals and status.",
+    },
+    {
+        id: 4,
+        src: "/eyefly/eyefly_drone_pdb_component.webp",
+        alt: "EyeFly PDB Component",
+        caption:
+            "Central power distribution board (PDB) component for prototype drone.",
+    },
+    {
+        id: 5,
+        src: "/eyefly/eyefly_system_block_diagram.webp",
+        alt: "EyeFly System Architecture",
+        caption:
+            "System block diagram showing the drone's communication architecture",
+    },
+];
 
 type EducationSectionProps = {
     education: {
@@ -13,6 +53,21 @@ type EducationSectionProps = {
 
 export const EducationSection = ({ education }: EducationSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+    // Auto-play functionality for the carousel
+    useEffect(() => {
+        if (!isAutoPlaying) return;
+
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === eyeFlyGalleryImages.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [isAutoPlaying]);
 
     const handleEducationClick = () => {
         if (expandedItem === "education") {
@@ -23,6 +78,32 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
             // Expand and collapse any other expanded item
             setExpandedItem("education");
             setTheme(education.themeKey);
+        }
+    };
+
+    const handlePrevImage = () => {
+        setIsAutoPlaying(false);
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === 0 ? eyeFlyGalleryImages.length - 1 : prevIndex - 1
+        );
+    };
+
+    const handleNextImage = () => {
+        setIsAutoPlaying(false);
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === eyeFlyGalleryImages.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    const handleThumbnailClick = (index: number) => {
+        setIsAutoPlaying(false);
+        setCurrentImageIndex(index);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent, action: () => void) => {
+        if (e.key === "Enter" || e.key === " ") {
+            action();
+            e.preventDefault();
         }
     };
 
@@ -210,12 +291,156 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
                                         Capstone Project: EyeFly
                                     </h4>
-                                    <p className="text-sm text-gray-700 relative z-10">
+                                    <p className="text-sm text-gray-700 relative z-10 mb-4">
                                         Led development of a search and rescue
-                                        drone system featuring real-time image
-                                        processing and critical data
-                                        communication infrastructure.
+                                        drone system featuring real-time
+                                        computer vision for person detection,
+                                        monitoring dashboard powered by a robust
+                                        communication infrastructure, and
+                                        custom-designed hardware components.
                                     </p>
+
+                                    {/* Image Gallery/Carousel for EyeFly */}
+                                    <div className="mt-4 relative">
+                                        <div className="relative overflow-hidden rounded-lg shadow-md">
+                                            {/* Main image display - Increasing height from 56.25% (16:9) to 75% (4:3) */}
+                                            <div className="relative pb-[75%] bg-gray-200 rounded-lg overflow-hidden">
+                                                {/* Using actual images instead of placeholders */}
+                                                <img
+                                                    src={
+                                                        eyeFlyGalleryImages[
+                                                            currentImageIndex
+                                                        ].src
+                                                    }
+                                                    alt={
+                                                        eyeFlyGalleryImages[
+                                                            currentImageIndex
+                                                        ].alt
+                                                    }
+                                                    className="absolute inset-0 w-full h-full object-contain bg-gray-100"
+                                                />
+                                            </div>
+
+                                            {/* Image caption */}
+                                            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm text-center">
+                                                {
+                                                    eyeFlyGalleryImages[
+                                                        currentImageIndex
+                                                    ].caption
+                                                }
+                                            </div>
+
+                                            {/* Navigation arrows - adjusted positioning */}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handlePrevImage();
+                                                }}
+                                                onKeyDown={(e) => {
+                                                    e.stopPropagation();
+                                                    handleKeyDown(
+                                                        e,
+                                                        handlePrevImage
+                                                    );
+                                                }}
+                                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                aria-label="Previous image"
+                                                tabIndex={0}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="w-5 h-5"
+                                                >
+                                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                                </svg>
+                                            </button>
+
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleNextImage();
+                                                }}
+                                                onKeyDown={(e) => {
+                                                    e.stopPropagation();
+                                                    handleKeyDown(
+                                                        e,
+                                                        handleNextImage
+                                                    );
+                                                }}
+                                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                aria-label="Next image"
+                                                tabIndex={0}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    className="w-5 h-5"
+                                                >
+                                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        {/* Thumbnails - increased height */}
+                                        <div className="flex mt-2 space-x-2 overflow-x-auto pb-1">
+                                            {eyeFlyGalleryImages.map(
+                                                (image, index) => (
+                                                    <button
+                                                        key={image.id}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleThumbnailClick(
+                                                                index
+                                                            );
+                                                        }}
+                                                        onKeyDown={(e) => {
+                                                            e.stopPropagation();
+                                                            handleKeyDown(
+                                                                e,
+                                                                () =>
+                                                                    handleThumbnailClick(
+                                                                        index
+                                                                    )
+                                                            );
+                                                        }}
+                                                        className={`flex-shrink-0 w-16 h-14 rounded overflow-hidden focus:outline-none ${
+                                                            currentImageIndex ===
+                                                            index
+                                                                ? "ring-2 ring-purple-600"
+                                                                : "opacity-70 hover:opacity-100"
+                                                        }`}
+                                                        aria-label={`View image ${
+                                                            index + 1
+                                                        }: ${image.alt}`}
+                                                        aria-current={
+                                                            currentImageIndex ===
+                                                            index
+                                                                ? "true"
+                                                                : "false"
+                                                        }
+                                                        tabIndex={0}
+                                                    >
+                                                        <img
+                                                            src={image.src}
+                                                            alt=""
+                                                            className="w-full h-full object-cover"
+                                                        />
+                                                    </button>
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </>
                         )}
