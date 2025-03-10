@@ -162,7 +162,8 @@ export const profileData = {
             ],
             themeKey: "uwaterloo" as ThemeType,
             links: {
-                capstone: "https://uwaterloo.ca/capstone-design/",
+                capstone:
+                    "https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342",
             },
             images: [
                 {

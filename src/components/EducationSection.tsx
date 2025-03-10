@@ -266,17 +266,21 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                             }
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center text-sm text-purple-700 hover:text-purple-900 transition-colors"
+                                            className="inline-flex items-center text-sm text-purple-700 hover:text-purple-900 transition-colors relative z-20"
                                             tabIndex={0}
                                             aria-label="View project on UWaterloo Engineering Capstone Design website"
-                                            onKeyDown={(e) =>
+                                            onClick={(e) => e.stopPropagation()}
+                                            onKeyDown={(e) => {
+                                                e.stopPropagation();
                                                 handleKeyDown(e, () => {
                                                     window.open(
-                                                        "https://uwaterloo.ca/capstone-design/",
+                                                        eyeFlyProject?.links
+                                                            ?.capstone ||
+                                                            "https://uwaterloo.ca/capstone-design/",
                                                         "_blank"
                                                     );
-                                                })
-                                            }
+                                                });
+                                            }}
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
