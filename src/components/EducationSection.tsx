@@ -158,38 +158,75 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     : colors.secondary
                             } mb-4`}
                         >
-                            Computer engineering education with focus on
-                            software development and systems programming. Gained
-                            comprehensive knowledge in circuit design, embedded
-                            systems, and software architecture.
+                            Computer engineering elective focus on systems
+                            programming and infrastructure development, with
+                            co-op experience across operating systems
+                            (WinDriver), security systems (Escrypt), and trading
+                            platforms (Oanda).
                         </p>
 
                         {isUWaterloo && (
-                            <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-[#C2A8F0] relative overflow-hidden">
-                                {/* Subtle PCB pattern in the box */}
-                                <div className="absolute inset-0 opacity-5">
-                                    <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
+                            <>
+                                <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-[#C2A8F0] relative overflow-hidden">
+                                    {/* Subtle PCB pattern in the box */}
+                                    <div className="absolute inset-0 opacity-5">
+                                        <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
+                                    </div>
+                                    <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
+                                        Notable Coursework
+                                    </h4>
+                                    <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
+                                        <li>
+                                            Real-Time Operating Systems: Core
+                                            systems architecture and concurrency
+                                            management
+                                        </li>
+                                        <li>
+                                            Distributed Computing: Large-scale
+                                            service deployment and coordination
+                                        </li>
+                                        <li>
+                                            Programming for Performance:
+                                            Optimization techniques for
+                                            high-performance systems
+                                        </li>
+                                        <li>
+                                            Computer Networks: Design and
+                                            implementation of networked systems
+                                        </li>
+                                        <li>
+                                            Computer Security: Security
+                                            engineering for platform
+                                            infrastructure
+                                        </li>
+                                    </ul>
                                 </div>
-                                <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
-                                    Co-operative Education Program
-                                </h4>
-                                <p className="text-sm text-gray-700 mb-2 relative z-10">
-                                    Completed 6 diverse co-op terms across
-                                    various industries, gaining hands-on
-                                    experience in operating systems, security,
-                                    and enterprise software development.
-                                </p>
-                            </div>
+
+                                <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-[#C2A8F0] relative overflow-hidden">
+                                    {/* Subtle PCB pattern in the box */}
+                                    <div className="absolute inset-0 opacity-5">
+                                        <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
+                                    </div>
+                                    <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
+                                        Capstone Project: EyeFly
+                                    </h4>
+                                    <p className="text-sm text-gray-700 relative z-10">
+                                        Led development of a search and rescue
+                                        drone system featuring real-time image
+                                        processing and critical data
+                                        communication infrastructure.
+                                    </p>
+                                </div>
+                            </>
                         )}
 
                         <div className="flex flex-wrap gap-2 mt-2">
                             {[
-                                "Computer Engineering",
-                                "Software Development",
                                 "Systems Programming",
-                                "Circuit Design",
+                                "Distributed Systems",
+                                "Performance Optimization",
                                 "Embedded Systems",
-                                "PCB Layout",
+                                "Computer Networks",
                             ].map((skill) => (
                                 <span
                                     key={skill}

@@ -34,8 +34,8 @@ export const profileData = {
     },
     education: {
         university: "University of Waterloo",
-        degree: "BASc, Computer Engineering",
-        period: "2015-2020",
+        degree: "BASc, Computer Engineering (Honours)",
+        period: "2017-2022",
         themeKey: "uwaterloo" as ThemeType,
     },
     experiences: [
