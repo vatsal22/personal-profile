@@ -36,10 +36,11 @@ export interface Education {
     themeKey: ThemeType;
     description?: string;
     coursework?: string[];
+    capstoneProject?: Project;
 }
 
 export const profileData = {
-    name: "John Doe",
+    name: "Vatsal Solanki",
     title: "Engine Release Engineer at Roblox",
     bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
     avatar: "/profile-placeholder.jpg",
@@ -56,9 +57,8 @@ export const profileData = {
         "Git",
     ],
     socialLinks: {
-        github: "https://github.com/johndoe",
-        linkedin: "https://linkedin.com/in/johndoe",
-        twitter: "https://twitter.com/johndoe",
+        github: "https://github.com/vatsal22",
+        linkedin: "https://linkedin.com/in/vatsal-solanki",
     },
     education: {
         university: "University of Waterloo",
@@ -66,13 +66,69 @@ export const profileData = {
         period: "2017-2022",
         themeKey: "uwaterloo" as ThemeType,
         description:
-            "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (WinDriver), security systems (Escrypt), and trading platforms (Oanda).",
+            "Elective focus on systems programming and infrastructure development, with co-op experience across a wide range of domains including real-time operating systems (WindRiver), security systems (Escrypt), and trading platforms (Oanda).",
         coursework: [
             "Real-Time Operating Systems: Core systems architecture and concurrency management",
             "Distributed Computing: Large-scale service deployment and coordination",
             "Programming for Performance: Optimization techniques for high-performance systems",
             "Computer Networks: Design and implementation of networked systems",
         ],
+        capstoneProject: {
+            id: "eyefly",
+            name: "EyeFly Drone",
+            description:
+                "An autonomous search and rescue drone system with AI-powered detection capabilities, comprehensive telemetry monitoring, and robust backend infrastructure for remote operation in challenging environments.",
+            technologies: [
+                "Computer Vision (TensorFlow, Fine-tuning RCNN model)",
+                "Embedded Systems",
+                "Python",
+                "C",
+                "C++",
+                "Terraform",
+            ],
+            themeKey: "uwaterloo" as ThemeType,
+            links: {
+                capstone:
+                    "https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342",
+            },
+            images: [
+                {
+                    id: 1,
+                    src: "/eyefly/eyefly_assembled_drone.webp",
+                    alt: "EyeFly Assembled Drone",
+                    caption:
+                        "Fully assembled EyeFly drone prototype with camera module",
+                },
+                {
+                    id: 2,
+                    src: "/eyefly/eyeflye_person_detected_flying.png",
+                    alt: "Person Detection System in Action",
+                    caption:
+                        "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard.",
+                },
+                {
+                    id: 3,
+                    src: "/eyefly/eyefly_dashboard.webp",
+                    alt: "EyeFly Control Dashboard",
+                    caption:
+                        "Real-time monitoring dashboard for monitoring drone vitals and status.",
+                },
+                {
+                    id: 4,
+                    src: "/eyefly/eyefly_drone_pdb_component.webp",
+                    alt: "EyeFly PDB Component",
+                    caption:
+                        "Central power distribution board (PDB) component for prototype drone.",
+                },
+                {
+                    id: 5,
+                    src: "/eyefly/eyefly_system_block_diagram.webp",
+                    alt: "EyeFly System Architecture",
+                    caption:
+                        "System block diagram of entire system, including drone and backend infrastructure.",
+                },
+            ],
+        },
     },
     experiences: [
         {
@@ -147,62 +203,6 @@ export const profileData = {
         },
     ],
     projects: [
-        {
-            id: "eyefly",
-            name: "EyeFly Drone",
-            description:
-                "Capstone project - An autonomous surveillance drone with AI-powered detection capabilities",
-            technologies: [
-                "Computer Vision (TensorFlow, Fine-tuning RCNN model)",
-                "Embedded Systems",
-                "Python",
-                "C",
-                "C++",
-                "Terrafom",
-            ],
-            themeKey: "uwaterloo" as ThemeType,
-            links: {
-                capstone:
-                    "https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342",
-            },
-            images: [
-                {
-                    id: 1,
-                    src: "/eyefly/eyefly_assembled_drone.webp",
-                    alt: "EyeFly Assembled Drone",
-                    caption:
-                        "Fully assembled EyeFly drone prototype with camera module",
-                },
-                {
-                    id: 2,
-                    src: "/eyefly/eyeflye_person_detected_flying.png",
-                    alt: "Person Detection System in Action",
-                    caption:
-                        "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard.",
-                },
-                {
-                    id: 3,
-                    src: "/eyefly/eyefly_dashboard.webp",
-                    alt: "EyeFly Control Dashboard",
-                    caption:
-                        "Real-time monitoring dashboard for monitoring drone vitals and status.",
-                },
-                {
-                    id: 4,
-                    src: "/eyefly/eyefly_drone_pdb_component.webp",
-                    alt: "EyeFly PDB Component",
-                    caption:
-                        "Central power distribution board (PDB) component for prototype drone.",
-                },
-                {
-                    id: 5,
-                    src: "/eyefly/eyefly_system_block_diagram.webp",
-                    alt: "EyeFly System Architecture",
-                    caption:
-                        "System block diagram of entire system, including drone and backend infrastructure.",
-                },
-            ],
-        },
         // Add more projects as needed
     ],
 };

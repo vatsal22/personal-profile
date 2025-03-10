@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import { Education, profileData } from "@/data/profileData";
+import { Education } from "@/data/profileData";
 import { useState } from "react";
 
 type EducationSectionProps = {
@@ -12,11 +12,9 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Get the eyeFly project data from profileData
-    const eyeFlyProject = profileData.projects.find(
-        (project) => project.id === "eyefly"
-    );
-    const eyeFlyGalleryImages = eyeFlyProject?.images || [];
+    // Get the capstone project data directly from education
+    const capstoneProject = education.capstoneProject;
+    const projectImages = capstoneProject?.images || [];
 
     const handleEducationClick = () => {
         if (expandedItem === "education") {
@@ -32,13 +30,13 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
 
     const handlePrevImage = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? eyeFlyGalleryImages.length - 1 : prevIndex - 1
+            prevIndex === 0 ? projectImages.length - 1 : prevIndex - 1
         );
     };
 
     const handleNextImage = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === eyeFlyGalleryImages.length - 1 ? 0 : prevIndex + 1
+            prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
         );
     };
 
@@ -132,7 +130,8 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     : colors.secondary
                             }`}
                         >
-                            {education.degree} • {education.period}
+                            {education.degree} • {education.period} •
+                            {" Distinction - Dean's Honours List"}
                         </p>
                     </div>
                     <div
@@ -212,13 +211,14 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                         <div className="w-full h-full bg-[url('/pcb-pattern.svg')] bg-repeat"></div>
                                     </div>
                                     <h4 className="font-medium text-[#A05DCB] mb-2 relative z-10">
-                                        Capstone Project: {eyeFlyProject?.name}
+                                        Capstone Project:{" "}
+                                        {capstoneProject?.name}
                                     </h4>
                                     <p className="text-sm text-gray-700 relative z-10 mb-4">
-                                        {eyeFlyProject?.description}
+                                        {capstoneProject?.description}
                                     </p>
                                     <div className="mt-2 flex flex-wrap gap-2">
-                                        {eyeFlyProject?.technologies.map(
+                                        {capstoneProject?.technologies.map(
                                             (tech, index) => (
                                                 <span
                                                     key={index}
@@ -232,7 +232,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     <div className="mt-3">
                                         <a
                                             href={
-                                                eyeFlyProject?.links?.capstone
+                                                capstoneProject?.links?.capstone
                                             }
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -244,7 +244,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                 e.stopPropagation();
                                                 handleKeyDown(e, () => {
                                                     window.open(
-                                                        eyeFlyProject?.links
+                                                        capstoneProject?.links
                                                             ?.capstone,
                                                         "_blank"
                                                     );
@@ -268,8 +268,8 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                     clipRule="evenodd"
                                                 />
                                             </svg>
-                                            View on UWaterloo Engineering
-                                            Capstone Design
+                                            View on UWaterloo Capstone projects
+                                            page
                                         </a>
                                     </div>
 
@@ -281,12 +281,12 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                 {/* Using actual images instead of placeholders */}
                                                 <img
                                                     src={
-                                                        eyeFlyGalleryImages[
+                                                        projectImages[
                                                             currentImageIndex
                                                         ].src
                                                     }
                                                     alt={
-                                                        eyeFlyGalleryImages[
+                                                        projectImages[
                                                             currentImageIndex
                                                         ].alt
                                                     }
@@ -297,7 +297,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                             {/* Image caption */}
                                             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm text-center">
                                                 {
-                                                    eyeFlyGalleryImages[
+                                                    projectImages[
                                                         currentImageIndex
                                                     ].caption
                                                 }
@@ -367,7 +367,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
 
                                         {/* Thumbnails - increased height */}
                                         <div className="flex mt-2 space-x-2 overflow-x-auto pb-1">
-                                            {eyeFlyGalleryImages.map(
+                                            {projectImages.map(
                                                 (image, index) => (
                                                     <button
                                                         key={image.id}
