@@ -34,7 +34,11 @@ export const ProfileHero = ({
                     priority
                 />
             </div>
-            <h1 className={`text-4xl font-bold ${colors.text} mb-2`}>{name}</h1>
+            <h1
+                className={`text-4xl font-bold ${colors.text} mb-2 section-header`}
+            >
+                {name}
+            </h1>
             <p className={`text-xl ${colors.secondary} mb-4`}>{displayTitle}</p>
             <p
                 className={`${colors.secondary} flex items-center justify-center gap-2`}

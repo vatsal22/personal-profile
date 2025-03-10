@@ -145,9 +145,9 @@ export const profileData = {
     professionalExperiences: [
         {
             id: "roblox",
-            title: "Engine Release Engineer",
+            title: "Software Engineer, Engine Release Team",
             company: "Roblox",
-            period: "2021-Present (3 years)",
+            period: "2022-Present",
             description:
                 "Working on the Engine Release Team, focused on the release, flags, and channels system. Primary responsibilities include developing and maintaining C++ components for client/server changes, C# for backend systems, and occasional Python/TypeScript scripting for build automation.",
             technologies: ["C++", "C#", "Python", "TypeScript"],

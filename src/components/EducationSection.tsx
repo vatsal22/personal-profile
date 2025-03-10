@@ -86,7 +86,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                     isUWaterloo && isExpanded
                         ? educationHeadingStyle
                         : colors.text
-                } relative z-10`}
+                } relative z-10 section-header`}
             >
                 Education
             </h2>
@@ -119,7 +119,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                 isUWaterloo && isExpanded
                                     ? "text-[#5D0096]"
                                     : colors.text
-                            }`}
+                            } experience-title`}
                         >
                             {education.university}
                         </h3>

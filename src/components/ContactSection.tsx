@@ -21,7 +21,7 @@ export const ContactSection = ({ email, socialLinks }: ContactSectionProps) => {
         >
             <h2
                 id="contact-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-4`}
+                className={`text-2xl font-semibold ${colors.text} mb-4 section-header`}
             >
                 Contact
             </h2>

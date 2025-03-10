@@ -36,7 +36,7 @@ export const CoopExperienceSection = ({
         >
             <h2
                 id="coop-experience-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-6`}
+                className={`text-2xl font-semibold ${colors.text} mb-6 section-header`}
             >
                 Co-op Experience
             </h2>
@@ -88,7 +88,7 @@ export const CoopExperienceSection = ({
                     <div className="flex justify-between items-center">
                         <div>
                             <h3
-                                className={`font-medium text-lg ${colors.text}`}
+                                className={`font-medium text-lg ${colors.text} experience-title`}
                             >
                                 {experience.company}
                             </h3>

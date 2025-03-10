@@ -29,6 +29,7 @@ export interface ThemeColors {
     cardHoverEffect?: string; // Hover effects for cards
     iconStyle?: string; // Style for icons
     buttonStyle?: string; // Style for buttons
+    fontFamily?: string; // Font family to use for this theme
 }
 
 // Theme definitions for each experience
@@ -124,6 +125,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         iconStyle: "text-black",
         buttonStyle:
             "bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-black",
+        fontFamily: "font-['Roblox']",
     },
 };
 

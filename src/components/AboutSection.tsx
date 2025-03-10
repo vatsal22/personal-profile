@@ -16,7 +16,7 @@ export const AboutSection = ({ bio }: AboutSectionProps) => {
         >
             <h2
                 id="about-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-4`}
+                className={`text-2xl font-semibold ${colors.text} mb-4 section-header`}
             >
                 About Me
             </h2>

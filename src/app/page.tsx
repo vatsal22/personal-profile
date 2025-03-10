@@ -8,6 +8,7 @@ import { EducationSection } from "@/components/EducationSection";
 import { ProfessionalExperienceSection } from "@/components/ProfessionalExperienceSection";
 import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
+import { ThemeStyleProvider } from "@/components/ThemeStyleProvider";
 import { useTheme } from "@/context/ThemeContext";
 import { Experience, profileData } from "@/data/profileData";
 
@@ -28,7 +29,7 @@ export default function Home() {
         ) : null;
 
     return (
-        <>
+        <ThemeStyleProvider>
             {/* UWaterloo purple PCB background overlay */}
             {waterlooPurplePCB}
 
@@ -65,6 +66,6 @@ export default function Home() {
                     />
                 </div>
             </main>
-        </>
+        </ThemeStyleProvider>
     );
 }

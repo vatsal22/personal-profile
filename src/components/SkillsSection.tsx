@@ -16,7 +16,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
         >
             <h2
                 id="skills-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-4`}
+                className={`text-2xl font-semibold ${colors.text} mb-4 section-header`}
             >
                 Skills
             </h2>
