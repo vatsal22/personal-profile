@@ -9,6 +9,7 @@ import { ProfessionalExperienceSection } from "@/components/ProfessionalExperien
 import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ThemeStyleProvider } from "@/components/ThemeStyleProvider";
+import { TimelineSidebar } from "@/components/TimelineSidebar";
 import { useTheme } from "@/context/ThemeContext";
 import { Experience, profileData } from "@/data/profileData";
 
@@ -36,6 +37,9 @@ export default function Home() {
             {/* Canada Goose that bounces around when UWaterloo theme is active */}
             <CanadaGoose />
 
+            {/* Timeline Sidebar */}
+            <TimelineSidebar />
+
             <main
                 className={`relative z-10 min-h-screen bg-gradient-to-b ${colors.primary} py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500`}
             >
@@ -47,23 +51,35 @@ export default function Home() {
                         avatar={profileData.avatar}
                         location={profileData.location}
                     />
-                    <AboutSection bio={profileData.bio} />
-                    <SkillsSection skills={profileData.skills} />
-                    <EducationSection education={profileData.education} />
-                    <ProfessionalExperienceSection
-                        experiences={
-                            profileData.professionalExperiences as Experience[]
-                        }
-                    />
-                    <CoopExperienceSection
-                        experiences={
-                            profileData.coopExperiences as Experience[]
-                        }
-                    />
-                    <ContactSection
-                        email={profileData.email}
-                        socialLinks={profileData.socialLinks}
-                    />
+                    <section id="about">
+                        <AboutSection bio={profileData.bio} />
+                    </section>
+                    <section id="skills">
+                        <SkillsSection skills={profileData.skills} />
+                    </section>
+                    <section id="education">
+                        <EducationSection education={profileData.education} />
+                    </section>
+                    <section id="professional">
+                        <ProfessionalExperienceSection
+                            experiences={
+                                profileData.professionalExperiences as Experience[]
+                            }
+                        />
+                    </section>
+                    <section id="coop">
+                        <CoopExperienceSection
+                            experiences={
+                                profileData.coopExperiences as Experience[]
+                            }
+                        />
+                    </section>
+                    <section id="contact">
+                        <ContactSection
+                            email={profileData.email}
+                            socialLinks={profileData.socialLinks}
+                        />
+                    </section>
                 </div>
             </main>
         </ThemeStyleProvider>

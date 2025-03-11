@@ -32,3 +32,51 @@ body {
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes borderPulse {
+    0% {
+        border-color: transparent;
+        box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0.7);
+    }
+    50% {
+        border-color: rgb(var(--border-color-rgb));
+        box-shadow: 0 0 0 8px rgba(var(--border-color-rgb), 0);
+    }
+    100% {
+        border-color: transparent;
+        box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0);
+    }
+}
+
+.section-highlight {
+    animation: borderPulse 1.5s ease-out forwards;
+}
+
+/* For different themes */
+.default-highlight {
+    --border-color-rgb: 59, 130, 246;
+}
+.uwaterloo-highlight {
+    --border-color-rgb: 93, 0, 150;
+}
+.windriver-highlight {
+    --border-color-rgb: 30, 64, 175;
+}
+.hubhead-highlight {
+    --border-color-rgb: 22, 163, 74;
+}
+.thomson-highlight {
+    --border-color-rgb: 234, 88, 12;
+}
+.escrypt-highlight {
+    --border-color-rgb: 126, 34, 206;
+}
+.imagine-highlight {
+    --border-color-rgb: 219, 39, 119;
+}
+.oanda-highlight {
+    --border-color-rgb: 79, 70, 229;
+}
+.roblox-highlight {
+    --border-color-rgb: 0, 0, 0;
+}
