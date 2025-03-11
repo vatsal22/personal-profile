@@ -10,6 +10,7 @@ import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ThemeStyleProvider } from "@/components/ThemeStyleProvider";
 import { TimelineSidebar } from "@/components/TimelineSidebar";
+import { TldrToggle } from "@/components/TldrToggle";
 import { useTheme } from "@/context/ThemeContext";
 import { Experience, profileData } from "@/data/profileData";
 
@@ -39,6 +40,9 @@ export default function Home() {
 
             {/* Timeline Sidebar */}
             <TimelineSidebar />
+
+            {/* TLDR Mode Toggle */}
+            <TldrToggle />
 
             <main
                 className={`relative z-10 min-h-screen bg-gradient-to-b ${colors.primary} py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500`}

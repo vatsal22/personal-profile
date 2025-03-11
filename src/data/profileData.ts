@@ -9,6 +9,8 @@ export interface Experience {
     technologies: string[];
     themeKey: ThemeType;
     bulletPoints?: string[];
+    tldrDescription?: string;
+    tldrBulletPoints?: string[];
 }
 
 export interface ProjectImage {
@@ -16,6 +18,7 @@ export interface ProjectImage {
     src: string;
     alt: string;
     caption: string;
+    tldrCaption?: string;
 }
 
 export interface Project {
@@ -28,6 +31,8 @@ export interface Project {
     };
     technologies: string[];
     themeKey: ThemeType;
+    tldrName?: string;
+    tldrDescription?: string;
 }
 
 export interface Education {
@@ -38,6 +43,9 @@ export interface Education {
     description?: string;
     coursework?: string[];
     capstoneProject?: Project;
+    tldrDegree?: string;
+    tldrDescription?: string;
+    tldrCoursework?: string[];
 }
 
 export const profileData = {
@@ -85,6 +93,15 @@ export const profileData = {
             "Programming for Performance: Optimization techniques for high-performance systems",
             "Computer Networks: Design and implementation of networked systems",
         ],
+        tldrDegree: "Fancy Paper That Cost Too Much",
+        tldrDescription:
+            "Spent 5 years coding and drinking coffee. Survived Canadian winters. Got a piece of paper.",
+        tldrCoursework: [
+            "How to make computers do things faster than the guy next to you",
+            "How to make many computers work together without fighting",
+            "Why your code is slow and you should feel bad",
+            "The internet, but make it complicated",
+        ],
         capstoneProject: {
             id: "eyefly",
             name: "EyeFly Drone",
@@ -100,6 +117,9 @@ export const profileData = {
                 "MongoDB",
             ],
             themeKey: "uwaterloo" as ThemeType,
+            tldrName: "Flying Robot That Finds People",
+            tldrDescription:
+                "Made a drone that flies around, takes pictures, and finds lost hikers before they become bear food.",
             links: {
                 capstone:
                     "https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342",
@@ -111,6 +131,8 @@ export const profileData = {
                     alt: "EyeFly Assembled Drone",
                     caption:
                         "Fully assembled EyeFly drone prototype with camera module",
+                    tldrCaption:
+                        "The flying robot we built after watching too many sci-fi movies",
                 },
                 {
                     id: 2,
@@ -118,6 +140,8 @@ export const profileData = {
                     alt: "Person Detection System in Action",
                     caption:
                         "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard.",
+                    tldrCaption:
+                        "Computer sees people and draws creepy boxes around them",
                 },
                 {
                     id: 3,
@@ -125,6 +149,8 @@ export const profileData = {
                     alt: "EyeFly Control Dashboard",
                     caption:
                         "Real-time monitoring dashboard for monitoring drone vitals and status.",
+                    tldrCaption:
+                        "Fancy gauges that tell us if our drone is about to crash",
                 },
                 {
                     id: 4,
@@ -132,6 +158,8 @@ export const profileData = {
                     alt: "EyeFly PDB Component",
                     caption:
                         "Central power distribution board (PDB) component for prototype drone.",
+                    tldrCaption:
+                        "The part that makes electricity go where it should (hopefully)",
                 },
                 {
                     id: 5,
@@ -139,6 +167,8 @@ export const profileData = {
                     alt: "EyeFly System Architecture",
                     caption:
                         "System block diagram of entire system, including drone and backend infrastructure.",
+                    tldrCaption:
+                        "A complex diagram that makes us look smarter than we are",
                 },
             ],
         },
@@ -153,6 +183,15 @@ export const profileData = {
                 "Developing high performance cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
+            tldrDescription:
+                "I make Roblox better by breaking it less frequently.",
+            tldrBulletPoints: [
+                "Feature Flags - I add switches to turn things on and off without breaking the game.",
+                "Flag Channels - I make sure cool new features don't reach the wrong people.",
+                "Monitors - I build fancy dashboards that go red when things break.",
+                "Fire Fighting - I fix stuff when it explodes at 2 AM.",
+                "Dev Tools - I make tools so other engineers can break things less often.",
+            ],
             bulletPoints: [
                 "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
 
@@ -176,6 +215,12 @@ export const profileData = {
                 "Built high-performance distributed systems for processing and analyzing financial trading data at scale.",
             technologies: ["C++", "Kafka", "Avro", "Distributed Systems"],
             themeKey: "oanda" as ThemeType,
+            tldrDescription:
+                "Made computers count money really fast so rich people can get richer.",
+            tldrBulletPoints: [
+                "Built software that handles forex trades faster than you can say 'stock market crash'",
+                "Made fancy data formats to process trades so quickly your bank account doesn't know what hit it",
+            ],
             bulletPoints: [
                 "Developed high-performance C++ microservices to ingest, process, and distribute thousands of concurrent user trades using Kafka.",
                 "Optimized distributed compute performance by implementing Avro serialization, reducing latency for real-time forex hedging algorithms and increasing quantitative backtesting speeds.",
