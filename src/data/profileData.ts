@@ -61,12 +61,11 @@ export const profileData = {
     skills: [
         "C++",
         "C#",
-        "Python",
-        "TypeScript",
         "Java",
-        "Assembly",
-        "React",
-        "Git",
+        "Python",
+        "Distributed Systems",
+        "Cloud Architecture",
+        "CI/CD & DevOps",
     ],
     socialLinks: {
         github: "https://github.com/vatsal22",
