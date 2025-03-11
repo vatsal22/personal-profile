@@ -98,6 +98,7 @@ export const profileData = {
                 "C",
                 "C++",
                 "Terraform",
+                "MongoDB",
             ],
             themeKey: "uwaterloo" as ThemeType,
             links: {
@@ -148,9 +149,9 @@ export const profileData = {
             id: "roblox",
             title: "Software Engineer | Engine Release Team",
             company: "Roblox",
-            period: "2022-Present",
+            period: "July 2022 - Present",
             description:
-                "Developing cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
+                "Developing high performance cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             bulletPoints: [
@@ -169,67 +170,96 @@ export const profileData = {
     coopExperiences: [
         {
             id: "oanda",
-            title: "Software Developer",
-            company: "Oanda | Hedging Team",
-            period: "2020 (4 months)",
+            title: "Software Developer | Hedging Team",
+            company: "Oanda",
+            period: "Sept. 2021 - Dec. 2021",
             description:
-                "Worked on the hedging team, primarily using C++ to develop and optimize financial algorithms and systems.",
-            technologies: ["C++", "Financial Systems"],
+                "Built high-performance distributed systems for processing and analyzing financial trading data at scale.",
+            technologies: ["C++", "Kafka", "Avro", "Distributed Systems"],
             themeKey: "oanda" as ThemeType,
             bulletPoints: [
-                "Developed and optimized financial algorithms and systems using C++.",
-                "Worked on the hedging team, primarily using C++ to develop and optimize financial algorithms and systems.",
+                "Developed high-performance C++ microservices to ingest, process, and distribute thousands of concurrent user trades using Kafka.",
+                "Optimized distributed compute performance by implementing Avro serialization, reducing latency for real-time forex hedging algorithms and increasing quantitative backtesting speeds.",
             ],
         },
         {
             id: "imagine",
-            title: "Software Developer",
+            title: "Software Engineering",
             company: "Imagine Communications",
-            period: "2019 (4 months)",
+            period: "Sept. 2020 - Dec. 2020",
             description:
-                "Contributed to Magellan Navigator, a control and monitoring solution for broadcast media infrastructure, primarily using C#.",
-            technologies: ["C#", "Broadcast Media Systems"],
+                "Enhanced telemetry and monitoring systems for broadcast media infrastructure, focusing on performance optimization and cross-service communication.",
+            technologies: [
+                "C#",
+                "C++",
+                "Distributed Systems",
+                "Performance Optimization",
+            ],
             themeKey: "imagine" as ThemeType,
+            bulletPoints: [
+                "Architected and implemented customizable configuration system that reduced manual setup time by over 20% and eliminated common user errors through structured validation.",
+                "Developed critical interoperability layer between legacy C++ services and modern C# services, enabling seamless integration without disrupting existing workflows.",
+            ],
         },
         {
             id: "escrypt",
-            title: "Security Engineer",
+            title: "Software Developer",
             company: "Escrypt",
-            period: "2019 (4 months)",
+            period: "Jan. 2020 - Apr. 2020",
             description:
-                "Worked on the keyless car entry and truck fleet management team, developing embedded C and C# solutions, and briefly on C++ for a driver for an automotive ECU security module.",
-            technologies: ["Embedded C", "C#", "C++", "Security"],
+                "Developed keyless entry and fleet management access control system.",
+            technologies: ["Java", "OAuth", "REST", "Cloud Security", "AWS"],
             themeKey: "escrypt" as ThemeType,
+            bulletPoints: [
+                "Mentored junior intern while architecting secure API authentication using OAuth access tokens, reducing database reads by 20% and improving security posture.",
+                "Identified and resolved critical security vulnerability that allowed unauthorized access to user data through brute force attacks, implementing robust request validation and error handling.",
+            ],
         },
         {
             id: "thomson",
-            title: "Backend Developer",
+            title: "Software Developer",
             company: "Thomson Reuters",
-            period: "2018 (4 months)",
+            period: "May 2019 - Aug. 2019",
             description:
-                "Worked on the tax software team, primarily developing backend API services using C#.",
-            technologies: ["C#", "API Development", "Tax Software"],
+                "Worked on the enterprise tax software team, primarily developing and optimizing backend API services using C#.",
+            technologies: [
+                "C#",
+                ".NET",
+                "REST APIs",
+                "Multi-threading",
+                "Caching",
+            ],
             themeKey: "thomson" as ThemeType,
+            bulletPoints: [
+                "Optimized computation-intensive APIs by using caching, multi-threading, and other techniques, resulting in 80% speedup.",
+                "Designed and implemented REST APIs that transformed complex financial calculations into accessible endpoints, improving customer productivity and integration difficulty.",
+            ],
         },
         {
             id: "hubhead",
-            title: "Software Engineer",
+            title: "Release Engineer",
             company: "Hubhead",
-            period: "2018 (4 months)",
+            period: "Sept. 2018 - Dec. 2018",
             description:
-                "Worked at a startup revamping the installation and update system using an open source library called Getdown, primarily using Java.",
-            technologies: ["Java", "Getdown", "Software Distribution"],
+                "Designed and implemented cross-platform deployment and update infrastructure for enterprise asset management Java application.",
+            technologies: ["Java", "Groovy", "Release Automation", "CI/CD"],
             themeKey: "hubhead" as ThemeType,
+            bulletPoints: [
+                "Engineered a high-performance deployment pipeline that reduced application launch times by 50% through concurrent resource validation, while implementing automated versioning on deploys.",
+            ],
         },
         {
             id: "windriver",
-            title: "Software Developer",
+            title: "Test Engineer",
             company: "Wind River",
-            period: "2017 (4 months)",
+            period: "Jan. 2018 - Apr. 2018",
             description:
-                "Worked on the VxWorks operating system, focusing on debugging and manual testing of C and assembly code. Developed Python scripts for automating and gathering status of test machines.",
-            technologies: ["C", "Assembly", "Python", "VxWorks OS"],
+                "Tested and debugged VxWorks, a real-time operating system, working with low-level C and assembly code across various hardware configurations.",
+            technologies: ["C", "Assembly", "Python", "Real-time OS"],
             themeKey: "windriver" as ThemeType,
+            bulletPoints: [
+                "Developed a Python-based monitoring tool to observe and log the status of running hardware test instances, streamlining the verification and monitoring process for automated tests.",
+            ],
         },
     ],
     projects: [
