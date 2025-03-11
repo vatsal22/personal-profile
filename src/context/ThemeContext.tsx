@@ -64,22 +64,42 @@ export const themes: Record<ThemeType, ThemeColors> = {
         buttonStyle: "bg-[#5D0096] text-white px-4 py-2 rounded-md", // Simple purple button
     },
     windriver: {
-        primary: "from-teal-50 to-teal-100",
-        secondary: "text-teal-700",
-        background: "bg-teal-50",
-        text: "text-teal-900",
+        primary: "from-yellow-50 to-yellow-100",
+        secondary: "text-yellow-700",
+        background: "bg-yellow-50",
+        text: "text-yellow-900",
         cardBg: "bg-white",
-        accent: "bg-teal-100 text-teal-700",
-        borderColor: "teal",
+        accent: "bg-yellow-100 text-yellow-700",
+        borderColor: "yellow",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-yellow-50 to-yellow-100",
+        headerStyle: "text-yellow-700 border-b-2 border-yellow-200 pb-2",
+        borderStyle: "border border-yellow-200",
+        cardHoverEffect:
+            "hover:shadow-md hover:border-yellow-300 transition-all duration-300",
+        iconStyle: "text-yellow-600",
+        buttonStyle:
+            "bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700",
     },
     hubhead: {
-        primary: "from-green-50 to-green-100",
-        secondary: "text-green-700",
-        background: "bg-green-50",
-        text: "text-green-900",
+        primary: "from-blue-50 to-blue-100",
+        secondary: "text-blue-700",
+        background: "bg-blue-50",
+        text: "text-blue-900",
         cardBg: "bg-white",
-        accent: "bg-green-100 text-green-700",
-        borderColor: "green",
+        accent: "bg-blue-100 text-blue-700",
+        borderColor: "blue",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-blue-50 to-blue-100",
+        headerStyle: "text-blue-700 border-b-2 border-blue-200 pb-2",
+        borderStyle: "border border-blue-200",
+        cardHoverEffect:
+            "hover:shadow-md hover:border-blue-300 transition-all duration-300",
+        iconStyle: "text-blue-600",
+        buttonStyle:
+            "bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700",
     },
     thomson: {
         primary: "from-orange-50 to-orange-100",
@@ -89,15 +109,35 @@ export const themes: Record<ThemeType, ThemeColors> = {
         cardBg: "bg-white",
         accent: "bg-orange-100 text-orange-700",
         borderColor: "orange",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-orange-50 to-orange-100",
+        headerStyle: "text-orange-700 border-b-2 border-orange-200 pb-2",
+        borderStyle: "border border-orange-200",
+        cardHoverEffect:
+            "hover:shadow-md hover:border-orange-300 transition-all duration-300",
+        iconStyle: "text-orange-600",
+        buttonStyle:
+            "bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700",
     },
     escrypt: {
-        primary: "from-purple-50 to-purple-100",
-        secondary: "text-purple-700",
-        background: "bg-purple-50",
-        text: "text-purple-900",
+        primary: "from-green-50 to-green-100",
+        secondary: "text-green-700",
+        background: "bg-green-50",
+        text: "text-green-900",
         cardBg: "bg-white",
-        accent: "bg-purple-100 text-purple-700",
-        borderColor: "purple",
+        accent: "bg-green-100 text-green-700",
+        borderColor: "green",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-green-50 to-green-100",
+        headerStyle: "text-green-700 border-b-2 border-green-200 pb-2",
+        borderStyle: "border border-green-200",
+        cardHoverEffect:
+            "hover:shadow-md hover:border-green-300 transition-all duration-300",
+        iconStyle: "text-green-600",
+        buttonStyle:
+            "bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700",
     },
     imagine: {
         primary: "from-pink-50 to-pink-100",
@@ -116,6 +156,16 @@ export const themes: Record<ThemeType, ThemeColors> = {
         cardBg: "bg-white",
         accent: "bg-indigo-100 text-indigo-700",
         borderColor: "indigo",
+
+        // Enhanced theme elements
+        specialBackground: "bg-gradient-to-br from-indigo-50 to-indigo-100",
+        headerStyle: "text-indigo-700 border-b-2 border-indigo-200 pb-2",
+        borderStyle: "border border-indigo-200",
+        cardHoverEffect:
+            "hover:shadow-md hover:border-indigo-300 transition-all duration-300",
+        iconStyle: "text-indigo-600",
+        buttonStyle:
+            "bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700",
     },
     roblox: {
         primary: "from-gray-200 to-gray-300",
