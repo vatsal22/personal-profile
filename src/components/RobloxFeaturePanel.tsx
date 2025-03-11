@@ -14,8 +14,15 @@ interface FeatureFlag {
 // Define release channel types
 type ReleaseChannel = "production" | "beta";
 
-export const RobloxFeaturePanel = () => {
-    const { currentTheme } = useTheme();
+// Add an inline prop to determine if the component should be rendered inline or fixed
+interface RobloxFeaturePanelProps {
+    inline?: boolean;
+}
+
+export const RobloxFeaturePanel = ({
+    inline = false,
+}: RobloxFeaturePanelProps) => {
+    const { currentTheme, expandedItem } = useTheme();
     const [isVisible, setIsVisible] = useState(false);
     const [isPanelOpen, setIsPanelOpen] = useState(false);
     const [selectedChannel, setSelectedChannel] =
@@ -24,7 +31,7 @@ export const RobloxFeaturePanel = () => {
         {
             id: "enhanced-graphics",
             name: "Enhanced Graphics",
-            description: "⚠️ Warning: Not tested. Don't enable on prod!",
+            description: "⚠️ Super cool effects (coming soon)",
             enabled: false,
         },
     ]);
@@ -32,7 +39,10 @@ export const RobloxFeaturePanel = () => {
     // Only show when Roblox theme is active
     useEffect(() => {
         const isRoblox = currentTheme === "roblox";
-        setIsVisible(isRoblox);
+        const isRobloxExpanded = expandedItem === "roblox";
+
+        // For inline mode, only show when the Roblox section is expanded
+        setIsVisible(isRoblox && (inline ? isRobloxExpanded : true));
 
         // Reset panel state when theme changes
         if (!isRoblox) {
@@ -46,7 +56,7 @@ export const RobloxFeaturePanel = () => {
             // Remove any applied effects when theme changes
             removeFeatureFlags();
         }
-    }, [currentTheme]);
+    }, [currentTheme, expandedItem, inline]);
 
     // Apply effects when feature flags change
     useEffect(() => {
@@ -56,14 +66,19 @@ export const RobloxFeaturePanel = () => {
     }, [featureFlags, selectedChannel]);
 
     // Toggle a feature flag
-    const toggleFeatureFlag = (id: string) => {
+    const toggleFeatureFlag = (id: string, e?: React.SyntheticEvent) => {
+        // Stop propagation if event is provided
+        if (e) {
+            e.stopPropagation();
+        }
+
         // Since we're always on production (beta is disabled), show warning about enabling features
         if (
             id === "enhanced-graphics" &&
             !featureFlags.find((f) => f.id === id)?.enabled
         ) {
             const confirmEnable = window.confirm(
-                "WARNING: This feature is not ready for production use. Enable anyway for testing?"
+                "WARNING: This feature is untested and should not be enabled in production. But hey, what's the worst that can happen?"
             );
             if (!confirmEnable) return;
         }
@@ -197,44 +212,109 @@ export const RobloxFeaturePanel = () => {
 
     if (!isVisible) return null;
 
+    // Render different button styles based on inline prop
+    const buttonClasses = inline
+        ? "mb-2 mr-2 flex items-center justify-center rounded-full bg-white shadow-md border-2 border-gray-400 w-12 h-12 cursor-pointer hover:bg-gray-100 hover:shadow-lg transition-all relative z-20"
+        : "fixed bottom-4 right-4 z-50 flex items-center justify-center rounded-full bg-white shadow-lg border-2 border-gray-300 w-12 h-12 cursor-pointer hover:bg-gray-100 transition-all";
+
+    // Adjust icon size based on button size
+    const iconSize = inline ? "w-6 h-6" : "w-6 h-6";
+
+    const panelClasses = inline
+        ? "absolute bottom-full right-0 mb-2 z-50 bg-white rounded-lg shadow-xl border-2 border-gray-300 w-72 overflow-hidden transition-all"
+        : "fixed bottom-20 right-4 z-50 bg-white rounded-lg shadow-xl border-2 border-gray-300 w-80 overflow-hidden transition-all";
+
     return (
         <>
-            {/* Feature Flag Toggle Button */}
-            <div
-                className="fixed bottom-4 right-4 z-50 flex items-center justify-center rounded-full bg-white shadow-lg border-2 border-gray-300 w-12 h-12 cursor-pointer hover:bg-gray-100 transition-all"
-                onClick={() => setIsPanelOpen(!isPanelOpen)}
-                onKeyDown={(e) =>
-                    e.key === "Enter" && setIsPanelOpen(!isPanelOpen)
-                }
-                tabIndex={0}
-                role="button"
-                aria-label="Toggle feature flag panel"
-            >
-                <div className="w-6 h-6 relative">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        className="text-black"
+            {/* Feature Flag Toggle Button with Click Me text for inline mode */}
+            {inline ? (
+                <div className="flex flex-col items-center">
+                    <div
+                        className={buttonClasses}
+                        onClick={(e) => {
+                            e.stopPropagation(); // Stop event propagation
+                            setIsPanelOpen(!isPanelOpen);
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.stopPropagation(); // Stop event propagation
+                                setIsPanelOpen(!isPanelOpen);
+                            }
+                        }}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Toggle feature flag panel"
                     >
-                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                        <line x1="4" y1="22" x2="4" y2="15" />
-                    </svg>
+                        <div className={iconSize}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                className="text-black"
+                            >
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                <line x1="4" y1="22" x2="4" y2="15" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div
+                        className="text-xs font-medium text-gray-700 mt-1 px-2 py-1 bg-white bg-opacity-80 rounded-lg shadow-sm border border-gray-300 animate-pulse"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setIsPanelOpen(!isPanelOpen);
+                        }}
+                    >
+                        Click Me!
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div
+                    className={buttonClasses}
+                    onClick={(e) => {
+                        e.stopPropagation(); // Stop event propagation
+                        setIsPanelOpen(!isPanelOpen);
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.stopPropagation(); // Stop event propagation
+                            setIsPanelOpen(!isPanelOpen);
+                        }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label="Toggle feature flag panel"
+                >
+                    <div className={iconSize}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            className="text-black"
+                        >
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                            <line x1="4" y1="22" x2="4" y2="15" />
+                        </svg>
+                    </div>
+                </div>
+            )}
 
             {/* Feature Flag Panel */}
             {isPanelOpen && (
-                <div className="fixed bottom-20 right-4 z-50 bg-white rounded-lg shadow-xl border-2 border-gray-300 w-80 overflow-hidden transition-all">
+                <div
+                    className={panelClasses}
+                    onClick={(e) => e.stopPropagation()} // Stop event propagation for the panel too
+                >
                     {/* Panel Header */}
                     <div className="bg-gradient-to-r from-gray-800 to-black text-white p-4">
                         <h3 className="font-['Roblox'] text-lg uppercase tracking-wider mb-1">
                             Feature Flag Console
                         </h3>
                         <p className="text-xs opacity-80">
-                            Configure your experience
+                            Configure your experience!
                         </p>
                     </div>
 
@@ -266,7 +346,7 @@ export const RobloxFeaturePanel = () => {
                         </div>
                         {/* Beta unavailable message */}
                         <div className="mt-2 text-xs text-amber-600">
-                            Beta channel only for internal users!
+                            Beta channel access coming soon!
                         </div>
                     </div>
 
@@ -284,9 +364,10 @@ export const RobloxFeaturePanel = () => {
                                             type="checkbox"
                                             className="h-4 w-4 rounded border-gray-300 text-black focus:ring-black"
                                             checked={flag.enabled}
-                                            onChange={() =>
-                                                toggleFeatureFlag(flag.id)
+                                            onChange={(e) =>
+                                                toggleFeatureFlag(flag.id, e)
                                             }
+                                            onClick={(e) => e.stopPropagation()}
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">

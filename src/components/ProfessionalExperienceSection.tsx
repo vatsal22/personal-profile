@@ -2,6 +2,7 @@
 
 import { ThemeType, useTheme } from "@/context/ThemeContext";
 import { Experience } from "@/data/profileData";
+import { RobloxFeaturePanel } from "./RobloxFeaturePanel";
 
 type ProfessionalExperienceSectionProps = {
     experiences: Experience[];
@@ -132,7 +133,7 @@ export const ProfessionalExperienceSection = ({
                     </div>
 
                     {expandedItem === experience.id && (
-                        <div className="mt-4 pt-4 border-t border-gray-200">
+                        <div className="mt-4 pt-4 border-t border-gray-200 relative">
                             <p className={`${colors.secondary} mb-4`}>
                                 {experience.description}
                             </p>
@@ -172,6 +173,21 @@ export const ProfessionalExperienceSection = ({
                                     </span>
                                 ))}
                             </div>
+
+                            {/* Show feature flag panel button only in the Roblox section - positioned at bottom right corner */}
+                            {experience.id === "roblox" && (
+                                <>
+                                    {/* Add extra padding at the bottom for the button */}
+                                    <div className="pb-20"></div>
+                                    <div
+                                        className="absolute bottom-4 right-4 z-20"
+                                        onClick={(e) => e.stopPropagation()}
+                                        onKeyDown={(e) => e.stopPropagation()}
+                                    >
+                                        <RobloxFeaturePanel inline={true} />
+                                    </div>
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
