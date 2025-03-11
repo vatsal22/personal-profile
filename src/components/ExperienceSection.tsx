@@ -67,7 +67,7 @@ export const ExperienceSection = ({
                               )}-400 shadow-md ${colors.background}`
                             : "border-gray-200"
                     } ${
-                        expandedItem === experience.id && colors.cardHoverEffect
+                        colors.cardHoverEffect
                             ? colors.cardHoverEffect
                             : "hover:shadow-md"
                     }`}
@@ -134,12 +134,12 @@ export const ExperienceSection = ({
                         </div>
                     </div>
 
+                    <p className={`${colors.secondary} mt-3 mb-2`}>
+                        {experience.description}
+                    </p>
+
                     {expandedItem === experience.id && (
                         <div className="mt-4 pt-4 border-t border-gray-200 relative">
-                            <p className={`${colors.secondary} mb-4`}>
-                                {experience.description}
-                            </p>
-
                             {showBulletPoints &&
                                 experience.bulletPoints &&
                                 experience.bulletPoints.length > 0 && (

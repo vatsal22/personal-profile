@@ -79,7 +79,7 @@ export const profileData = {
         period: "2017-2022",
         themeKey: "uwaterloo" as ThemeType,
         description:
-            "Elective focus on systems programming and scalable infrastructure, with co-op experience across a wide range of domains including real-time operating systems (Windriver), security systems (Escrypt), and trading platforms (Oanda).",
+            "Elective focus on systems programming and scalable infrastructure, with co-op experience across a wide range of domains including real-time operating systems, security systems, and trading platforms.",
         coursework: [
             "Real-Time Operating Systems: Core systems architecture and concurrency management",
             "Distributed Computing: Large-scale service deployment and coordination",
