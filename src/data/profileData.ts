@@ -57,7 +57,7 @@ export const profileData = {
     bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
     avatar: "/profile-placeholder.jpg",
     location: "San Francisco, CA",
-    email: "john.doe@example.com",
+    email: "me@vatsalsolanki.com",
     skills: [
         "C++",
         "C#",
@@ -262,6 +262,6 @@ export const profileData = {
         },
     ],
     projects: [
-        // Add more projects as needed
+        // TODO: Add projects
     ],
 };
