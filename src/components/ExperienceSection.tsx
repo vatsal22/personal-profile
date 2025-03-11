@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeType, useTheme } from "@/context/ThemeContext";
+import { themes, ThemeType, useTheme } from "@/context/ThemeContext";
 import { Experience } from "@/data/profileData";
 import { RobloxFeaturePanel } from "./RobloxFeaturePanel";
 
@@ -39,7 +39,10 @@ export const ExperienceSection = ({
     };
 
     const getDefaultBorderColor = (experienceId: string) => {
-        return experienceId === "roblox" ? "gray-400" : "blue";
+        return (
+            themes[experienceId as ThemeType]?.borderColor ||
+            themes.default.borderColor
+        );
     };
 
     // Use provided border color function or fall back to default

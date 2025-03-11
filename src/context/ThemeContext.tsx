@@ -22,6 +22,7 @@ export interface ThemeColors {
     text: string;
     cardBg: string;
     accent: string;
+    borderColor: string; // Base color name for borders (without the intensity)
     // Enhanced theme properties
     specialBackground?: string; // For special background patterns/effects
     headerStyle?: string; // Style for headers
@@ -41,6 +42,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-gray-900",
         cardBg: "bg-white",
         accent: "bg-blue-100 text-blue-700",
+        borderColor: "blue",
     },
     uwaterloo: {
         // UWaterloo Engineering official purple color theme
@@ -50,6 +52,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-purple-900",
         cardBg: "bg-white",
         accent: "bg-purple-100 text-purple-800",
+        borderColor: "purple",
 
         // Enhanced theme elements with PCB pattern - removing border styles
         specialBackground:
@@ -61,12 +64,13 @@ export const themes: Record<ThemeType, ThemeColors> = {
         buttonStyle: "bg-[#5D0096] text-white px-4 py-2 rounded-md", // Simple purple button
     },
     windriver: {
-        primary: "from-blue-50 to-blue-100",
-        secondary: "text-blue-700",
-        background: "bg-blue-50",
-        text: "text-blue-900",
+        primary: "from-teal-50 to-teal-100",
+        secondary: "text-teal-700",
+        background: "bg-teal-50",
+        text: "text-teal-900",
         cardBg: "bg-white",
-        accent: "bg-blue-100 text-blue-700",
+        accent: "bg-teal-100 text-teal-700",
+        borderColor: "teal",
     },
     hubhead: {
         primary: "from-green-50 to-green-100",
@@ -75,6 +79,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-green-900",
         cardBg: "bg-white",
         accent: "bg-green-100 text-green-700",
+        borderColor: "green",
     },
     thomson: {
         primary: "from-orange-50 to-orange-100",
@@ -83,6 +88,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-orange-900",
         cardBg: "bg-white",
         accent: "bg-orange-100 text-orange-700",
+        borderColor: "orange",
     },
     escrypt: {
         primary: "from-purple-50 to-purple-100",
@@ -91,6 +97,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-purple-900",
         cardBg: "bg-white",
         accent: "bg-purple-100 text-purple-700",
+        borderColor: "purple",
     },
     imagine: {
         primary: "from-pink-50 to-pink-100",
@@ -99,6 +106,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-pink-900",
         cardBg: "bg-white",
         accent: "bg-pink-100 text-pink-700",
+        borderColor: "pink",
     },
     oanda: {
         primary: "from-indigo-50 to-indigo-100",
@@ -107,6 +115,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-indigo-900",
         cardBg: "bg-white",
         accent: "bg-indigo-100 text-indigo-700",
+        borderColor: "indigo",
     },
     roblox: {
         primary: "from-gray-200 to-gray-300",
@@ -115,6 +124,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         text: "text-gray-900",
         cardBg: "bg-white",
         accent: "bg-black text-white",
+        borderColor: "gray-400",
 
         // Enhanced theme elements
         specialBackground: "bg-gradient-to-br from-gray-100 to-gray-300",

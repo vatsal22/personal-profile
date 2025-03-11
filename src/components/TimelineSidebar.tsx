@@ -9,11 +9,11 @@ type Section = {
 };
 
 const sections: Section[] = [
-    { id: "about", label: "About me" },
+    { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "education", label: "Education" },
-    { id: "professional", label: "Professional Experience" },
-    { id: "coop", label: "Co-op Experience" },
+    { id: "professional", label: "Experience" },
+    { id: "coop", label: "Co-op" },
     { id: "contact", label: "Contact" },
 ];
 

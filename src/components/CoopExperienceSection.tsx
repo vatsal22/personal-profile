@@ -1,5 +1,6 @@
 "use client";
 
+import { themes, ThemeType } from "@/context/ThemeContext";
 import { Experience } from "@/data/profileData";
 import { ExperienceSection } from "./ExperienceSection";
 
@@ -12,22 +13,7 @@ export const CoopExperienceSection = ({
 }: CoopExperienceSectionProps) => {
     // Custom border color function for co-op experiences
     const getCoopBorderColor = (experienceId: string): string => {
-        switch (experienceId) {
-            case "roblox":
-                return "gray-400";
-            case "oanda":
-                return "indigo";
-            case "imagine":
-                return "pink";
-            case "escrypt":
-                return "purple";
-            case "thomson":
-                return "orange";
-            case "hubhead":
-                return "green";
-            default:
-                return "blue";
-        }
+        return themes[experienceId as ThemeType]?.borderColor || "blue";
     };
 
     return (
