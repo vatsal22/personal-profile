@@ -2,12 +2,25 @@
 
 import { ThemeType, useTheme } from "@/context/ThemeContext";
 import { Experience } from "@/data/profileData";
+import { RobloxFeaturePanel } from "./RobloxFeaturePanel";
 
 type ExperienceSectionProps = {
+    title: string;
     experiences: Experience[];
+    headingId: string;
+    showBulletPoints?: boolean;
+    showRobloxFeature?: boolean;
+    getBorderColor?: (experienceId: string) => string;
 };
 
-export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
+export const ExperienceSection = ({
+    title,
+    experiences,
+    headingId,
+    showBulletPoints = false,
+    showRobloxFeature = false,
+    getBorderColor,
+}: ExperienceSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
 
     const handleExperienceClick = (
@@ -25,39 +38,33 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
         }
     };
 
+    const getDefaultBorderColor = (experienceId: string) => {
+        return experienceId === "roblox" ? "gray-400" : "blue";
+    };
+
+    // Use provided border color function or fall back to default
+    const borderColorFn = getBorderColor || getDefaultBorderColor;
+
     return (
         <section
             className={`${colors.cardBg} rounded-lg shadow-md p-8 mb-8`}
-            aria-labelledby="experience-heading"
+            aria-labelledby={headingId}
         >
             <h2
-                id="experience-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-6`}
+                id={headingId}
+                className={`text-2xl font-semibold ${colors.text} mb-6 section-header`}
             >
-                Experience
+                {title}
             </h2>
 
-            {/* Work Experiences */}
             {experiences.map((experience) => (
                 <div
                     key={experience.id}
                     className={`p-4 border rounded-lg mb-4 cursor-pointer transition-all duration-300 ${
                         expandedItem === experience.id
-                            ? `border-${
-                                  experience.id === "roblox"
-                                      ? "gray-400"
-                                      : experience.id === "oanda"
-                                      ? "indigo"
-                                      : experience.id === "imagine"
-                                      ? "pink"
-                                      : experience.id === "escrypt"
-                                      ? "purple"
-                                      : experience.id === "thomson"
-                                      ? "orange"
-                                      : experience.id === "hubhead"
-                                      ? "green"
-                                      : "blue"
-                              }-400 shadow-md ${colors.background}`
+                            ? `border-${borderColorFn(
+                                  experience.id
+                              )}-400 shadow-md ${colors.background}`
                             : "border-gray-200"
                     } ${
                         expandedItem === experience.id && colors.cardHoverEffect
@@ -84,7 +91,7 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
                     <div className="flex justify-between items-center">
                         <div>
                             <h3
-                                className={`font-medium text-lg ${colors.text}`}
+                                className={`font-medium text-lg ${colors.text} experience-title`}
                             >
                                 {experience.company}
                             </h3>
@@ -128,10 +135,34 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
                     </div>
 
                     {expandedItem === experience.id && (
-                        <div className="mt-4 pt-4 border-t border-gray-200">
+                        <div className="mt-4 pt-4 border-t border-gray-200 relative">
                             <p className={`${colors.secondary} mb-4`}>
                                 {experience.description}
                             </p>
+
+                            {showBulletPoints &&
+                                experience.bulletPoints &&
+                                experience.bulletPoints.length > 0 && (
+                                    <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
+                                        {/* Subtle pattern background */}
+                                        <div className="absolute inset-0 opacity-5">
+                                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
+                                        </div>
+                                        <h4
+                                            className={`font-medium mb-2 ${colors.text} relative z-10`}
+                                        >
+                                            Key Responsibilities
+                                        </h4>
+                                        <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
+                                            {experience.bulletPoints.map(
+                                                (point, index) => (
+                                                    <li key={index}>{point}</li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+                                )}
+
                             <h4 className={`font-medium mb-2 ${colors.text}`}>
                                 Technologies
                             </h4>
@@ -145,6 +176,24 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
                                     </span>
                                 ))}
                             </div>
+
+                            {/* Show feature flag panel button only if enabled and this is Roblox experience */}
+                            {showRobloxFeature &&
+                                experience.id === "roblox" && (
+                                    <>
+                                        {/* Add extra padding at the bottom for the button */}
+                                        <div className="pb-20"></div>
+                                        <div
+                                            className="absolute bottom-4 right-4 z-20"
+                                            onClick={(e) => e.stopPropagation()}
+                                            onKeyDown={(e) =>
+                                                e.stopPropagation()
+                                            }
+                                        >
+                                            <RobloxFeaturePanel inline={true} />
+                                        </div>
+                                    </>
+                                )}
                         </div>
                     )}
                 </div>

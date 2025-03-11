@@ -169,13 +169,17 @@ export const profileData = {
     coopExperiences: [
         {
             id: "oanda",
-            title: "Software Engineer",
-            company: "Oanda",
+            title: "Software Developer",
+            company: "Oanda | Hedging Team",
             period: "2020 (4 months)",
             description:
                 "Worked on the hedging team, primarily using C++ to develop and optimize financial algorithms and systems.",
             technologies: ["C++", "Financial Systems"],
             themeKey: "oanda" as ThemeType,
+            bulletPoints: [
+                "Developed and optimized financial algorithms and systems using C++.",
+                "Worked on the hedging team, primarily using C++ to develop and optimize financial algorithms and systems.",
+            ],
         },
         {
             id: "imagine",

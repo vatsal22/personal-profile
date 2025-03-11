@@ -1,8 +1,7 @@
 "use client";
 
-import { ThemeType, useTheme } from "@/context/ThemeContext";
 import { Experience } from "@/data/profileData";
-import { RobloxFeaturePanel } from "./RobloxFeaturePanel";
+import { ExperienceSection } from "./ExperienceSection";
 
 type ProfessionalExperienceSectionProps = {
     experiences: Experience[];
@@ -11,187 +10,13 @@ type ProfessionalExperienceSectionProps = {
 export const ProfessionalExperienceSection = ({
     experiences,
 }: ProfessionalExperienceSectionProps) => {
-    const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
-
-    // No need to filter experiences, they're already filtered in profileData
-
-    const handleExperienceClick = (
-        experienceId: string,
-        themeKey: ThemeType
-    ) => {
-        if (expandedItem === experienceId) {
-            // Collapse if already expanded
-            setExpandedItem(null);
-            setTheme("default");
-        } else {
-            // Expand and collapse any other expanded item
-            setExpandedItem(experienceId);
-            setTheme(themeKey);
-        }
-    };
-
     return (
-        <section
-            className={`${colors.cardBg} rounded-lg shadow-md p-8 mb-8`}
-            aria-labelledby="professional-experience-heading"
-        >
-            <h2
-                id="professional-experience-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-6 section-header`}
-            >
-                Professional Experience
-            </h2>
-
-            {/* Professional Work Experiences */}
-            {experiences.map((experience) => (
-                <div
-                    key={experience.id}
-                    className={`p-4 border rounded-lg mb-4 cursor-pointer transition-all duration-300 ${
-                        expandedItem === experience.id
-                            ? `border-${
-                                  experience.id === "roblox"
-                                      ? "gray-400"
-                                      : experience.id === "oanda"
-                                      ? "indigo"
-                                      : experience.id === "imagine"
-                                      ? "pink"
-                                      : experience.id === "escrypt"
-                                      ? "purple"
-                                      : experience.id === "thomson"
-                                      ? "orange"
-                                      : experience.id === "hubhead"
-                                      ? "green"
-                                      : "blue"
-                              }-400 shadow-md ${colors.background}`
-                            : "border-gray-200"
-                    } ${
-                        expandedItem === experience.id && colors.cardHoverEffect
-                            ? colors.cardHoverEffect
-                            : "hover:shadow-md"
-                    }`}
-                    onClick={() =>
-                        handleExperienceClick(
-                            experience.id,
-                            experience.themeKey
-                        )
-                    }
-                    onKeyDown={(e) =>
-                        e.key === "Enter" &&
-                        handleExperienceClick(
-                            experience.id,
-                            experience.themeKey
-                        )
-                    }
-                    tabIndex={0}
-                    aria-label={`${experience.company} - ${experience.title}`}
-                    role="button"
-                >
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h3
-                                className={`font-medium text-lg ${colors.text} experience-title`}
-                            >
-                                {experience.company}
-                            </h3>
-                            <p className={`${colors.secondary}`}>
-                                {experience.title} • {experience.period}
-                            </p>
-                        </div>
-                        <div className="text-gray-500">
-                            {expandedItem === experience.id ? (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    className="w-5 h-5"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M5 15l7-7 7 7"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    className="w-5 h-5"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            )}
-                        </div>
-                    </div>
-
-                    {expandedItem === experience.id && (
-                        <div className="mt-4 pt-4 border-t border-gray-200 relative">
-                            <p className={`${colors.secondary} mb-4`}>
-                                {experience.description}
-                            </p>
-
-                            {experience.bulletPoints &&
-                                experience.bulletPoints.length > 0 && (
-                                    <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
-                                        {/* Subtle pattern background */}
-                                        <div className="absolute inset-0 opacity-5">
-                                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
-                                        </div>
-                                        <h4
-                                            className={`font-medium mb-2 ${colors.text} relative z-10`}
-                                        >
-                                            Key Responsibilities
-                                        </h4>
-                                        <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
-                                            {experience.bulletPoints.map(
-                                                (point, index) => (
-                                                    <li key={index}>{point}</li>
-                                                )
-                                            )}
-                                        </ul>
-                                    </div>
-                                )}
-
-                            <h4 className={`font-medium mb-2 ${colors.text}`}>
-                                Technologies
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                                {experience.technologies.map((tech) => (
-                                    <span
-                                        key={tech}
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${colors.accent}`}
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {/* Show feature flag panel button only in the Roblox section - positioned at bottom right corner */}
-                            {experience.id === "roblox" && (
-                                <>
-                                    {/* Add extra padding at the bottom for the button */}
-                                    <div className="pb-20"></div>
-                                    <div
-                                        className="absolute bottom-4 right-4 z-20"
-                                        onClick={(e) => e.stopPropagation()}
-                                        onKeyDown={(e) => e.stopPropagation()}
-                                    >
-                                        <RobloxFeaturePanel inline={true} />
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    )}
-                </div>
-            ))}
-        </section>
+        <ExperienceSection
+            title="Professional Experience"
+            experiences={experiences}
+            headingId="professional-experience-heading"
+            showBulletPoints={true}
+            showRobloxFeature={true}
+        />
     );
 };
