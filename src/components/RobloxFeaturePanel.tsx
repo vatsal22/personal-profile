@@ -63,7 +63,7 @@ export const RobloxFeaturePanel = () => {
             !featureFlags.find((f) => f.id === id)?.enabled
         ) {
             const confirmEnable = window.confirm(
-                "WARNING: This feature is not ready for production use and should only be used in Beta channel (coming soon). Enable anyway for testing?"
+                "WARNING: This feature is not ready for production use. Enable anyway for testing?"
             );
             if (!confirmEnable) return;
         }
