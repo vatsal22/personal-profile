@@ -31,7 +31,7 @@ export const RobloxFeaturePanel = ({
         {
             id: "enhanced-graphics",
             name: "Enhanced Graphics",
-            description: "⚠️ Super cool effects (coming soon)",
+            description: "⚠️ This feature totally isn't broken or anything",
             enabled: false,
         },
     ]);
