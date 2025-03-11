@@ -136,7 +136,7 @@ export const RobloxFeaturePanel = ({
 
         styleEl.textContent = css;
         document.head.appendChild(styleEl);
-    }, [featureFlags, selectedChannel]);
+    }, [featureFlags]);
 
     // Remove feature flag effects
     const removeFeatureFlags = useCallback(() => {
