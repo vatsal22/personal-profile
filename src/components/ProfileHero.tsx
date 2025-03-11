@@ -25,7 +25,7 @@ export const ProfileHero = ({
 
     return (
         <div className="text-center mb-16">
-            <div className="relative w-32 h-32 mx-auto mb-8 ring-4 ring-white">
+            <div className="relative w-50 h-50 mx-auto mb-8 ">
                 <Image
                     src={avatar}
                     alt={name}

@@ -55,7 +55,7 @@ export const profileData = {
         oanda: "Professional Bug Developer",
     },
     bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
-    avatar: "/profile-placeholder.jpg",
+    avatar: "/profile_image.png",
     location: "San Francisco, CA",
     email: "me@vatsalsolanki.com",
     skills: [
