@@ -237,8 +237,8 @@ export const profileData = {
         },
         {
             id: "hubhead",
-            title: "Release Engineer",
-            company: "Hubhead",
+            title: "Java Developer",
+            company: "HubHead",
             period: "Sept. 2018 - Dec. 2018",
             description:
                 "Designed and implemented cross-platform deployment and update infrastructure for enterprise asset management Java application.",

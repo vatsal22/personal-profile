@@ -47,7 +47,7 @@ export const themes: Record<ThemeType, ThemeColors> = {
         primary: "from-purple-50 to-purple-100",
         secondary: "text-purple-700",
         background: "bg-purple-50",
-        text: "text-gray-900",
+        text: "text-purple-900",
         cardBg: "bg-white",
         accent: "bg-purple-100 text-purple-800",
 

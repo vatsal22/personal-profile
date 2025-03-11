@@ -48,6 +48,7 @@ export default function Home() {
                         location={profileData.location}
                     />
                     <AboutSection bio={profileData.bio} />
+                    <SkillsSection skills={profileData.skills} />
                     <EducationSection education={profileData.education} />
                     <ProfessionalExperienceSection
                         experiences={
@@ -59,7 +60,6 @@ export default function Home() {
                             profileData.coopExperiences as Experience[]
                         }
                     />
-                    <SkillsSection skills={profileData.skills} />
                     <ContactSection
                         email={profileData.email}
                         socialLinks={profileData.socialLinks}

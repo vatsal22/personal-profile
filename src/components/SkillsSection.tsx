@@ -7,7 +7,13 @@ type SkillsSectionProps = {
 };
 
 export const SkillsSection = ({ skills }: SkillsSectionProps) => {
-    const { colors } = useTheme();
+    const { colors, currentTheme } = useTheme();
+
+    // Use neutral colors by default, but allow theme overrides
+    const skillTagStyle =
+        currentTheme === "default"
+            ? "bg-gray-100 text-gray-700" // Neutral colors for default theme
+            : `${colors.accent}`; // Use themed colors for other themes
 
     return (
         <section
@@ -24,7 +30,7 @@ export const SkillsSection = ({ skills }: SkillsSectionProps) => {
                 {skills.map((skill) => (
                     <span
                         key={skill}
-                        className={`px-4 py-2 ${colors.accent} rounded-full text-sm font-medium`}
+                        className={`px-4 py-2 ${skillTagStyle} rounded-full text-sm font-medium`}
                     >
                         {skill}
                     </span>
