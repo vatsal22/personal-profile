@@ -2,6 +2,7 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import { Education } from "@/data/profileData";
+import Image from "next/image";
 import { useState } from "react";
 
 type EducationSectionProps = {
@@ -279,7 +280,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                             {/* Main image display - Increasing height from 56.25% (16:9) to 75% (4:3) */}
                                             <div className="relative pb-[75%] bg-gray-200 rounded-lg overflow-hidden">
                                                 {/* Using actual images instead of placeholders */}
-                                                <img
+                                                <Image
                                                     src={
                                                         projectImages[
                                                             currentImageIndex
@@ -288,9 +289,13 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                     alt={
                                                         projectImages[
                                                             currentImageIndex
-                                                        ].alt
+                                                        ].alt || "Project image"
                                                     }
-                                                    className="absolute inset-0 w-full h-full object-contain bg-gray-100"
+                                                    fill
+                                                    className="object-contain"
+                                                    priority={
+                                                        currentImageIndex === 0
+                                                    }
                                                 />
                                             </div>
 
@@ -404,10 +409,12 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                         }
                                                         tabIndex={0}
                                                     >
-                                                        <img
+                                                        <Image
                                                             src={image.src}
                                                             alt=""
-                                                            className="w-full h-full object-cover"
+                                                            width={100}
+                                                            height={75}
+                                                            className="w-full h-full object-contain"
                                                         />
                                                     </button>
                                                 )

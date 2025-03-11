@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // Define feature flag types
 interface FeatureFlag {
@@ -22,7 +22,7 @@ interface RobloxFeaturePanelProps {
 export const RobloxFeaturePanel = ({
     inline = false,
 }: RobloxFeaturePanelProps) => {
-    const { currentTheme, expandedItem } = useTheme();
+    // States
     const [isVisible, setIsVisible] = useState(false);
     const [isPanelOpen, setIsPanelOpen] = useState(false);
     const [selectedChannel, setSelectedChannel] =
@@ -36,74 +36,10 @@ export const RobloxFeaturePanel = ({
         },
     ]);
 
-    // Only show when Roblox theme is active
-    useEffect(() => {
-        const isRoblox = currentTheme === "roblox";
-        const isRobloxExpanded = expandedItem === "roblox";
-
-        // For inline mode, only show when the Roblox section is expanded
-        setIsVisible(isRoblox && (inline ? isRobloxExpanded : true));
-
-        // Reset panel state when theme changes
-        if (!isRoblox) {
-            setIsPanelOpen(false);
-        }
-
-        // Apply feature flag effects
-        if (isRoblox) {
-            applyFeatureFlags();
-        } else {
-            // Remove any applied effects when theme changes
-            removeFeatureFlags();
-        }
-    }, [currentTheme, expandedItem, inline]);
-
-    // Apply effects when feature flags change
-    useEffect(() => {
-        if (currentTheme === "roblox") {
-            applyFeatureFlags();
-        }
-    }, [featureFlags, selectedChannel]);
-
-    // Toggle a feature flag
-    const toggleFeatureFlag = (id: string, e?: React.SyntheticEvent) => {
-        // Stop propagation if event is provided
-        if (e) {
-            e.stopPropagation();
-        }
-
-        // Since we're always on production (beta is disabled), show warning about enabling features
-        if (
-            id === "enhanced-graphics" &&
-            !featureFlags.find((f) => f.id === id)?.enabled
-        ) {
-            const confirmEnable = window.confirm(
-                "WARNING: This feature is untested and should not be enabled in production. But hey, what's the worst that can happen?"
-            );
-            if (!confirmEnable) return;
-        }
-
-        setFeatureFlags((flags) =>
-            flags.map((flag) =>
-                flag.id === id ? { ...flag, enabled: !flag.enabled } : flag
-            )
-        );
-    };
-
-    // Change release channel
-    const handleChannelChange = (channel: ReleaseChannel) => {
-        setSelectedChannel(channel);
-
-        // Auto-disable enhanced graphics when switching to production
-        if (channel === "production") {
-            setFeatureFlags((flags) =>
-                flags.map((flag) => ({ ...flag, enabled: false }))
-            );
-        }
-    };
+    const { currentTheme, expandedItem } = useTheme();
 
     // Apply feature flag effects to the page
-    const applyFeatureFlags = () => {
+    const applyFeatureFlags = useCallback(() => {
         const styleEl =
             document.getElementById("roblox-feature-flags") ||
             document.createElement("style");
@@ -200,15 +136,87 @@ export const RobloxFeaturePanel = ({
 
         styleEl.textContent = css;
         document.head.appendChild(styleEl);
-    };
+    }, [featureFlags, selectedChannel]);
 
-    // Remove all feature flag effects
-    const removeFeatureFlags = () => {
+    // Remove feature flag effects
+    const removeFeatureFlags = useCallback(() => {
         const styleEl = document.getElementById("roblox-feature-flags");
         if (styleEl) {
             document.head.removeChild(styleEl);
         }
+    }, []);
+
+    // Toggle a feature flag
+    const toggleFeatureFlag = (id: string, e?: React.SyntheticEvent) => {
+        // Stop propagation if event is provided
+        if (e) {
+            e.stopPropagation();
+        }
+
+        // Since we're always on production (beta is disabled), show warning about enabling features
+        if (
+            id === "enhanced-graphics" &&
+            !featureFlags.find((f) => f.id === id)?.enabled
+        ) {
+            const confirmEnable = window.confirm(
+                "WARNING: This feature is untested and should not be enabled in production. But hey, what's the worst that can happen?"
+            );
+            if (!confirmEnable) return;
+        }
+
+        setFeatureFlags((flags) =>
+            flags.map((flag) =>
+                flag.id === id ? { ...flag, enabled: !flag.enabled } : flag
+            )
+        );
     };
+
+    // Handle channel change
+    const handleChannelChange = (channel: ReleaseChannel) => {
+        setSelectedChannel(channel);
+
+        // Auto-disable enhanced graphics when switching to production
+        if (channel === "production") {
+            setFeatureFlags((flags) =>
+                flags.map((flag) => ({ ...flag, enabled: false }))
+            );
+        }
+    };
+
+    // Apply theme changes and visibility
+    useEffect(() => {
+        const isRoblox = currentTheme === "roblox";
+        const isRobloxExpanded = expandedItem === "roblox";
+
+        // For inline mode, only show when the Roblox section is expanded
+        setIsVisible(isRoblox && (inline ? isRobloxExpanded : true));
+
+        // Reset panel state when theme changes
+        if (!isRoblox) {
+            setIsPanelOpen(false);
+        }
+
+        // Apply feature flag effects
+        if (isRoblox) {
+            applyFeatureFlags();
+        } else {
+            // Remove any applied effects when theme changes
+            removeFeatureFlags();
+        }
+    }, [
+        currentTheme,
+        expandedItem,
+        inline,
+        applyFeatureFlags,
+        removeFeatureFlags,
+    ]);
+
+    // Apply effects when feature flags change
+    useEffect(() => {
+        if (currentTheme === "roblox") {
+            applyFeatureFlags();
+        }
+    }, [featureFlags, selectedChannel, applyFeatureFlags, currentTheme]);
 
     if (!isVisible) return null;
 

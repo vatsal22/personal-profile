@@ -8,7 +8,7 @@ interface ThemeStyleProviderProps {
 }
 
 export const ThemeStyleProvider = ({ children }: ThemeStyleProviderProps) => {
-    const { colors, currentTheme } = useTheme();
+    const { currentTheme } = useTheme();
 
     // Apply the font styles only to headers and titles when the theme is Roblox
     useEffect(() => {

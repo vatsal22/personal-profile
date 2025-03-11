@@ -18,7 +18,6 @@ const sections: Section[] = [
 ];
 
 export const TimelineSidebar = () => {
-    const [activeSection, setActiveSection] = useState("");
     const [scrollProgress, setScrollProgress] = useState(0);
     const { colors } = useTheme();
     const timelineRef = useRef<HTMLDivElement>(null);
@@ -46,8 +45,9 @@ export const TimelineSidebar = () => {
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
-                    const sectionId = entry.target.id;
-                    setActiveSection(sectionId);
+                    // No need to set activeSection if it's not used
+                    // const sectionId = entry.target.id;
+                    // setActiveSection(sectionId);
                 }
             });
         };
@@ -80,8 +80,6 @@ export const TimelineSidebar = () => {
     const handleClick = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            setActiveSection(sectionId);
-
             // Calculate scroll position with offset to ensure the section is fully visible
             const headerOffset = 80;
             const elementPosition = element.getBoundingClientRect().top;
