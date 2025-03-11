@@ -8,6 +8,7 @@ export interface Experience {
     description: string;
     technologies: string[];
     themeKey: ThemeType;
+    bulletPoints?: string[];
 }
 
 export interface ProjectImage {
@@ -145,13 +146,24 @@ export const profileData = {
     professionalExperiences: [
         {
             id: "roblox",
-            title: "Software Engineer, Engine Release Team",
+            title: "Software Engineer | Engine Release Team",
             company: "Roblox",
             period: "2022-Present",
             description:
-                "Working on the Engine Release Team, focused on the release, flags, and channels system. Primary responsibilities include developing and maintaining C++ components for client/server changes, C# for backend systems, and occasional Python/TypeScript scripting for build automation.",
-            technologies: ["C++", "C#", "Python", "TypeScript"],
+                "Developing cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
+            technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
+            bulletPoints: [
+                "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
+
+                "Flag and Binary Deployment Channels - Architecting secure, self-serve deployment channels that provide granular public targeting while preventing unauthorized access to internal channels.",
+
+                "Telemetry & Monitoring - Designing comprehensive telemetry and alerting systems to track engine health, enabling early issue detection and data-driven release decisions.",
+
+                "Technical Incident Response - Serving as on-call engineer diagnosing, mitigating, and resolving critical production issues across engine and backend systems, improving platform stability.",
+
+                "Developer Experience Tools - Creating intuitive interfaces and tools to simplify flag management, channel deployment, and telemetry monitoring, improving engineering productivity and reliability.",
+            ],
         },
     ],
     coopExperiences: [

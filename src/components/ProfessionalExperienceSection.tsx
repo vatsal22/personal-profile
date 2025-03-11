@@ -136,6 +136,29 @@ export const ProfessionalExperienceSection = ({
                             <p className={`${colors.secondary} mb-4`}>
                                 {experience.description}
                             </p>
+
+                            {experience.bulletPoints &&
+                                experience.bulletPoints.length > 0 && (
+                                    <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
+                                        {/* Subtle pattern background */}
+                                        <div className="absolute inset-0 opacity-5">
+                                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
+                                        </div>
+                                        <h4
+                                            className={`font-medium mb-2 ${colors.text} relative z-10`}
+                                        >
+                                            Key Responsibilities
+                                        </h4>
+                                        <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
+                                            {experience.bulletPoints.map(
+                                                (point, index) => (
+                                                    <li key={index}>{point}</li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+                                )}
+
                             <h4 className={`font-medium mb-2 ${colors.text}`}>
                                 Technologies
                             </h4>
