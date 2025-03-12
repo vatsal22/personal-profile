@@ -94,7 +94,7 @@ export const profileData = {
             "Computer Networks: Design and implementation of networked systems",
         ],
         tldrDescription:
-            "Spent 5 years coding and drinking coffee. Survived Canadian winters. Got a piece of paper.",
+            "Spent 5 years learning how to tell computers what to do, how to do them fast, and how to make them work together.",
 
         capstoneProject: {
             id: "eyefly",
@@ -168,13 +168,10 @@ export const profileData = {
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
-                "I make Roblox better by breaking it less frequently.",
+                "I make make sure we can change Roblox without breaking it (usually).",
             tldrBulletPoints: [
-                "Feature Flags - I add switches to turn things on and off without breaking the game.",
-                "Flag Channels - I make sure cool new features don't reach the wrong people.",
-                "Monitors - I build fancy dashboards that go red when things break.",
-                "Fire Fighting - I fix stuff when it explodes at 2 AM.",
-                "Dev Tools - I make tools so other engineers can break things less often.",
+                "Feature Flags & Channels - I make sure changes can be tested on unsuspecting users, and can be switched off automatically before anyone notices we broke something.",
+                "Telemetry & Incident Response - I make sure we can know when things break, figure out what broke, and fix it before it breaks again.",
             ],
             bulletPoints: [
                 "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
