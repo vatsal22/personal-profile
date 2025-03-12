@@ -58,7 +58,13 @@ export default function Home() {
                         location={profileData.location}
                     />
                     <section id="about">
-                        <AboutSection bio={profileData.bio} />
+                        <AboutSection
+                            bio={
+                                isTldrMode
+                                    ? profileData.tldrBio
+                                    : profileData.bio
+                            }
+                        />
                     </section>
                     <section id="skills">
                         <SkillsSection skills={profileData.skills} />
