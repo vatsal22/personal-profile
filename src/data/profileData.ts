@@ -95,7 +95,7 @@ export const profileData = {
             "Computer Networks: Design and implementation of networked systems",
         ],
         tldrDescription:
-            "I spent 5 years learning how to tell computers what to do, how to do them fast, and how to make them work together.",
+            "I spent 5 years learning how to tell computers what to do, how to make them do things efficiently, and how to make them work together.",
 
         capstoneProject: {
             id: "eyefly",
