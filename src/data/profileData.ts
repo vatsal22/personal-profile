@@ -165,7 +165,7 @@ export const profileData = {
             company: "Roblox",
             period: "July 2022 - Present",
             description:
-                "Developing high performance cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
+                "Developing scalable cross-platform systems for release, feature flagging, and release channels.",
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
