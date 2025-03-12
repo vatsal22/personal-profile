@@ -82,7 +82,7 @@ export const TimelineSidebar = () => {
         return () => {
             observers.forEach((observer) => observer.disconnect());
         };
-    }, [sections]);
+    }, [isTldrMode]);
 
     const handleClick = (sectionId: string) => {
         const element = document.getElementById(sectionId);
