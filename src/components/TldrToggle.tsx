@@ -35,7 +35,7 @@ export const TldrToggle = () => {
                 tabIndex={0}
             >
                 <span className="font-semibold mr-2">
-                    {isTldrMode ? "🤪 Serious Mode" : "🧐 TLDR Mode"}
+                    {isTldrMode && "🔥 "} TLDR Mode
                 </span>
                 <div
                     className={`relative w-10 h-5 transition-colors duration-200 ease-in-out rounded-full ${
