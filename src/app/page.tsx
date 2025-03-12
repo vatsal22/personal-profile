@@ -12,10 +12,12 @@ import { ThemeStyleProvider } from "@/components/ThemeStyleProvider";
 import { TimelineSidebar } from "@/components/TimelineSidebar";
 import { TldrToggle } from "@/components/TldrToggle";
 import { useTheme } from "@/context/ThemeContext";
+import { useTldr } from "@/context/TldrContext";
 import { Experience, profileData } from "@/data/profileData";
 
 export default function Home() {
     const { colors, currentTheme, expandedItem } = useTheme();
+    const { isTldrMode } = useTldr();
 
     // Special background styling for UWaterloo Engineering theme with PCB pattern
     const isUWaterloo = currentTheme === "uwaterloo";
@@ -71,13 +73,15 @@ export default function Home() {
                             }
                         />
                     </section>
-                    <section id="coop">
-                        <CoopExperienceSection
-                            experiences={
-                                profileData.coopExperiences as Experience[]
-                            }
-                        />
-                    </section>
+                    {!isTldrMode && (
+                        <section id="coop">
+                            <CoopExperienceSection
+                                experiences={
+                                    profileData.coopExperiences as Experience[]
+                                }
+                            />
+                        </section>
+                    )}
                     <section id="contact">
                         <ContactSection
                             email={profileData.email}
