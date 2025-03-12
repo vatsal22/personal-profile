@@ -11,6 +11,7 @@ export const CanadaGoose = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const gooseRef = useRef<HTMLDivElement>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     // Only show the goose when the UWaterloo theme is active
     useEffect(() => {
@@ -119,13 +120,24 @@ export const CanadaGoose = () => {
         };
     }, [isVisible, velocity]);
 
-    // Handle click on the goose to change direction
+    // Handle click on the goose to play sound and then disappear
     const handleClick = () => {
-        // Randomize velocity on click
-        setVelocity({
-            x: Math.random() * 6 - 3,
-            y: Math.random() * 6 - 3,
-        });
+        // Play the honk sound
+        if (audioRef.current) {
+            audioRef.current.currentTime = 0; // Reset audio to start
+
+            // Set up the onended event handler before playing
+            audioRef.current.onended = () => {
+                setIsVisible(false);
+            };
+
+            audioRef.current.play().catch((error) => {
+                console.error("Error playing sound:", error);
+                setIsVisible(false); // Hide anyway if sound fails
+            });
+        } else {
+            setIsVisible(false); // Fallback if audio ref is not available
+        }
     };
 
     if (!isVisible) return null;
@@ -133,13 +145,14 @@ export const CanadaGoose = () => {
     return (
         <div
             ref={gooseRef}
-            className="fixed z-50 cursor-pointer transition-opacity duration-300"
+            className="fixed z-50 cursor-pointer transition-opacity duration-300 select-none"
             style={{
                 left: `${position.x}px`,
                 top: `${position.y}px`,
                 transform: velocity.x > 0 ? "scaleX(-1)" : "scaleX(1)", // Flipped logic so goose faces opposite direction
             }}
-            onClick={handleClick}
+            onMouseDown={handleClick}
+            onTouchStart={handleClick}
             onKeyDown={(e) => e.key === "Enter" && handleClick()}
             tabIndex={0}
             aria-label="Interactive Canada Goose"
@@ -153,6 +166,17 @@ export const CanadaGoose = () => {
                     width={80}
                     height={80}
                     priority
+                    draggable="false"
+                    onDragStart={(e) => e.preventDefault()}
+                    className="pointer-events-auto"
+                />
+
+                {/* Audio element for honk sound */}
+                <audio
+                    ref={audioRef}
+                    src="/honk-sound.mp3"
+                    preload="auto"
+                    aria-hidden="true"
                 />
             </div>
         </div>
