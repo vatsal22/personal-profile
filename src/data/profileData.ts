@@ -93,15 +93,9 @@ export const profileData = {
             "Programming for Performance: Optimization techniques for high-performance systems",
             "Computer Networks: Design and implementation of networked systems",
         ],
-        tldrDegree: "Fancy Paper That Cost Too Much",
         tldrDescription:
             "Spent 5 years coding and drinking coffee. Survived Canadian winters. Got a piece of paper.",
-        tldrCoursework: [
-            "How to make computers do things faster than the guy next to you",
-            "How to make many computers work together without fighting",
-            "Why your code is slow and you should feel bad",
-            "The internet, but make it complicated",
-        ],
+
         capstoneProject: {
             id: "eyefly",
             name: "EyeFly Drone",
@@ -131,8 +125,6 @@ export const profileData = {
                     alt: "EyeFly Assembled Drone",
                     caption:
                         "Fully assembled EyeFly drone prototype with camera module",
-                    tldrCaption:
-                        "The flying robot we built after watching too many sci-fi movies",
                 },
                 {
                     id: 2,
@@ -140,8 +132,6 @@ export const profileData = {
                     alt: "Person Detection System in Action",
                     caption:
                         "EyeFly's AI detection system identifying a person, seen from real-time monitoring dashboard.",
-                    tldrCaption:
-                        "Computer sees people and draws creepy boxes around them",
                 },
                 {
                     id: 3,
@@ -149,8 +139,6 @@ export const profileData = {
                     alt: "EyeFly Control Dashboard",
                     caption:
                         "Real-time monitoring dashboard for monitoring drone vitals and status.",
-                    tldrCaption:
-                        "Fancy gauges that tell us if our drone is about to crash",
                 },
                 {
                     id: 4,
@@ -158,8 +146,6 @@ export const profileData = {
                     alt: "EyeFly PDB Component",
                     caption:
                         "Central power distribution board (PDB) component for prototype drone.",
-                    tldrCaption:
-                        "The part that makes electricity go where it should (hopefully)",
                 },
                 {
                     id: 5,
@@ -167,8 +153,6 @@ export const profileData = {
                     alt: "EyeFly System Architecture",
                     caption:
                         "System block diagram of entire system, including drone and backend infrastructure.",
-                    tldrCaption:
-                        "A complex diagram that makes us look smarter than we are",
                 },
             ],
         },
