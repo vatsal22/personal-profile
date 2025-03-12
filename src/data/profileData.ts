@@ -94,7 +94,7 @@ export const profileData = {
             "Computer Networks: Design and implementation of networked systems",
         ],
         tldrDescription:
-            "Spent 5 years learning how to tell computers what to do, how to do them fast, and how to make them work together.",
+            "I spent 5 years learning how to tell computers what to do, how to do them fast, and how to make them work together.",
 
         capstoneProject: {
             id: "eyefly",
@@ -168,9 +168,9 @@ export const profileData = {
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
-                "I make make sure we can change Roblox without breaking it (usually).",
+                "I make sure we can change Roblox without breaking it (usually).",
             tldrBulletPoints: [
-                "Feature Flags & Channels - I make sure changes can be tested on unsuspecting users, and can be switched off automatically before anyone notices we broke something.",
+                "Feature Flags & Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
                 "Telemetry & Incident Response - I make sure we can know when things break, figure out what broke, and fix it before it breaks again.",
             ],
             bulletPoints: [
@@ -180,7 +180,7 @@ export const profileData = {
 
                 "Telemetry & Monitoring - Designing comprehensive telemetry and alerting systems to track engine health, enabling early issue detection and data-driven release decisions.",
 
-                "Technical Incident Response - Serving as on-call engineer diagnosing, mitigating, and resolving critical production issues across engine and backend systems, improving platform stability.",
+                "Incident Response - Serving as on-call engineer diagnosing, mitigating, and resolving critical production issues across engine and backend systems, improving platform stability.",
 
                 "Developer Experience Tools - Creating intuitive interfaces and tools to simplify flag management, channel deployment, and telemetry monitoring, improving engineering productivity and reliability.",
             ],

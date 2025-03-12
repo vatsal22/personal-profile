@@ -12,8 +12,8 @@ type Section = {
 const allSections: Section[] = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
-    { id: "education", label: "Education" },
     { id: "professional", label: "Experience" },
+    { id: "education", label: "Education" },
     { id: "coop", label: "Co-op" },
     { id: "contact", label: "Contact" },
 ];

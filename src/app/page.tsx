@@ -63,15 +63,15 @@ export default function Home() {
                     <section id="skills">
                         <SkillsSection skills={profileData.skills} />
                     </section>
-                    <section id="education">
-                        <EducationSection education={profileData.education} />
-                    </section>
                     <section id="professional">
                         <ProfessionalExperienceSection
                             experiences={
                                 profileData.professionalExperiences as Experience[]
                             }
                         />
+                    </section>
+                    <section id="education">
+                        <EducationSection education={profileData.education} />
                     </section>
                     {!isTldrMode && (
                         <section id="coop">
