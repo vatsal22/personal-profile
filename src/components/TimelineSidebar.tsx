@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
+import { useTldr } from "@/context/TldrContext";
 import { useEffect, useRef, useState } from "react";
 
 type Section = {
@@ -8,7 +9,7 @@ type Section = {
     label: string;
 };
 
-const sections: Section[] = [
+const allSections: Section[] = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "education", label: "Education" },
@@ -20,7 +21,13 @@ const sections: Section[] = [
 export const TimelineSidebar = () => {
     const [scrollProgress, setScrollProgress] = useState(0);
     const { colors } = useTheme();
+    const { isTldrMode } = useTldr();
     const timelineRef = useRef<HTMLDivElement>(null);
+
+    // Filter out the coop section if in TLDR mode
+    const sections = allSections.filter(
+        (section) => !isTldrMode || section.id !== "coop"
+    );
 
     // Track scroll position to update progress indicator continuously
     useEffect(() => {
@@ -75,7 +82,7 @@ export const TimelineSidebar = () => {
         return () => {
             observers.forEach((observer) => observer.disconnect());
         };
-    }, []);
+    }, [sections]);
 
     const handleClick = (sectionId: string) => {
         const element = document.getElementById(sectionId);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
+import { useTldr } from "@/context/TldrContext";
 import { Education } from "@/data/profileData";
 import Image from "next/image";
 import { useState } from "react";
@@ -11,6 +12,7 @@ type EducationSectionProps = {
 
 export const EducationSection = ({ education }: EducationSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
+    const { isTldrMode } = useTldr();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Get the capstone project data directly from education
@@ -131,7 +133,10 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     : colors.secondary
                             }`}
                         >
-                            {education.degree} • {education.period} •
+                            {isTldrMode && education.tldrDegree
+                                ? education.tldrDegree
+                                : education.degree}{" "}
+                            • {education.period} •
                             {" Distinction - Dean's Honours List"}
                         </p>
                     </div>
@@ -183,11 +188,13 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                 isExpanded ? "text-[#A05DCB]" : colors.secondary
                             } mb-4`}
                         >
-                            {education.description ||
-                                "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (Windriver), security systems (Escrypt), and trading platforms (Oanda)."}
+                            {isTldrMode && education.tldrDescription
+                                ? education.tldrDescription
+                                : education.description ||
+                                  "Computer engineering elective focus on systems programming and infrastructure development, with co-op experience across operating systems (Windriver), security systems (Escrypt), and trading platforms (Oanda)."}
                         </p>
 
-                        {isUWaterloo && (
+                        {isUWaterloo && !isTldrMode && (
                             <>
                                 <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-[#C2A8F0] relative overflow-hidden">
                                     {/* Subtle PCB pattern in the box */}
@@ -218,18 +225,7 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                     <p className="text-sm text-gray-700 relative z-10 mb-4">
                                         {capstoneProject?.description}
                                     </p>
-                                    <div className="mt-2 flex flex-wrap gap-2">
-                                        {capstoneProject?.technologies.map(
-                                            (tech, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="px-2 py-1 bg-purple-100 text-purple-800 rounded-md text-sm"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            )
-                                        )}
-                                    </div>
+
                                     <div className="mt-3">
                                         <a
                                             href={
@@ -301,11 +297,15 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
 
                                             {/* Image caption */}
                                             <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-sm text-center">
-                                                {
-                                                    projectImages[
-                                                        currentImageIndex
-                                                    ].caption
-                                                }
+                                                {isTldrMode &&
+                                                projectImages[currentImageIndex]
+                                                    .tldrCaption
+                                                    ? projectImages[
+                                                          currentImageIndex
+                                                      ].tldrCaption
+                                                    : projectImages[
+                                                          currentImageIndex
+                                                      ].caption}
                                             </div>
 
                                             {/* Navigation arrows - adjusted positioning */}
@@ -420,6 +420,18 @@ export const EducationSection = ({ education }: EducationSectionProps) => {
                                                 )
                                             )}
                                         </div>
+                                    </div>
+                                    <div className="mt-2 flex flex-wrap gap-2">
+                                        {capstoneProject?.technologies.map(
+                                            (tech, index) => (
+                                                <span
+                                                    key={index}
+                                                    className="px-2 py-1 bg-purple-100 text-purple-800 rounded-md text-sm"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            )
+                                        )}
                                     </div>
                                 </div>
                             </>

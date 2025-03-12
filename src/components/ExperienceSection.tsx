@@ -1,6 +1,7 @@
 "use client";
 
 import { themes, ThemeType, useTheme } from "@/context/ThemeContext";
+import { useTldr } from "@/context/TldrContext";
 import { Experience } from "@/data/profileData";
 import { RobloxFeaturePanel } from "./RobloxFeaturePanel";
 
@@ -22,6 +23,7 @@ export const ExperienceSection = ({
     getBorderColor,
 }: ExperienceSectionProps) => {
     const { setTheme, colors, expandedItem, setExpandedItem } = useTheme();
+    const { isTldrMode } = useTldr();
 
     const handleExperienceClick = (
         experienceId: string,
@@ -138,7 +140,9 @@ export const ExperienceSection = ({
                     </div>
 
                     <p className={`${colors.secondary} mt-3 mb-2`}>
-                        {experience.description}
+                        {isTldrMode && experience.tldrDescription
+                            ? experience.tldrDescription
+                            : experience.description}
                     </p>
 
                     {expandedItem === experience.id && (
@@ -157,11 +161,13 @@ export const ExperienceSection = ({
                                             Key Responsibilities
                                         </h4>
                                         <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
-                                            {experience.bulletPoints.map(
-                                                (point, index) => (
-                                                    <li key={index}>{point}</li>
-                                                )
-                                            )}
+                                            {(isTldrMode &&
+                                            experience.tldrBulletPoints
+                                                ? experience.tldrBulletPoints
+                                                : experience.bulletPoints
+                                            ).map((point, index) => (
+                                                <li key={index}>{point}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 )}

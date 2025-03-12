@@ -10,11 +10,14 @@ import { ProfileHero } from "@/components/ProfileHero";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ThemeStyleProvider } from "@/components/ThemeStyleProvider";
 import { TimelineSidebar } from "@/components/TimelineSidebar";
+import { TldrToggle } from "@/components/TldrToggle";
 import { useTheme } from "@/context/ThemeContext";
+import { useTldr } from "@/context/TldrContext";
 import { Experience, profileData } from "@/data/profileData";
 
 export default function Home() {
     const { colors, currentTheme, expandedItem } = useTheme();
+    const { isTldrMode } = useTldr();
 
     // Special background styling for UWaterloo Engineering theme with PCB pattern
     const isUWaterloo = currentTheme === "uwaterloo";
@@ -39,6 +42,9 @@ export default function Home() {
 
             {/* Timeline Sidebar */}
             <TimelineSidebar />
+
+            {/* TLDR Mode Toggle */}
+            <TldrToggle />
 
             <main
                 className={`relative z-10 min-h-screen bg-gradient-to-b ${colors.primary} py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500`}
@@ -67,13 +73,15 @@ export default function Home() {
                             }
                         />
                     </section>
-                    <section id="coop">
-                        <CoopExperienceSection
-                            experiences={
-                                profileData.coopExperiences as Experience[]
-                            }
-                        />
-                    </section>
+                    {!isTldrMode && (
+                        <section id="coop">
+                            <CoopExperienceSection
+                                experiences={
+                                    profileData.coopExperiences as Experience[]
+                                }
+                            />
+                        </section>
+                    )}
                     <section id="contact">
                         <ContactSection
                             email={profileData.email}

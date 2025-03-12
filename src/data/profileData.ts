@@ -9,6 +9,8 @@ export interface Experience {
     technologies: string[];
     themeKey: ThemeType;
     bulletPoints?: string[];
+    tldrDescription?: string;
+    tldrBulletPoints?: string[];
 }
 
 export interface ProjectImage {
@@ -16,6 +18,7 @@ export interface ProjectImage {
     src: string;
     alt: string;
     caption: string;
+    tldrCaption?: string;
 }
 
 export interface Project {
@@ -28,6 +31,8 @@ export interface Project {
     };
     technologies: string[];
     themeKey: ThemeType;
+    tldrName?: string;
+    tldrDescription?: string;
 }
 
 export interface Education {
@@ -38,6 +43,9 @@ export interface Education {
     description?: string;
     coursework?: string[];
     capstoneProject?: Project;
+    tldrDegree?: string;
+    tldrDescription?: string;
+    tldrCoursework?: string[];
 }
 
 export const profileData = {
@@ -85,6 +93,9 @@ export const profileData = {
             "Programming for Performance: Optimization techniques for high-performance systems",
             "Computer Networks: Design and implementation of networked systems",
         ],
+        tldrDescription:
+            "Spent 5 years learning how to tell computers what to do, how to do them fast, and how to make them work together.",
+
         capstoneProject: {
             id: "eyefly",
             name: "EyeFly Drone",
@@ -100,6 +111,9 @@ export const profileData = {
                 "MongoDB",
             ],
             themeKey: "uwaterloo" as ThemeType,
+            tldrName: "Flying Robot That Finds People",
+            tldrDescription:
+                "Made a drone that flies around, takes pictures, and finds lost hikers before they become bear food.",
             links: {
                 capstone:
                     "https://www.eng.uwaterloo.ca/2022-capstone-design/electrical-computer/participants/#block-100099342",
@@ -153,6 +167,12 @@ export const profileData = {
                 "Developing high performance cross-platform systems for release, feature flagging, and channels (targeted feature changes in production).",
             technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
+            tldrDescription:
+                "I make make sure we can change Roblox without breaking it (usually).",
+            tldrBulletPoints: [
+                "Feature Flags & Channels - I make sure changes can be tested on unsuspecting users, and can be switched off automatically before anyone notices we broke something.",
+                "Telemetry & Incident Response - I make sure we can know when things break, figure out what broke, and fix it before it breaks again.",
+            ],
             bulletPoints: [
                 "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
 
@@ -176,6 +196,12 @@ export const profileData = {
                 "Built high-performance distributed systems for processing and analyzing financial trading data at scale.",
             technologies: ["C++", "Kafka", "Avro", "Distributed Systems"],
             themeKey: "oanda" as ThemeType,
+            tldrDescription:
+                "Made computers count money really fast so rich people can get richer.",
+            tldrBulletPoints: [
+                "Built software that handles forex trades faster than you can say 'stock market crash'",
+                "Made fancy data formats to process trades so quickly your bank account doesn't know what hit it",
+            ],
             bulletPoints: [
                 "Developed high-performance C++ microservices to ingest, process, and distribute thousands of concurrent user trades using Kafka.",
                 "Optimized distributed compute performance by implementing Avro serialization, reducing latency for real-time forex hedging algorithms and increasing quantitative backtesting speeds.",
