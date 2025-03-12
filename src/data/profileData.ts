@@ -62,7 +62,7 @@ export const profileData = {
         imagine: "Professional Bug Developer",
         oanda: "Professional Bug Developer",
     },
-    bio: "Computer engineering graduate from University of Waterloo with extensive experience in software development across various domains including operating systems, security, and gaming infrastructure.",
+    bio: "UWaterloo computer engineering graduate with experience ranging from financial systems to UGC gaming platforms. Software is my domain of choice, but really I just enjoy solving complex problems and building scalable systems.",
     avatar: "/profile_image.png",
     location: "San Francisco, CA",
     email: "me@vatsalsolanki.com",
@@ -171,7 +171,7 @@ export const profileData = {
                 "I make sure we can change Roblox without breaking it (usually).",
             tldrBulletPoints: [
                 "Feature Flags & Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
-                "Telemetry & Incident Response - I make sure we can know when things break, figure out what broke, and fix it before it breaks again.",
+                "Telemetry & Incident Response - I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
             ],
             bulletPoints: [
                 "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
@@ -213,7 +213,7 @@ export const profileData = {
             company: "Imagine Communications",
             period: "Sept. 2020 - Dec. 2020",
             description:
-                "Enhanced telemetry and monitoring systems for broadcast media infrastructure, focusing on performance optimization and cross-service communication.",
+                "Enhanced telemetry systems for broadcast media infrastructure, focusing on performance optimization and cross-service communication.",
             technologies: [
                 "C#",
                 "C++",
@@ -222,7 +222,7 @@ export const profileData = {
             ],
             themeKey: "imagine" as ThemeType,
             bulletPoints: [
-                "Architected and implemented customizable configuration system that reduced manual setup time by over 20% and eliminated common user errors through structured validation.",
+                "Implemented customizable configuration system that reduced manual software-defined network (SDN) setup time by over 20% and eliminated common user errors through structured validation.",
                 "Developed critical interoperability layer between legacy C++ services and modern C# services, enabling seamless integration without disrupting existing workflows.",
             ],
         },
@@ -232,12 +232,12 @@ export const profileData = {
             company: "Escrypt",
             period: "Jan. 2020 - Apr. 2020",
             description:
-                "Developed keyless entry and fleet management access control system.",
+                "Enhanced secure cloud-based access management infrastructure for enterprise vehicle fleet management system.",
             technologies: ["Java", "OAuth", "REST", "Cloud Security", "AWS"],
             themeKey: "escrypt" as ThemeType,
             bulletPoints: [
-                "Mentored junior intern while architecting secure API authentication using OAuth access tokens, reducing database reads by 20% and improving security posture.",
-                "Identified and resolved critical security vulnerability that allowed unauthorized access to user data through brute force attacks, implementing robust request validation and error handling.",
+                "Mentored junior intern while architecting secure API authentication using time-limited OAuth access tokens, reducing database reads by 20% and improving security posture.",
+                "Identified and resolved error-based side-channel vulnerability that allowed unauthorized access to user data through brute force attacks, implementing robust request validation and error handling.",
             ],
         },
         {
@@ -246,7 +246,7 @@ export const profileData = {
             company: "Thomson Reuters",
             period: "May 2019 - Aug. 2019",
             description:
-                "Worked on the enterprise tax software team, primarily developing and optimizing backend API services using C#.",
+                "Developed and optimized complex tax computation APIs, streamlining financial calculations for global enterprises.",
             technologies: [
                 "C#",
                 ".NET",
@@ -279,11 +279,11 @@ export const profileData = {
             company: "Wind River",
             period: "Jan. 2018 - Apr. 2018",
             description:
-                "Tested and debugged VxWorks, a real-time operating system, working with low-level C and assembly code across various hardware configurations.",
+                "Engineered Python monitoring tool while debugging complex C and assembly code for real-time operating system verification.",
             technologies: ["C", "Assembly", "Python", "Real-time OS"],
             themeKey: "windriver" as ThemeType,
             bulletPoints: [
-                "Developed a Python-based monitoring tool to observe and log the status of running hardware test instances, streamlining the verification and monitoring process for automated tests.",
+                "Developed a Python-based monitoring tool to observe and log the status of running test hardware instances, streamlining the verification and monitoring process for automated tests.",
             ],
         },
     ],

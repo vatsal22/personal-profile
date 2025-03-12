@@ -158,7 +158,7 @@ export const ExperienceSection = ({
                                         <h4
                                             className={`font-medium mb-2 ${colors.text} relative z-10`}
                                         >
-                                            Key Responsibilities
+                                            Responsibilities & Accomplishments
                                         </h4>
                                         <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
                                             {(isTldrMode &&
