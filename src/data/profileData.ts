@@ -88,13 +88,13 @@ export const profileData = {
         description:
             "Elective focus on systems programming and scalable infrastructure, with co-op experience across a wide range of domains including real-time operating systems, security systems, and trading platforms.",
         coursework: [
-            "Real-Time Operating Systems: Core systems architecture and concurrency management",
-            "Distributed Computing: Large-scale service deployment and coordination",
-            "Programming for Performance: Optimization techniques for high-performance systems",
-            "Computer Networks: Design and implementation of networked systems",
+            "Real-Time Operating Systems: OS design, kernel development, and process scheduling",
+            "Distributed Computing: Fault-tolerant architectures and distributed synchronization",
+            "Programming for Performance: Multicore optimization, SIMD, and cache efficiency",
+            "Computer Networks: TCP/IP protocols, routing algorithms, and network architecture",
         ],
         tldrDescription:
-            "I spent 5 years learning how to tell computers what to do, how to make them do things efficiently, and how to make them work together.",
+            "I spent 4.5 years learning how to tell computers what to do, how to make them do things efficiently, and how to make them work together.",
 
         capstoneProject: {
             id: "eyefly",
