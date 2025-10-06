@@ -189,11 +189,11 @@ export const profileData = {
     coopExperiences: [
         {
             id: "oanda",
-            title: "Software Developer | Hedging Team",
+            title: "Software Developer",
             company: "Oanda",
             period: "Sept. 2021 - Dec. 2021",
             description:
-                "Built high-performance distributed systems for processing and analyzing financial trading data at scale.",
+                "Built high-performance distributed hedging systems for processing and analyzing financial trading data at scale.",
             technologies: ["C++", "Kafka", "Avro", "Distributed Systems"],
             themeKey: "oanda" as ThemeType,
             tldrDescription:
@@ -236,7 +236,7 @@ export const profileData = {
             technologies: ["Java", "OAuth", "REST", "Cloud Security", "AWS"],
             themeKey: "escrypt" as ThemeType,
             bulletPoints: [
-                "Mentored junior intern while architecting secure API authentication using time-limited OAuth access tokens, reducing database reads by 20% and improving security posture.",
+                "Architected secure API authentication using time-limited OAuth access tokens, reducing database reads by 20% and improving security posture.",
                 "Identified and resolved error-based side-channel vulnerability that allowed unauthorized access to user data through brute force attacks, implementing robust request validation and error handling.",
             ],
         },
@@ -257,7 +257,7 @@ export const profileData = {
             themeKey: "thomson" as ThemeType,
             bulletPoints: [
                 "Optimized computation-intensive APIs by using caching, multi-threading, and other techniques, resulting in 80% speedup.",
-                "Designed and implemented REST APIs that transformed complex financial calculations into accessible endpoints, improving customer productivity and integration difficulty.",
+                "Designed and implemented REST APIs that transformed complex financial calculations into accessible endpoints, improving customer productivity and integration efforts.",
             ],
         },
         {
@@ -266,11 +266,12 @@ export const profileData = {
             company: "HubHead",
             period: "Sept. 2018 - Dec. 2018",
             description:
-                "Designed and implemented cross-platform deployment and update infrastructure for enterprise asset management Java application.",
+                "Designed and implemented cross-platform deployment and update infrastructure for enterprise asset management application.",
             technologies: ["Java", "Groovy", "Release Automation", "CI/CD"],
             themeKey: "hubhead" as ThemeType,
             bulletPoints: [
-                "Engineered a high-performance deployment pipeline that reduced application launch times by 50% through concurrent resource validation, while implementing automated versioning on deploys.",
+                "Reduced application launch times by 50% through concurrent resource validation.",
+                "Developed deployment pipeline with automatic versioning on deploys.",
             ],
         },
         {
@@ -279,7 +280,7 @@ export const profileData = {
             company: "Wind River",
             period: "Jan. 2018 - Apr. 2018",
             description:
-                "Engineered Python monitoring tool while debugging complex C and assembly code for real-time operating system verification.",
+                "Engineered Python monitoring tool while debugging C and assembly code for real-time operating system verification.",
             technologies: ["C", "Assembly", "Python", "Real-time OS"],
             themeKey: "windriver" as ThemeType,
             bulletPoints: [
