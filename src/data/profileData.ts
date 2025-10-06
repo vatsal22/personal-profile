@@ -79,7 +79,6 @@ export const profileData = {
     socialLinks: {
         github: "https://github.com/vatsal22",
         linkedin: "https://www.linkedin.com/in/vatsal-solanki/",
-        twitter: "https://twitter.com/vatsalsolanki22",
     },
     education: {
         university: "University of Waterloo",
