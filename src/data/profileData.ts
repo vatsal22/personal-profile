@@ -53,7 +53,7 @@ export const profileData = {
     title: "Software Engineer",
     themeTitles: {
         default: "Software Engineer",
-        uwaterloo: "Professional Lazeez Enjoyer",
+        uwaterloo: "Professional Goose Avoider",
         roblox: "Professional Sev-0 Causer",
         windriver: "Professional Bug Developer",
         hubhead: "Professional Bug Developer",
@@ -62,7 +62,7 @@ export const profileData = {
         imagine: "Professional Bug Developer",
         oanda: "Professional Bug Developer",
     },
-    bio: "UWaterloo computer engineering graduate with experience ranging from financial systems to UGC gaming platforms. Software is my domain of choice, but really I just enjoy solving complex problems and building scalable systems.",
+    bio: "I'm a University of Waterloo computer engineering graduate with experience ranging from financial systems to UGC gaming platforms. Regardless of the domain, I just enjoy solving challenging problems and building scalable systems.",
     tldrBio: "I like tricking computers into doing what I want.",
     avatar: "/profile_image.png",
     location: "San Francisco, CA",
