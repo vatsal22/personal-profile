@@ -50,9 +50,9 @@ export interface Education {
 
 export const profileData = {
     name: "Vatsal Solanki",
-    title: "Software Engineer",
+    title: "Senior Software Engineer",
     themeTitles: {
-        default: "Software Engineer",
+        default: "Senior Software Engineer",
         uwaterloo: "Professional Goose Avoider",
         roblox: "Professional Sev-0 Causer",
         windriver: "Professional Bug Developer",
@@ -196,8 +196,7 @@ export const profileData = {
                 "Built high-performance distributed hedging systems for processing and analyzing financial trading data at scale.",
             technologies: ["C++", "Kafka", "Avro", "Distributed Systems"],
             themeKey: "oanda" as ThemeType,
-            tldrDescription:
-                "Made computers count money really fast so rich people can get richer.",
+            tldrDescription: "Made computers count money really fast.",
             tldrBulletPoints: [
                 "Built software that handles forex trades faster than you can say 'stock market crash'",
                 "Made fancy data formats to process trades so quickly your bank account doesn't know what hit it",
