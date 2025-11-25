@@ -160,11 +160,11 @@ export const profileData = {
     professionalExperiences: [
         {
             id: "roblox",
-            title: "Senior Software Engineer | Engine Release Team",
+            title: "Senior Software Engineer",
             company: "Roblox",
-            period: "July 2022 - Present",
+            period: "July 2022 - Present (Senior SWE since July 2024)",
             description:
-                "Building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users. Promoted to Senior Software Engineer in July 2024 in recognition of technical leadership, architectural ownership, and measurable impact on platform reliability and cost efficiency.",
+                "On the Engine Release Team, building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users.",
             technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
