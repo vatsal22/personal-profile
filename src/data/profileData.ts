@@ -168,7 +168,7 @@ export const profileData = {
             technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
-                "I make sure we can change Roblox without breaking it (usually).",
+                "I make sure we can make Roblox better without accidentally breaking something.",
             tldrBulletPoints: [
                 "Feature Flags & Beta Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
                 "Telemetry & Incident Response - I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
