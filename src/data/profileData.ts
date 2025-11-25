@@ -160,29 +160,37 @@ export const profileData = {
     professionalExperiences: [
         {
             id: "roblox",
-            title: "Software Engineer | Engine Release Team",
+            title: "Senior Software Engineer | Engine Release Team",
             company: "Roblox",
             period: "July 2022 - Present",
             description:
-                "Developing scalable cross-platform systems for release, feature flagging, and release channels.",
-            technologies: ["C++", "C#", "Python", "TypeScript", "Lua"],
+                "Building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users. Promoted to Senior Software Engineer in July 2024 in recognition of technical leadership, architectural ownership, and measurable impact on platform reliability and cost efficiency.",
+            technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
                 "I make sure we can change Roblox without breaking it (usually).",
             tldrBulletPoints: [
-                "Feature Flags & Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
+                "Feature Flags & Beta Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
                 "Telemetry & Incident Response - I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
             ],
             bulletPoints: [
-                "Feature Flags - Developing and maintaining a feature flagging system across clients, studio, and servers, enabling controlled rollouts with automated monitoring and rollbacks.",
+                "CDN Cost Optimization: Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients. Saved millions annually in CDN costs.",
 
-                "Flag and Binary Deployment Channels - Architecting secure, self-serve deployment channels that provide granular public targeting while preventing unauthorized access to internal channels.",
+                "Platform Reliability: Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and reliability improvements (contributing projects below).",
 
-                "Telemetry & Monitoring - Designing comprehensive telemetry and alerting systems to track engine health, enabling early issue detection and data-driven release decisions.",
+                "Telemetry & Monitoring: Added production and channel telemetry with automated alerting for early issue detection.",
 
-                "Incident Response - Serving as on-call engineer diagnosing, mitigating, and resolving critical production issues across engine and backend systems, improving platform stability.",
+                "Feature Flags: Implemented graduated rollout system (0→100%) with automated health monitoring and instant rollbacks. Unified disparate flag systems (C++, Java, Lua), enabling rollouts and other flag features for dozens of teams.",
 
-                "Developer Experience Tools - Creating intuitive interfaces and tools to simplify flag management, channel deployment, and telemetry monitoring, improving engineering productivity and reliability.",
+                "Beta Channels: Implemented flag-only channels support allowing for feature flag beta testing across all platforms. Implemented 'over-the-air' Lua updates enabling Universal App teams to push Lua code changes using channels.",
+
+                "Secured Channels: Helped secure channel infrastructure to prevent unauthorized access to pre-release channel builds, reducing major feature leaks from multiple every quarter to effectively 0.",
+
+                "Developer Tooling: Built Channels APIs to support an internal self-serve channel management portal, dramatically increasing channel usage for better feature testing during development, improving release reliability.",
+
+                "Technical Leadership: Mentoring multiple engineers for projects including staged rollouts (i.e. flexible flag rollouts), improved flag experimentation telemetry, and various other improvements.",
+
+                "Process Unification: Leading greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency amongst the team.",
             ],
         },
     ],
