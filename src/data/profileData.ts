@@ -174,7 +174,7 @@ export const profileData = {
                 "Telemetry & Incident Response - I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
             ],
             bulletPoints: [
-                "CDN Cost Optimization: Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients. Saved millions annually in CDN costs.",
+                "CDN Cost Optimization: Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients. Saved millions annually in infrastructure costs.",
 
                 "Platform Reliability: Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and reliability improvements (contributing projects below).",
 
@@ -182,15 +182,15 @@ export const profileData = {
 
                 "Feature Flags: Implemented graduated rollout system (0→100%) with automated health monitoring and instant rollbacks. Unified disparate flag systems (C++, Java, Lua), enabling rollouts and other flag features for dozens of teams.",
 
-                "Beta Channels: Implemented flag-only channels support allowing for feature flag beta testing across all platforms. Implemented 'over-the-air' Lua updates enabling Universal App teams to push Lua code changes using channels.",
+                "Beta Channels: Implemented flag-only channel support, allowing for feature flag beta testing across all platforms. Implemented 'over-the-air' Lua updates, enabling Universal App teams to push Lua code changes using channels.",
 
                 "Secured Channels: Helped secure channel infrastructure to prevent unauthorized access to pre-release channel builds, reducing major feature leaks from multiple every quarter to effectively 0.",
 
-                "Developer Tooling: Built Channels APIs to support an internal self-serve channel management portal, dramatically increasing channel usage for better feature testing during development, improving release reliability.",
+                "Developer Tooling: Built Channels APIs to support an internal self-serve channel management portal, dramatically increasing channel usage for better feature testing during development and improving release reliability.",
 
-                "Technical Leadership: Mentoring multiple engineers for projects including staged rollouts (i.e. flexible flag rollouts), improved flag experimentation telemetry, and various other improvements.",
+                "Technical Leadership: Mentoring multiple engineers on projects including staged rollouts (i.e., flexible flag rollouts), improved flag experimentation telemetry, and various other improvements.",
 
-                "Process Unification: Leading greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency amongst the team.",
+                "Process Unification: Driving greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency across the team.",
             ],
         },
     ],
