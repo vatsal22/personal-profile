@@ -100,9 +100,24 @@ export const ExperienceSection = ({
                             >
                                 {experience.company}
                             </h3>
-                            <p className={`${colors.secondary}`}>
-                                {experience.title} • {experience.period}
-                            </p>
+                            {experience.positions ? (
+                                <div
+                                    className={`${colors.secondary} space-y-0.5`}
+                                >
+                                    {experience.positions.map(
+                                        (position, idx) => (
+                                            <p key={idx}>
+                                                {position.title} •{" "}
+                                                {position.period}
+                                            </p>
+                                        )
+                                    )}
+                                </div>
+                            ) : (
+                                <p className={`${colors.secondary}`}>
+                                    {experience.title} • {experience.period}
+                                </p>
+                            )}
                         </div>
                         <div className="text-gray-500">
                             {expandedItem === experience.id ? (

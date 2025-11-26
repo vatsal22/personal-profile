@@ -1,5 +1,10 @@
 import { ThemeType } from "@/context/ThemeContext";
 
+export interface Position {
+    title: string;
+    period: string;
+}
+
 export interface Experience {
     id: string;
     title: string;
@@ -11,6 +16,7 @@ export interface Experience {
     bulletPoints?: string[];
     tldrDescription?: string;
     tldrBulletPoints?: string[];
+    positions?: Position[]; // For companies where you had multiple roles
 }
 
 export interface ProjectImage {
@@ -162,9 +168,19 @@ export const profileData = {
             id: "roblox",
             title: "Senior Software Engineer",
             company: "Roblox",
-            period: "July 2022 - Present (Senior SWE since July 2024)",
+            period: "July 2022 - Present",
+            positions: [
+                {
+                    title: "Software Engineer",
+                    period: "July 2022 - July 2024",
+                },
+                {
+                    title: "Senior Software Engineer",
+                    period: "July 2024 - Present",
+                },
+            ],
             description:
-                "On the Engine Release Team, building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users.",
+                "Building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users with the Engine Release Team.",
             technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
