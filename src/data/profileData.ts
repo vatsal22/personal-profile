@@ -196,7 +196,7 @@ export const profileData = {
                 {
                     category: "Feature Flags",
                     items: [
-                        "I create systems to enable features and ensure they can be switched off automatically before anyone notices we broke something.",
+                        "I create systems to enable features and ensure they can be switched off automatically before anyone notices we've broken something.",
                     ],
                 },
                 {
@@ -216,42 +216,42 @@ export const profileData = {
                 {
                     category: "Cost Optimization",
                     items: [
-                        "Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients, saving millions annually in infrastructure costs.",
+                        "Implemented If-Modified-Since support for flag endpoints, eliminating redundant downloads across millions of clients and saving millions annually in infrastructure costs.",
                     ],
                 },
                 {
                     category: "Platform Reliability",
                     items: [
-                        "Led telemetry integration across Systems (networking, rendering), Mobile (Android, iOS), and others, adding comprehensive client telemetry with automated alerting for early issue detection.",
-                        "Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and release improvements (see following projects).",
+                        "Led telemetry integration across Systems and Apps teams, adding comprehensive client and game server telemetry with automated alerting.",
+                        "Contributed to reducing critical production incidents (Sev-0) from multiple per year to fewer than 2-3 annually through channel, flag, and release improvements, some of which are detailed below.",
                     ],
                 },
                 {
                     category: "Feature Flags",
                     items: [
-                        "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and auto-rollbacks, enabling safe feature deployment at scale.",
-                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams and simplifying development experience.",
+                        "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and rollbacks, enabling safe feature deployment at scale.",
+                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams while simplifying development experience.",
                     ],
                 },
                 {
                     category: "Release Channels",
                     items: [
-                        "Implemented flag-only channel support, allowing feature flag testing across all platforms using channels system.",
-                        "Enabled Universal/In-App teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
-                        "Helped secure channel infrastructure to prevent unauthorized access to pre-release builds, reducing major feature leaks from multiple per quarter to effectively 0.",
+                        "Implemented flag-only channel support, enabling feature flag testing across all platforms.",
+                        "Enabled app platform teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
+                        "Secured channel infrastructure with client-side JWT authentication to prevent unauthorized access while maintaining fast load times through async and cached requests, eliminating feature leaks through channels.",
                     ],
                 },
                 {
                     category: "Developer Tooling",
                     items: [
-                        "Built channel APIs to support an internal self-serve channel management portal, allowing engineers to iterate and test changes on public users easily, improving release reliability.",
+                        "Built channel APIs to support an internal self-serve channel management portal, allowing engineers to iterate and test changes with public users, improving release reliability.",
                     ],
                 },
                 {
                     category: "Technical Leadership",
                     items: [
-                        "Mentoring multiple engineers on projects including staged rollouts (i.e. flexible flag rollouts), improved flag experimentation telemetry, and various channel reliability improvements.",
-                        "Driving greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency across the team.",
+                        "Mentored 3 junior engineers on projects including staged rollouts (i.e., flexible flag rollouts), flag experimentation telemetry, and channel reliability improvements.",
+                        "Leading development of a greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience.",
                     ],
                 },
             ],
