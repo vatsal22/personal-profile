@@ -187,7 +187,7 @@ export const profileData = {
                 },
             ],
             description:
-                "Building mission-critical release and feature management systems that enable safe, rapid deployment across a platform serving 70M+ daily active users with the Engine Release Team.",
+                "Building mission-critical release and feature management systems that enable safe, rapid deployment across Roblox's multi-platform ecosystem (mobile, console, desktop) serving 70M+ daily active users.",
             technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
             themeKey: "roblox" as ThemeType,
             tldrDescription:
@@ -196,13 +196,13 @@ export const profileData = {
                 {
                     category: "Feature Flags",
                     items: [
-                        "I create systems to test changes on unsuspecting users and ensure they can be switched off automatically before anyone notices we broke something.",
+                        "I create systems to enable features and ensure they can be switched off automatically before anyone notices we broke something.",
                     ],
                 },
                 {
                     category: "Release Channels",
                     items: [
-                        "I let developers test new features on unsuspecting users before unleashing them on everyone else.",
+                        "I let engineers test new features on unsuspecting users before unleashing them on everyone else.",
                     ],
                 },
                 {
@@ -222,7 +222,7 @@ export const profileData = {
                 {
                     category: "Platform Reliability",
                     items: [
-                        "Added production and channel telemetry with automated alerting for early issue detection.",
+                        "Led telemetry integration across Systems (networking, rendering), Mobile (Android, iOS), and others, adding comprehensive client telemetry with automated alerting for early issue detection.",
                         "Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and release improvements (see following projects).",
                     ],
                 },
@@ -230,14 +230,14 @@ export const profileData = {
                     category: "Feature Flags",
                     items: [
                         "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and auto-rollbacks, enabling safe feature deployment at scale.",
-                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams.",
+                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams and simplifying development experience.",
                     ],
                 },
                 {
                     category: "Release Channels",
                     items: [
                         "Implemented flag-only channel support, allowing feature flag testing across all platforms using channels system.",
-                        "Enabled Universal App teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
+                        "Enabled Universal/In-App teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
                         "Helped secure channel infrastructure to prevent unauthorized access to pre-release builds, reducing major feature leaks from multiple per quarter to effectively 0.",
                     ],
                 },
