@@ -5,6 +5,11 @@ export interface Position {
     period: string;
 }
 
+export interface BulletPointGroup {
+    category: string;
+    items: string[];
+}
+
 export interface Experience {
     id: string;
     title: string;
@@ -14,8 +19,10 @@ export interface Experience {
     technologies: string[];
     themeKey: ThemeType;
     bulletPoints?: string[];
+    bulletPointGroups?: BulletPointGroup[]; // Grouped bullet points with categories
     tldrDescription?: string;
     tldrBulletPoints?: string[];
+    tldrBulletPointGroups?: BulletPointGroup[]; // TLDR version of grouped bullets
     positions?: Position[]; // For companies where you had multiple roles
 }
 
@@ -185,28 +192,68 @@ export const profileData = {
             themeKey: "roblox" as ThemeType,
             tldrDescription:
                 "I make sure we can make Roblox better without accidentally breaking something.",
-            tldrBulletPoints: [
-                "Feature Flags & Beta Channels - I create systems to test changes on unsuspecting users, and ensure they can be switched off automatically before anyone notices we broke something.",
-                "Telemetry & Incident Response - I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
+            tldrBulletPointGroups: [
+                {
+                    category: "Feature Flags",
+                    items: [
+                        "I create systems to test changes on unsuspecting users and ensure they can be switched off automatically before anyone notices we broke something.",
+                    ],
+                },
+                {
+                    category: "Release Channels",
+                    items: [
+                        "I let developers test new features on unsuspecting users before unleashing them on everyone else.",
+                    ],
+                },
+                {
+                    category: "Telemetry & Incident Response",
+                    items: [
+                        "I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
+                    ],
+                },
             ],
-            bulletPoints: [
-                "CDN Cost Optimization: Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients. Saved millions annually in infrastructure costs.",
-
-                "Platform Reliability: Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and reliability improvements (contributing projects below).",
-
-                "Telemetry & Monitoring: Added production and channel telemetry with automated alerting for early issue detection.",
-
-                "Feature Flags: Implemented graduated rollout system (0→100%) with automated health monitoring and instant rollbacks. Unified disparate flag systems (C++, Java, Lua), enabling rollouts and other flag features for dozens of teams.",
-
-                "Beta Channels: Implemented flag-only channel support, allowing for feature flag beta testing across all platforms. Implemented 'over-the-air' Lua updates, enabling Universal App teams to push Lua code changes using channels.",
-
-                "Secured Channels: Helped secure channel infrastructure to prevent unauthorized access to pre-release channel builds, reducing major feature leaks from multiple every quarter to effectively 0.",
-
-                "Developer Tooling: Built Channels APIs to support an internal self-serve channel management portal, dramatically increasing channel usage for better feature testing during development and improving release reliability.",
-
-                "Technical Leadership: Mentoring multiple engineers on projects including staged rollouts (i.e., flexible flag rollouts), improved flag experimentation telemetry, and various other improvements.",
-
-                "Process Unification: Driving greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency across the team.",
+            bulletPointGroups: [
+                {
+                    category: "Cost Optimization",
+                    items: [
+                        "Implemented if-modified-since support for flag endpoints, eliminating redundant downloads across millions of clients, saving millions annually in infrastructure costs.",
+                    ],
+                },
+                {
+                    category: "Platform Reliability",
+                    items: [
+                        "Added production and channel telemetry with automated alerting for early issue detection.",
+                        "Helped reduce Sev-0 incidents from multiple per year to less than 2-3 annually through channel, flag, and release improvements (see following projects).",
+                    ],
+                },
+                {
+                    category: "Feature Flags",
+                    items: [
+                        "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and auto-rollbacks, enabling safe feature deployment at scale.",
+                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams.",
+                    ],
+                },
+                {
+                    category: "Release Channels",
+                    items: [
+                        "Implemented flag-only channel support, allowing feature flag testing across all platforms using channels system.",
+                        "Enabled Universal App teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
+                        "Helped secure channel infrastructure to prevent unauthorized access to pre-release builds, reducing major feature leaks from multiple per quarter to effectively 0.",
+                    ],
+                },
+                {
+                    category: "Developer Tooling",
+                    items: [
+                        "Built channel APIs to support an internal self-serve channel management portal, allowing engineers to iterate and test changes on public users easily, improving release reliability.",
+                    ],
+                },
+                {
+                    category: "Technical Leadership",
+                    items: [
+                        "Mentoring multiple engineers on projects including staged rollouts (i.e. flexible flag rollouts), improved flag experimentation telemetry, and various channel reliability improvements.",
+                        "Driving greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience and efficiency across the team.",
+                    ],
+                },
             ],
         },
     ],

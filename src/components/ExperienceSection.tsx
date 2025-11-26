@@ -162,30 +162,88 @@ export const ExperienceSection = ({
 
                     {expandedItem === experience.id && (
                         <div className="mt-4 pt-4 border-t border-gray-200 relative">
-                            {showBulletPoints &&
-                                experience.bulletPoints &&
-                                experience.bulletPoints.length > 0 && (
-                                    <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
-                                        {/* Subtle pattern background */}
-                                        <div className="absolute inset-0 opacity-5">
-                                            <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
+                            {showBulletPoints && (
+                                <>
+                                    {/* Grouped bullet points (new structure) */}
+                                    {(isTldrMode &&
+                                    experience.tldrBulletPointGroups
+                                        ? experience.tldrBulletPointGroups
+                                        : experience.bulletPointGroups) && (
+                                        <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
+                                            {/* Subtle pattern background */}
+                                            <div className="absolute inset-0 opacity-5">
+                                                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
+                                            </div>
+                                            <h4
+                                                className={`font-medium mb-3 ${colors.text} relative z-10`}
+                                            >
+                                                Responsibilities &
+                                                Accomplishments
+                                            </h4>
+                                            <div className="space-y-3 relative z-10">
+                                                {(isTldrMode &&
+                                                experience.tldrBulletPointGroups
+                                                    ? experience.tldrBulletPointGroups
+                                                    : experience.bulletPointGroups
+                                                )?.map((group, groupIndex) => (
+                                                    <div key={groupIndex}>
+                                                        <div className="font-medium text-sm text-gray-800 mb-1">
+                                                            • {group.category}
+                                                        </div>
+                                                        <ul className="ml-6 space-y-1">
+                                                            {group.items.map(
+                                                                (
+                                                                    item,
+                                                                    itemIndex
+                                                                ) => (
+                                                                    <li
+                                                                        key={
+                                                                            itemIndex
+                                                                        }
+                                                                        className="text-sm text-gray-700 list-disc"
+                                                                    >
+                                                                        {item}
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <h4
-                                            className={`font-medium mb-2 ${colors.text} relative z-10`}
-                                        >
-                                            Responsibilities & Accomplishments
-                                        </h4>
-                                        <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
-                                            {(isTldrMode &&
-                                            experience.tldrBulletPoints
-                                                ? experience.tldrBulletPoints
-                                                : experience.bulletPoints
-                                            ).map((point, index) => (
-                                                <li key={index}>{point}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                                    )}
+
+                                    {/* Fallback to flat bullet points (old structure) */}
+                                    {!experience.bulletPointGroups &&
+                                        !experience.tldrBulletPointGroups &&
+                                        experience.bulletPoints &&
+                                        experience.bulletPoints.length > 0 && (
+                                            <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-200 relative overflow-hidden">
+                                                {/* Subtle pattern background */}
+                                                <div className="absolute inset-0 opacity-5">
+                                                    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-transparent"></div>
+                                                </div>
+                                                <h4
+                                                    className={`font-medium mb-2 ${colors.text} relative z-10`}
+                                                >
+                                                    Responsibilities &
+                                                    Accomplishments
+                                                </h4>
+                                                <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 relative z-10">
+                                                    {(isTldrMode &&
+                                                    experience.tldrBulletPoints
+                                                        ? experience.tldrBulletPoints
+                                                        : experience.bulletPoints
+                                                    ).map((point, index) => (
+                                                        <li key={index}>
+                                                            {point}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                </>
+                            )}
 
                             <h4 className={`font-medium mb-2 ${colors.text}`}>
                                 Technologies
