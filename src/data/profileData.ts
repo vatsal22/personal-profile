@@ -77,7 +77,7 @@ export const profileData = {
     },
     bio: "I'm a University of Waterloo computer engineering graduate with experience ranging from financial systems to UGC gaming platforms. Regardless of the domain, I just enjoy solving challenging problems and building scalable systems.",
     tldrBio: "I like tricking computers into doing what I want.",
-    avatar: "/profile_image.png",
+    avatar: "/profile_image4.jpeg",
     location: "San Francisco, CA",
     email: "me@vatsalsolanki.com",
     skills: [
