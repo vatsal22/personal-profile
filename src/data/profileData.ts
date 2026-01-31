@@ -171,6 +171,92 @@ export const profileData = {
         },
     },
     professionalExperiences: [
+        // Archived detailed version - kept for reference
+        // {
+        //     id: "roblox",
+        //     title: "Senior Software Engineer",
+        //     company: "Roblox",
+        //     period: "July 2022 - Present",
+        //     positions: [
+        //         {
+        //             title: "Software Engineer",
+        //             period: "July 2022 - July 2024",
+        //         },
+        //         {
+        //             title: "Senior Software Engineer",
+        //             period: "July 2024 - Present",
+        //         },
+        //     ],
+        //     description:
+        //         "Building mission-critical release and feature management systems that enable safe, rapid deployment across Roblox's multi-platform ecosystem (mobile, console, desktop) serving 70M+ daily active users.",
+        //     technologies: ["C++", "C#", "Java", "Python", "TypeScript", "Lua"],
+        //     themeKey: "roblox" as ThemeType,
+        //     tldrDescription:
+        //         "I make sure we can make Roblox better without accidentally breaking something.",
+        //     tldrBulletPointGroups: [
+        //         {
+        //             category: "Feature Flags",
+        //             items: [
+        //                 "I create systems to enable features and ensure they can be switched off automatically before anyone notices we've broken something.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Release Channels",
+        //             items: [
+        //                 "I let engineers test new features on unsuspecting users before unleashing them on everyone else.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Telemetry & Incident Response",
+        //             items: [
+        //                 "I make sure we know when things break, can figure out what broke, and fix it before it breaks again.",
+        //             ],
+        //         },
+        //     ],
+        //     bulletPointGroups: [
+        //         {
+        //             category: "Cost Optimization",
+        //             items: [
+        //                 "Implemented If-Modified-Since support for flag endpoints, eliminating redundant downloads across millions of clients and saving millions annually in infrastructure costs.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Platform Reliability",
+        //             items: [
+        //                 "Led telemetry integration across Systems and Apps teams, adding comprehensive client and game server telemetry with automated alerting.",
+        //                 "Contributed to reducing critical production incidents (Sev-0) from multiple per year to fewer than 2-3 annually through channel, flag, and release improvements, some of which are detailed below.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Feature Flags",
+        //             items: [
+        //                 "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and rollbacks, enabling safe feature deployment at scale.",
+        //                 "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams while simplifying development experience.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Release Channels",
+        //             items: [
+        //                 "Implemented flag-only channel support, enabling feature flag testing across all platforms.",
+        //                 "Enabled app platform teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
+        //                 "Secured channel infrastructure with client-side JWT authentication to prevent unauthorized access while maintaining fast load times through async and cached requests, eliminating feature leaks through channels.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Developer Tooling",
+        //             items: [
+        //                 "Built channel APIs to support an internal self-serve channel management portal, allowing engineers to iterate and test changes with public users, improving release reliability.",
+        //             ],
+        //         },
+        //         {
+        //             category: "Technical Leadership",
+        //             items: [
+        //                 "Mentored 3 junior engineers on projects including staged rollouts (i.e., flexible flag rollouts), flag experimentation telemetry, and channel reliability improvements.",
+        //                 "Leading development of a greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience.",
+        //             ],
+        //         },
+        //     ],
+        // },
         {
             id: "roblox",
             title: "Senior Software Engineer",
@@ -212,48 +298,10 @@ export const profileData = {
                     ],
                 },
             ],
-            bulletPointGroups: [
-                {
-                    category: "Cost Optimization",
-                    items: [
-                        "Implemented If-Modified-Since support for flag endpoints, eliminating redundant downloads across millions of clients and saving millions annually in infrastructure costs.",
-                    ],
-                },
-                {
-                    category: "Platform Reliability",
-                    items: [
-                        "Led telemetry integration across Systems and Apps teams, adding comprehensive client and game server telemetry with automated alerting.",
-                        "Contributed to reducing critical production incidents (Sev-0) from multiple per year to fewer than 2-3 annually through channel, flag, and release improvements, some of which are detailed below.",
-                    ],
-                },
-                {
-                    category: "Feature Flags",
-                    items: [
-                        "Implemented low-overhead graduated rollout system (0→100%) with automated health monitoring and rollbacks, enabling safe feature deployment at scale.",
-                        "Unified disparate flag systems across C++, Java, and Lua codebases, enabling rollouts and advanced flag features for dozens of teams while simplifying development experience.",
-                    ],
-                },
-                {
-                    category: "Release Channels",
-                    items: [
-                        "Implemented flag-only channel support, enabling feature flag testing across all platforms.",
-                        "Enabled app platform teams to push Lua code changes (in addition to flags and binary changes) to channels, dramatically accelerating iteration cycles.",
-                        "Secured channel infrastructure with client-side JWT authentication to prevent unauthorized access while maintaining fast load times through async and cached requests, eliminating feature leaks through channels.",
-                    ],
-                },
-                {
-                    category: "Developer Tooling",
-                    items: [
-                        "Built channel APIs to support an internal self-serve channel management portal, allowing engineers to iterate and test changes with public users, improving release reliability.",
-                    ],
-                },
-                {
-                    category: "Technical Leadership",
-                    items: [
-                        "Mentored 3 junior engineers on projects including staged rollouts (i.e., flexible flag rollouts), flag experimentation telemetry, and channel reliability improvements.",
-                        "Leading development of a greenfield service to centralize channels and releases into a single source of truth (currently scattered across services and teams), streamlining developer experience.",
-                    ],
-                },
+            bulletPoints: [
+                "Leading development of release channel system used by hundreds of engineers to safely test & deploy features across millions of users on all platforms, improving release reliability and developer experience.",
+                "Enhancing feature flag rollout system with expanded unified support across all codebases (Lua, Java, C++), automated health monitoring, and rollbacks to enable safe feature deployment at scale.",
+                "Mentoring engineers on various projects related to flag and channel improvements.",
             ],
         },
     ],
