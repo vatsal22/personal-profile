@@ -298,10 +298,19 @@ export const profileData = {
                     ],
                 },
             ],
-            bulletPoints: [
-                "Leading development of release channel system used by hundreds of engineers to safely test & deploy features across millions of users on all platforms, improving release reliability and developer experience.",
-                "Enhancing feature flag rollout system with expanded unified support across all codebases (Lua, Java, C++), automated health monitoring, and rollbacks to enable safe feature deployment at scale.",
-                "Mentoring engineers on various projects related to flag and channel improvements.",
+            bulletPointGroups: [
+                {
+                    category: "Leading development of release channel system used by hundreds of engineers to safely test & deploy features across millions of users on all platforms, improving release reliability and developer experience.",
+                    items: [],
+                },
+                {
+                    category: "Enhancing feature flag rollout system with expanded unified support across all codebases (Lua, Java, C++), automated health monitoring, and rollbacks to enable safe feature deployment at scale.",
+                    items: [],
+                },
+                {
+                    category: "Mentoring engineers on various projects related to flag and channel improvements.",
+                    items: [],
+                },
             ],
         },
     ],
