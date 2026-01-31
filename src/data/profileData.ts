@@ -67,7 +67,7 @@ export const profileData = {
     themeTitles: {
         default: "Senior Software Engineer",
         uwaterloo: "Professional Goose Avoider",
-        roblox: "Professional Sev-0 Causer",
+        roblox: "Professional Sev-0 Preventer",
         windriver: "Professional Bug Developer",
         hubhead: "Professional Bug Developer",
         thomson: "Professional Bug Developer",
