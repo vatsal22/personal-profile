@@ -75,7 +75,7 @@ export const profileData = {
         imagine: "Professional Bug Developer",
         oanda: "Professional Bug Developer",
     },
-    bio: "Hello, I'm a University of Waterloo computer engineering graduate with experience ranging from embedded hardware to financial systems to UGC gaming platforms. Currently I'm working at Roblox solving reliability challenges to help us scale. Regardless of the domain, I enjoy building elegant solutions to hard problems, whether it be designing robust distributed systems or building an app to optimize my running & workout schedule.",
+    bio: "Hi! I'm a University of Waterloo computer engineering graduate with experience ranging from embedded hardware to financial systems to UGC gaming platforms. Currently I'm working at Roblox solving reliability challenges to help us scale. Regardless of the domain, I enjoy building elegant solutions to hard problems, whether it be designing robust distributed systems or building an app to optimize my running & workout schedule.",
     tldrBio: "I like tricking computers into doing what I want.",
     avatar: "/profile_image4.jpeg",
     location: "San Francisco, CA",
