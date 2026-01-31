@@ -20,7 +20,11 @@ export const AboutSection = ({ bio }: AboutSectionProps) => {
             >
                 About Me
             </h2>
-            <p className={`${colors.secondary} leading-relaxed`}>{bio}</p>
+            <p
+                className={`${colors.secondary} leading-relaxed whitespace-pre-line`}
+            >
+                {bio}
+            </p>
         </section>
     );
 };
