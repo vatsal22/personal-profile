@@ -77,7 +77,7 @@ export const profileData = {
     },
     bio: "Hi! I'm a University of Waterloo computer engineering graduate with experience ranging from embedded hardware to financial systems to UGC gaming platforms.\n\nCurrently I'm working at Roblox improving system reliability to help us scale to tens of millions of concurrent users.\n\nRegardless of the domain, I enjoy building elegant solutions to hard problems, from eliminating bias in AB testing systems to building an app to optimize my running & workout schedule 🏃",
     tldrBio: "I like tricking computers into doing what I want.",
-    avatar: "/profile_photo.jpeg",
+    avatar: "/profile_photo.png",
     location: "San Francisco, CA",
     email: "me@vatsalsolanki.com",
     skills: [
