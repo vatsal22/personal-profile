@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
+      pull-requests: write
       issues: read
       id-token: write
 
@@ -38,6 +38,13 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
-          prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
-          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-          # or https://code.claude.com/docs/en/cli-reference for available options
+          prompt: |
+            /code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}
+
+            When providing feedback, use inline review comments on specific lines instead of a single block comment. Follow this workflow:
+            1. Use `mcp__github__create_pending_pull_request_review` to start a pending review
+            2. Use `mcp__github__get_pull_request_diff` to get the diff with line numbers
+            3. Use `mcp__github__add_comment_to_pending_review` for each piece of line-specific feedback
+            4. Use `mcp__github__submit_pending_pull_request_review` with event type "COMMENT" to publish
+          claude_args: |
+            --allowedTools "mcp__github__get_pull_request,mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff"
