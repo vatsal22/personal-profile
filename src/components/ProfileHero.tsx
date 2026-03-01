@@ -30,6 +30,7 @@ export const ProfileHero = ({
                     src={avatar}
                     alt={name}
                     fill
+                    sizes="200px"
                     className="rounded-full object-cover shadow-lg"
                     priority
                 />
