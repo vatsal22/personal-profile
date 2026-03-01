@@ -59,9 +59,9 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      // Set canvas to full screen
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // Set canvas to fixed game area
+      canvas.width = 600;
+      canvas.height = 800;
       stateRef.current.screenWidth = canvas.width;
       stateRef.current.screenHeight = canvas.height;
 
@@ -75,7 +75,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       // Init invaders
       const invadersList: Entity[] = [];
       const rows = 4;
-      const cols = Math.min(10, Math.floor(canvas.width / 80)); // Responsive columns
+      const cols = 8; // Fixed for 600px width
 
       const startX = (canvas.width - cols * 60) / 2;
       const startY = 80;
@@ -100,12 +100,6 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
     };
 
     initGame();
-
-    const handleResize = () => {
-      initGame();
-    };
-
-    window.addEventListener('resize', handleResize);
 
     // Keyboard listeners
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -134,7 +128,6 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
     document.body.style.overflow = 'hidden';
 
     return () => {
-      window.removeEventListener('resize', handleResize);
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
       cancelAnimationFrame(requestRef.current);
@@ -175,7 +168,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
     }
 
     // Shoot Laser
-    if (state.keys.space && time - state.lastShotTime > 300) {
+    if (state.keys.space && time - state.lastShotTime > 500) {
       state.lasers.push({
         x: state.player.x + state.player.width / 2 - 2, // Center from ship
         y: state.player.y - 10,
@@ -290,53 +283,56 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
   };
 
   return (
-    <div className="pointer-events-auto fixed inset-0 z-[100] flex flex-col items-center justify-center select-none">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 block h-full w-full"
-      />
+    <div className="pointer-events-auto fixed inset-0 z-[100] flex select-none items-center justify-center bg-black/80">
+      <div className="relative" style={{ width: 600, height: 800 }}>
+        <canvas
+          ref={canvasRef}
+          className="block rounded-lg border border-green-500/50"
+          style={{ width: 600, height: 800 }}
+        />
 
-      {/* Top UI Overlay */}
-      <div className="pointer-events-none absolute top-4 right-4 left-4 flex items-center justify-between font-mono text-green-400">
-        <div className="text-2xl font-bold tracking-widest">
-          SCORE: <span className="text-white">{score}</span>
+        {/* Top UI Overlay */}
+        <div className="pointer-events-none absolute top-2 right-2 left-2 flex items-center justify-between font-mono text-green-400">
+          <div className="text-lg font-bold tracking-widest">
+            SCORE: <span className="text-white">{score}</span>
+          </div>
+          <div className="rounded border border-green-400/50 bg-black/50 px-2 py-1 text-xs">
+            [ARROWS] Move &bull; [SPACE] Fire &bull; [ESC] Exit
+          </div>
+          <button
+            onClick={onClose}
+            className="pointer-events-auto rounded border border-green-500 px-3 py-1 text-xs font-bold text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
+          >
+            Abort Mission
+          </button>
         </div>
-        <div className="rounded border border-green-400/50 bg-black/50 px-3 py-1 text-sm">
-          [ARROWS] to Move &bull; [SPACE] to Fire &bull; [ESC] to Exit
-        </div>
-        <button
-          onClick={onClose}
-          className="pointer-events-auto rounded border border-green-500 px-4 py-1 text-sm font-bold text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
-        >
-          Abort Mission
-        </button>
-      </div>
 
-      {/* Game Over / Win UI */}
-      {gameState !== 'playing' && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="max-w-md rounded-lg border-2 border-green-500 bg-black/90 p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
-            <h2
-              className={`mb-4 text-4xl font-bold uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}
-            >
-              {gameState === 'won' ? 'System Defended' : 'System Breached'}
-            </h2>
-            <p className="mb-8 font-mono text-xl text-white">
-              Final Score:{' '}
-              <span className="font-bold text-green-400">{score}</span>
-            </p>
-
-            <div className="flex flex-col gap-4">
-              <button
-                onClick={onClose}
-                className="rounded border-2 border-green-500 px-6 py-3 font-bold tracking-widest text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
+        {/* Game Over / Win UI */}
+        {gameState !== 'playing' && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-black/60 backdrop-blur-sm">
+            <div className="max-w-md rounded-lg border-2 border-green-500 bg-black/90 p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
+              <h2
+                className={`mb-4 text-4xl font-bold uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}
               >
-                Return Home
-              </button>
+                {gameState === 'won' ? 'System Defended' : 'System Breached'}
+              </h2>
+              <p className="mb-8 font-mono text-xl text-white">
+                Final Score:{' '}
+                <span className="font-bold text-green-400">{score}</span>
+              </p>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={onClose}
+                  className="rounded border-2 border-green-500 px-6 py-3 font-bold tracking-widest text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
+                >
+                  Return Home
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
