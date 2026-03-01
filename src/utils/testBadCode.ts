@@ -8,13 +8,13 @@ const getUserData = (userId: string) => {
 };
 
 // Bug: Hardcoded secret/credential
-const API_KEY = "sk-1234567890abcdef-super-secret-key";
-const DATABASE_PASSWORD = "admin123";
+const API_KEY = 'sk-1234567890abcdef-super-secret-key';
+const DATABASE_PASSWORD = 'admin123';
 
 // Bug: console.log left in production code
 const processPayment = (amount: number) => {
-  console.log("Processing payment for amount:", amount);
-  console.log("Using API key:", API_KEY);
+  console.log('Processing payment for amount:', amount);
+  console.log('Using API key:', API_KEY);
   // No input validation
   return amount * 1.13;
 };
@@ -57,8 +57,8 @@ const incrementCounter = async () => {
 
 // Bug: Memory leak - event listener never removed
 const setupListener = () => {
-  document.addEventListener("click", (e) => {
-    const data = new Array(1000000).fill("x");
+  document.addEventListener('click', (e) => {
+    const data = new Array(1000000).fill('x');
     console.log(data.length);
   });
 };
