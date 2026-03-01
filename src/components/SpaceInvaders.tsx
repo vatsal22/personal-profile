@@ -40,11 +40,13 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       emoji: '🚀',
     },
     lasers: [] as Entity[],
+    enemyLasers: [] as Entity[],
     invaders: [] as Entity[],
     invaderDirection: 1, // 1 for right, -1 for left
     invaderSpeed: 1,
     keys: { left: false, right: false, space: false },
     lastShotTime: 0,
+    lastEnemyShotTime: 0,
     gameStatus: 'playing' as 'playing' | 'won' | 'lost',
     score: 0,
     screenWidth: 0,
@@ -60,7 +62,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       if (!ctx) return;
 
       // Set canvas to fixed game area
-      canvas.width = 600;
+      canvas.width = 800;
       canvas.height = 800;
       stateRef.current.screenWidth = canvas.width;
       stateRef.current.screenHeight = canvas.height;
@@ -75,7 +77,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       // Init invaders
       const invadersList: Entity[] = [];
       const rows = 4;
-      const cols = 8; // Fixed for 600px width
+      const cols = 9; // Fixed for 800px width
 
       const startX = (canvas.width - cols * 60) / 2;
       const startY = 80;
@@ -221,7 +223,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         }
       });
       // Speed up slightly as they drop
-      state.invaderSpeed += 0.2;
+      state.invaderSpeed += 0.1;
     }
 
     // Collision Detection: Lasers vs Invaders
@@ -244,8 +246,48 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       });
     });
 
+    // Enemy Shooting
+    if (time - state.lastEnemyShotTime > 1000 && activeInvaders.length > 0) {
+      const shooter =
+        activeInvaders[Math.floor(Math.random() * activeInvaders.length)];
+      state.enemyLasers.push({
+        x: shooter.x + shooter.width / 2 - 2,
+        y: shooter.y + shooter.height,
+        width: 4,
+        height: 15,
+        speed: 4,
+        active: true,
+        color: '#ff4444',
+      });
+      state.lastEnemyShotTime = time;
+    }
+
+    // Move Enemy Lasers
+    state.enemyLasers.forEach((laser) => {
+      if (laser.active) {
+        laser.y += laser.speed || 4;
+        if (laser.y > state.screenHeight) laser.active = false;
+      }
+    });
+
+    // Collision Detection: Enemy Lasers vs Player
+    state.enemyLasers.forEach((laser) => {
+      if (!laser.active) return;
+      if (
+        laser.x < state.player.x + state.player.width &&
+        laser.x + laser.width > state.player.x &&
+        laser.y < state.player.y + state.player.height &&
+        laser.y + laser.height > state.player.y
+      ) {
+        laser.active = false;
+        state.gameStatus = 'lost';
+        setGameState('lost');
+      }
+    });
+
     // Clean up inactive entities
     state.lasers = state.lasers.filter((l) => l.active);
+    state.enemyLasers = state.enemyLasers.filter((l) => l.active);
   };
 
   const draw = () => {
@@ -273,6 +315,14 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       }
     });
 
+    // Draw Enemy Lasers
+    state.enemyLasers.forEach((laser) => {
+      if (laser.active) {
+        ctx.fillStyle = laser.color || '#ff4444';
+        ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
+      }
+    });
+
     // Draw Invaders Emojis
     state.invaders.forEach((invader) => {
       if (invader.active) {
@@ -284,11 +334,11 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
 
   return (
     <div className="pointer-events-auto fixed inset-0 z-[100] flex items-center justify-center bg-black/80 select-none">
-      <div className="relative" style={{ width: 600, height: 800 }}>
+      <div className="relative" style={{ width: 800, height: 800 }}>
         <canvas
           ref={canvasRef}
           className="block rounded-lg border border-green-500/50"
-          style={{ width: 600, height: 800 }}
+          style={{ width: 800, height: 800 }}
         />
 
         {/* Top UI Overlay */}
