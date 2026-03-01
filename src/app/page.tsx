@@ -91,8 +91,9 @@ export default function Home() {
             />
           </section>
           <p
-            className="mt-8 text-center text-xs select-none"
+            className="mt-8 cursor-default text-center text-xs select-none"
             aria-hidden="true"
+            title="Console"
           >
             👾🎮
           </p>
