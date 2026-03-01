@@ -16,6 +16,7 @@ Personal portfolio website for Vatsal Solanki built with Next.js 15, React 19, T
 ## Architecture
 
 ### Directory Structure
+
 ```
 src/
 ├── app/           # Next.js App Router (layout.tsx, page.tsx, globals.css)
@@ -25,6 +26,7 @@ src/
 ```
 
 ### Key Patterns
+
 - **Client Components**: All interactive components use `"use client"` directive
 - **Theme System**: 9 employer-themed color schemes managed via ThemeContext
 - **TLDR Mode**: Abbreviated view toggle via TldrContext
@@ -42,6 +44,7 @@ src/
 ## Content Updates
 
 All profile content lives in `src/data/profileData.ts`. Edit this file to update:
+
 - Professional/co-op experiences
 - Skills
 - Education

@@ -1,54 +1,52 @@
-"use client";
+'use client';
 
-import { useTheme } from "@/context/ThemeContext";
-import { useTldr } from "@/context/TldrContext";
+import { useTheme } from '@/context/ThemeContext';
+import { useTldr } from '@/context/TldrContext';
 
 export const TldrToggle = () => {
-    const { isTldrMode, toggleTldrMode } = useTldr();
-    const { colors } = useTheme();
+  const { isTldrMode, toggleTldrMode } = useTldr();
+  const { colors } = useTheme();
 
-    const handleToggle = () => {
-        toggleTldrMode();
-    };
+  const handleToggle = () => {
+    toggleTldrMode();
+  };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            toggleTldrMode();
-        }
-    };
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleTldrMode();
+    }
+  };
 
-    return (
-        <div className="fixed bottom-6 right-6 z-50">
-            <button
-                onClick={handleToggle}
-                onKeyDown={handleKeyDown}
-                className={`group flex items-center px-4 py-2 rounded-full shadow-lg transition-all duration-300 ${
-                    isTldrMode
-                        ? `bg-yellow-500 hover:bg-yellow-600 text-white`
-                        : `${colors.background} hover:bg-gray-100`
-                }`}
-                aria-pressed={isTldrMode}
-                aria-label={
-                    isTldrMode ? "Show detailed content" : "Show TLDR content"
-                }
-                tabIndex={0}
-            >
-                <span className="font-semibold mr-2">
-                    {isTldrMode && "🔥 "} TLDR Mode
-                </span>
-                <div
-                    className={`relative w-10 h-5 transition-colors duration-200 ease-in-out rounded-full ${
-                        isTldrMode ? "bg-yellow-300" : "bg-gray-300"
-                    }`}
-                >
-                    <div
-                        className={`absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out transform ${
-                            isTldrMode ? "translate-x-5" : ""
-                        }`}
-                    ></div>
-                </div>
-            </button>
+  return (
+    <div className="fixed right-6 bottom-6 z-50">
+      <button
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        className={`group flex items-center rounded-full px-4 py-2 shadow-lg transition-all duration-300 ${
+          isTldrMode
+            ? `bg-yellow-500 text-white hover:bg-yellow-600`
+            : `${colors.background} hover:bg-gray-100`
+        }`}
+        aria-pressed={isTldrMode}
+        aria-label={isTldrMode ? 'Show detailed content' : 'Show TLDR content'}
+        tabIndex={0}
+      >
+        <span className="mr-2 font-semibold">
+          {isTldrMode && '🔥 '} TLDR Mode
+        </span>
+        <div
+          className={`relative h-5 w-10 rounded-full transition-colors duration-200 ease-in-out ${
+            isTldrMode ? 'bg-yellow-300' : 'bg-gray-300'
+          }`}
+        >
+          <div
+            className={`absolute top-0.5 left-0.5 h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ease-in-out ${
+              isTldrMode ? 'translate-x-5' : ''
+            }`}
+          ></div>
         </div>
-    );
+      </button>
+    </div>
+  );
 };

@@ -1,318 +1,338 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 interface SpaceInvadersProps {
-    onClose: () => void;
+  onClose: () => void;
 }
 
 interface Entity {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    speed?: number;
-    active: boolean;
-    color?: string;
-    emoji?: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  speed?: number;
+  active: boolean;
+  color?: string;
+  emoji?: string;
 }
 
 export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const requestRef = useRef<number>(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const requestRef = useRef<number>(0);
 
-    // Game state
-    const [gameState, setGameState] = useState<"playing" | "won" | "lost">("playing");
-    const [score, setScore] = useState(0);
+  // Game state
+  const [gameState, setGameState] = useState<'playing' | 'won' | 'lost'>(
+    'playing',
+  );
+  const [score, setScore] = useState(0);
 
-    // Refs for mutable game state that doesn't trigger re-renders
-    const stateRef = useRef({
-        player: { x: 0, y: 0, width: 40, height: 40, active: true, speed: 5, color: "#00ff00", emoji: "🚀" },
-        lasers: [] as Entity[],
-        invaders: [] as Entity[],
-        invaderDirection: 1, // 1 for right, -1 for left
-        invaderSpeed: 1,
-        keys: { left: false, right: false, space: false },
-        lastShotTime: 0,
-        gameStatus: "playing" as "playing" | "won" | "lost",
-        score: 0,
-        screenWidth: 0,
-        screenHeight: 0,
+  // Refs for mutable game state that doesn't trigger re-renders
+  const stateRef = useRef({
+    player: {
+      x: 0,
+      y: 0,
+      width: 40,
+      height: 40,
+      active: true,
+      speed: 5,
+      color: '#00ff00',
+      emoji: '🚀',
+    },
+    lasers: [] as Entity[],
+    invaders: [] as Entity[],
+    invaderDirection: 1, // 1 for right, -1 for left
+    invaderSpeed: 1,
+    keys: { left: false, right: false, space: false },
+    lastShotTime: 0,
+    gameStatus: 'playing' as 'playing' | 'won' | 'lost',
+    score: 0,
+    screenWidth: 0,
+    screenHeight: 0,
+  });
+
+  // Initialize game
+  useEffect(() => {
+    const initGame = () => {
+      if (!canvasRef.current) return;
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Set canvas to fixed game area
+      canvas.width = 600;
+      canvas.height = 800;
+      stateRef.current.screenWidth = canvas.width;
+      stateRef.current.screenHeight = canvas.height;
+
+      // Init player
+      stateRef.current.player = {
+        ...stateRef.current.player,
+        x: canvas.width / 2 - 20,
+        y: canvas.height - 60,
+      };
+
+      // Init invaders
+      const invadersList: Entity[] = [];
+      const rows = 4;
+      const cols = 8; // Fixed for 600px width
+
+      const startX = (canvas.width - cols * 60) / 2;
+      const startY = 80;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          invadersList.push({
+            x: startX + c * 60,
+            y: startY + r * 50,
+            width: 30,
+            height: 30,
+            active: true,
+            emoji: r % 2 === 0 ? '👾' : '👽',
+          });
+        }
+      }
+      stateRef.current.invaders = invadersList;
+      stateRef.current.gameStatus = 'playing';
+      stateRef.current.score = 0;
+      setGameState('playing');
+      setScore(0);
+    };
+
+    initGame();
+
+    // Keyboard listeners
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') stateRef.current.keys.left = true;
+      if (e.key === 'ArrowRight') stateRef.current.keys.right = true;
+      if (e.key === ' ') {
+        e.preventDefault(); // Prevent page scroll
+        stateRef.current.keys.space = true;
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') stateRef.current.keys.left = false;
+      if (e.key === 'ArrowRight') stateRef.current.keys.right = false;
+      if (e.key === ' ') {
+        e.preventDefault();
+        stateRef.current.keys.space = false;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    // Lock scroll
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+      cancelAnimationFrame(requestRef.current);
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  // Main game loop
+  useEffect(() => {
+    const loop = (time: number) => {
+      update(time);
+      draw();
+      if (stateRef.current.gameStatus === 'playing') {
+        requestRef.current = requestAnimationFrame(loop);
+      }
+    };
+
+    requestRef.current = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(requestRef.current);
+    };
+  }, []);
+
+  const update = (time: number) => {
+    const state = stateRef.current;
+    if (state.gameStatus !== 'playing') return;
+
+    // Move Player
+    if (state.keys.left && state.player.x > 0) {
+      state.player.x -= state.player.speed;
+    }
+    if (
+      state.keys.right &&
+      state.player.x < state.screenWidth - state.player.width
+    ) {
+      state.player.x += state.player.speed;
+    }
+
+    // Shoot Laser
+    if (state.keys.space && time - state.lastShotTime > 500) {
+      state.lasers.push({
+        x: state.player.x + state.player.width / 2 - 2, // Center from ship
+        y: state.player.y - 10,
+        width: 4,
+        height: 15,
+        speed: 10,
+        active: true,
+        color: '#00ff00',
+      });
+      state.lastShotTime = time;
+    }
+
+    // Move Lasers
+    state.lasers.forEach((laser) => {
+      if (laser.active) {
+        laser.y -= laser.speed || 10;
+        if (laser.y < -20) laser.active = false;
+      }
     });
 
-    // Initialize game
-    useEffect(() => {
-        const initGame = () => {
-            if (!canvasRef.current) return;
-            const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
-            if (!ctx) return;
+    // Move Invaders
+    let hitWall = false;
+    const activeInvaders = state.invaders.filter((inv) => inv.active);
 
-            // Set canvas to fixed game area
-            canvas.width = 600;
-            canvas.height = 800;
-            stateRef.current.screenWidth = canvas.width;
-            stateRef.current.screenHeight = canvas.height;
+    // Check win condition
+    if (activeInvaders.length === 0) {
+      state.gameStatus = 'won';
+      setGameState('won');
+      return;
+    }
 
-            // Init player
-            stateRef.current.player = {
-                ...stateRef.current.player,
-                x: canvas.width / 2 - 20,
-                y: canvas.height - 60,
-            };
+    activeInvaders.forEach((invader) => {
+      invader.x += state.invaderDirection * state.invaderSpeed;
+      if (
+        invader.x <= 10 ||
+        invader.x >= state.screenWidth - invader.width - 10
+      ) {
+        hitWall = true;
+      }
+    });
 
-            // Init invaders
-            const invadersList: Entity[] = [];
-            const rows = 4;
-            const cols = 8; // Fixed for 600px width
-
-            const startX = (canvas.width - cols * 60) / 2;
-            const startY = 80;
-
-            for (let r = 0; r < rows; r++) {
-                for (let c = 0; c < cols; c++) {
-                    invadersList.push({
-                        x: startX + c * 60,
-                        y: startY + r * 50,
-                        width: 30,
-                        height: 30,
-                        active: true,
-                        emoji: r % 2 === 0 ? "👾" : "👽"
-                    });
-                }
-            }
-            stateRef.current.invaders = invadersList;
-            stateRef.current.gameStatus = "playing";
-            stateRef.current.score = 0;
-            setGameState("playing");
-            setScore(0);
-        };
-
-        initGame();
-
-        // Keyboard listeners
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "Escape") onClose();
-            if (e.key === "ArrowLeft") stateRef.current.keys.left = true;
-            if (e.key === "ArrowRight") stateRef.current.keys.right = true;
-            if (e.key === " ") {
-                e.preventDefault(); // Prevent page scroll
-                stateRef.current.keys.space = true;
-            }
-        };
-
-        const handleKeyUp = (e: KeyboardEvent) => {
-            if (e.key === "ArrowLeft") stateRef.current.keys.left = false;
-            if (e.key === "ArrowRight") stateRef.current.keys.right = false;
-            if (e.key === " ") {
-                e.preventDefault();
-                stateRef.current.keys.space = false;
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        window.addEventListener("keyup", handleKeyUp);
-
-        // Lock scroll
-        document.body.style.overflow = "hidden";
-
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-            window.removeEventListener("keyup", handleKeyUp);
-            cancelAnimationFrame(requestRef.current);
-            document.body.style.overflow = "unset";
-        };
-    }, []);
-
-    // Main game loop
-    useEffect(() => {
-        const loop = (time: number) => {
-            update(time);
-            draw();
-            if (stateRef.current.gameStatus === "playing") {
-                requestRef.current = requestAnimationFrame(loop);
-            }
-        };
-
-        requestRef.current = requestAnimationFrame(loop);
-
-        return () => {
-            cancelAnimationFrame(requestRef.current);
-        };
-    }, []);
-
-    const update = (time: number) => {
-        const state = stateRef.current;
-        if (state.gameStatus !== "playing") return;
-
-        // Move Player
-        if (state.keys.left && state.player.x > 0) {
-            state.player.x -= state.player.speed;
+    if (hitWall) {
+      state.invaderDirection *= -1; // Reverse direction
+      activeInvaders.forEach((invader) => {
+        invader.y += 20; // Drop down
+        // Check lose condition (reached player)
+        if (invader.y + invader.height >= state.player.y) {
+          state.gameStatus = 'lost';
+          setGameState('lost');
         }
-        if (state.keys.right && state.player.x < state.screenWidth - state.player.width) {
-            state.player.x += state.player.speed;
+      });
+      // Speed up slightly as they drop
+      state.invaderSpeed += 0.2;
+    }
+
+    // Collision Detection: Lasers vs Invaders
+    state.lasers.forEach((laser) => {
+      if (!laser.active) return;
+
+      activeInvaders.forEach((invader) => {
+        if (
+          laser.x < invader.x + invader.width &&
+          laser.x + laser.width > invader.x &&
+          laser.y < invader.y + invader.height &&
+          laser.y + laser.height > invader.y
+        ) {
+          // Hit!
+          invader.active = false;
+          laser.active = false;
+          state.score += 10;
+          setScore(state.score); // Update UI
         }
+      });
+    });
 
-        // Shoot Laser
-        if (state.keys.space && time - state.lastShotTime > 500) {
-            state.lasers.push({
-                x: state.player.x + state.player.width / 2 - 2, // Center from ship
-                y: state.player.y - 10,
-                width: 4,
-                height: 15,
-                speed: 10,
-                active: true,
-                color: "#00ff00"
-            });
-            state.lastShotTime = time;
-        }
+    // Clean up inactive entities
+    state.lasers = state.lasers.filter((l) => l.active);
+  };
 
-        // Move Lasers
-        state.lasers.forEach(laser => {
-            if (laser.active) {
-                laser.y -= laser.speed || 10;
-                if (laser.y < -20) laser.active = false;
-            }
-        });
+  const draw = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const state = stateRef.current;
 
-        // Move Invaders
-        let hitWall = false;
-        const activeInvaders = state.invaders.filter(inv => inv.active);
+    // Clear screen
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+    ctx.fillRect(0, 0, state.screenWidth, state.screenHeight);
 
-        // Check win condition
-        if (activeInvaders.length === 0) {
-            state.gameStatus = "won";
-            setGameState("won");
-            return;
-        }
+    // Draw Player Emoji
+    ctx.font = '40px Arial';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText(state.player.emoji || '🚀', state.player.x, state.player.y);
 
-        activeInvaders.forEach(invader => {
-            invader.x += state.invaderDirection * state.invaderSpeed;
-            if (invader.x <= 10 || invader.x >= state.screenWidth - invader.width - 10) {
-                hitWall = true;
-            }
-        });
+    // Draw Lasers
+    state.lasers.forEach((laser) => {
+      if (laser.active) {
+        ctx.fillStyle = laser.color || '#00ff00';
+        ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
+      }
+    });
 
-        if (hitWall) {
-            state.invaderDirection *= -1; // Reverse direction
-            activeInvaders.forEach(invader => {
-                invader.y += 20; // Drop down
-                // Check lose condition (reached player)
-                if (invader.y + invader.height >= state.player.y) {
-                    state.gameStatus = "lost";
-                    setGameState("lost");
-                }
-            });
-            // Speed up slightly as they drop
-            state.invaderSpeed += 0.2;
-        }
+    // Draw Invaders Emojis
+    state.invaders.forEach((invader) => {
+      if (invader.active) {
+        ctx.font = '30px Arial';
+        ctx.fillText(invader.emoji || '👾', invader.x, invader.y);
+      }
+    });
+  };
 
-        // Collision Detection: Lasers vs Invaders
-        state.lasers.forEach(laser => {
-            if (!laser.active) return;
+  return (
+    <div className="pointer-events-auto fixed inset-0 z-[100] flex items-center justify-center bg-black/80 select-none">
+      <div className="relative" style={{ width: 600, height: 800 }}>
+        <canvas
+          ref={canvasRef}
+          className="block rounded-lg border border-green-500/50"
+          style={{ width: 600, height: 800 }}
+        />
 
-            activeInvaders.forEach(invader => {
-                if (
-                    laser.x < invader.x + invader.width &&
-                    laser.x + laser.width > invader.x &&
-                    laser.y < invader.y + invader.height &&
-                    laser.y + laser.height > invader.y
-                ) {
-                    // Hit!
-                    invader.active = false;
-                    laser.active = false;
-                    state.score += 10;
-                    setScore(state.score); // Update UI
-                }
-            });
-        });
-
-        // Clean up inactive entities
-        state.lasers = state.lasers.filter(l => l.active);
-    };
-
-    const draw = () => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
-        const state = stateRef.current;
-
-        // Clear screen
-        ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
-        ctx.fillRect(0, 0, state.screenWidth, state.screenHeight);
-
-        // Draw Player Emoji
-        ctx.font = "40px Arial";
-        ctx.textAlign = "left";
-        ctx.textBaseline = "top";
-        ctx.fillText(state.player.emoji || "🚀", state.player.x, state.player.y);
-
-        // Draw Lasers
-        state.lasers.forEach(laser => {
-            if (laser.active) {
-                ctx.fillStyle = laser.color || "#00ff00";
-                ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
-            }
-        });
-
-        // Draw Invaders Emojis
-        state.invaders.forEach(invader => {
-            if (invader.active) {
-                ctx.font = "30px Arial";
-                ctx.fillText(invader.emoji || "👾", invader.x, invader.y);
-            }
-        });
-    };
-
-    return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 pointer-events-auto select-none">
-            <div className="relative" style={{ width: 600, height: 800 }}>
-                <canvas
-                    ref={canvasRef}
-                    className="block border border-green-500/50 rounded-lg"
-                    style={{ width: 600, height: 800 }}
-                />
-
-                {/* Top UI Overlay */}
-                <div className="absolute top-2 left-2 right-2 flex justify-between items-center text-green-400 font-mono pointer-events-none">
-                    <div className="text-lg font-bold tracking-widest">
-                        SCORE: <span className="text-white">{score}</span>
-                    </div>
-                    <div className="text-xs border border-green-400/50 bg-black/50 px-2 py-1 rounded">
-                        [ARROWS] Move &bull; [SPACE] Fire &bull; [ESC] Exit
-                    </div>
-                    <button
-                        onClick={onClose}
-                        className="pointer-events-auto px-3 py-1 border border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase text-xs font-bold"
-                    >
-                        Abort Mission
-                    </button>
-                </div>
-
-                {/* Game Over / Win UI */}
-                {gameState !== "playing" && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10 backdrop-blur-sm rounded-lg">
-                        <div className="bg-black/90 border-2 border-green-500 p-8 rounded-lg max-w-md text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
-                            <h2 className={`text-4xl font-bold mb-4 uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}>
-                                {gameState === "won" ? "System Defended" : "System Breached"}
-                            </h2>
-                            <p className="text-xl text-white mb-8 font-mono">
-                                Final Score: <span className="font-bold text-green-400">{score}</span>
-                            </p>
-
-                            <div className="flex flex-col gap-4">
-                                <button
-                                    onClick={onClose}
-                                    className="px-6 py-3 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase font-bold tracking-widest"
-                                >
-                                    Return Home
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
+        {/* Top UI Overlay */}
+        <div className="pointer-events-none absolute top-2 right-2 left-2 flex items-center justify-between font-mono text-green-400">
+          <div className="text-lg font-bold tracking-widest">
+            SCORE: <span className="text-white">{score}</span>
+          </div>
+          <div className="rounded border border-green-400/50 bg-black/50 px-2 py-1 text-xs">
+            [ARROWS] Move &bull; [SPACE] Fire &bull; [ESC] Exit
+          </div>
+          <button
+            onClick={onClose}
+            className="pointer-events-auto rounded border border-green-500 px-3 py-1 text-xs font-bold text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
+          >
+            Abort Mission
+          </button>
         </div>
-    );
+
+        {/* Game Over / Win UI */}
+        {gameState !== 'playing' && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-black/60 backdrop-blur-sm">
+            <div className="max-w-md rounded-lg border-2 border-green-500 bg-black/90 p-8 text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
+              <h2
+                className={`mb-4 text-4xl font-bold uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}
+              >
+                {gameState === 'won' ? 'System Defended' : 'System Breached'}
+              </h2>
+              <p className="mb-8 font-mono text-xl text-white">
+                Final Score:{' '}
+                <span className="font-bold text-green-400">{score}</span>
+              </p>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={onClose}
+                  className="rounded border-2 border-green-500 px-6 py-3 font-bold tracking-widest text-green-500 uppercase transition-colors hover:bg-green-500 hover:text-black"
+                >
+                  Return Home
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
