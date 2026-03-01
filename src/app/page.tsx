@@ -4,6 +4,7 @@ import { AboutSection } from "@/components/AboutSection";
 import { CanadaGoose } from "@/components/CanadaGoose";
 import { ContactSection } from "@/components/ContactSection";
 import { CoopExperienceSection } from "@/components/CoopExperienceSection";
+import { EasterEgg } from "@/components/EasterEgg";
 import { EducationSection } from "@/components/EducationSection";
 import { ProfessionalExperienceSection } from "@/components/ProfessionalExperienceSection";
 import { ProfileHero } from "@/components/ProfileHero";
@@ -36,6 +37,9 @@ export default function Home() {
         <ThemeStyleProvider>
             {/* UWaterloo purple PCB background overlay */}
             {waterlooPurplePCB}
+
+            {/* Hidden Easter Egg Listener */}
+            <EasterEgg />
 
             {/* Canada Goose that bounces around when UWaterloo theme is active */}
             <CanadaGoose />
