@@ -52,7 +52,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
     screenWidth: 0,
     screenHeight: 0,
   });
-
+ 
   // Initialize game
   useEffect(() => {
     const initGame = () => {
