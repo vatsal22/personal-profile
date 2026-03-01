@@ -221,7 +221,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         }
       });
       // Speed up slightly as they drop
-      state.invaderSpeed += 0.2;
+      state.invaderSpeed += 0.1;
     }
 
     // Collision Detection: Lasers vs Invaders
