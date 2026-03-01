@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/context/ThemeContext';
 import { TldrProvider } from '@/context/TldrContext';
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -96,7 +97,10 @@ export default function RootLayout({
       </head>
       <ThemeProvider>
         <TldrProvider>
-          <body className={inter.className}>{children}</body>
+          <body className={inter.className}>
+            {children}
+            <Analytics />
+          </body>
         </TldrProvider>
       </ThemeProvider>
     </html>
