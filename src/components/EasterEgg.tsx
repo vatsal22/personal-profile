@@ -26,7 +26,7 @@ export const EasterEgg = () => {
         // Only print the hint once
         if (!hasPrintedHint.current) {
             console.log(
-                "%c🛸 Warning: Incoming transmission... Use the ancient code to activate planetary defense. ⬆️ ⬆️ ⬇️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ 🅱️ 🅰️",
+                "%c🛸 Warning: Incoming transmission... ⬆️ ⬆️ ⬇️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ 🅱️ 🅰️",
                 "color: #00ff00; font-size: 14px; font-weight: bold; background: #000; padding: 10px; border-radius: 5px; border: 1px solid #00ff00;"
             );
             hasPrintedHint.current = true;
