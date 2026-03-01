@@ -311,7 +311,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
                                 onClick={onClose}
                                 className="px-6 py-3 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase font-bold tracking-widest"
                             >
-                                Return to Terminal
+                                Return Home
                             </button>
                         </div>
                     </div>
