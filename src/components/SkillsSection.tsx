@@ -1,41 +1,41 @@
-"use client";
+'use client';
 
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from '@/context/ThemeContext';
 
 type SkillsSectionProps = {
-    skills: string[];
+  skills: string[];
 };
 
 export const SkillsSection = ({ skills }: SkillsSectionProps) => {
-    const { colors, currentTheme } = useTheme();
+  const { colors, currentTheme } = useTheme();
 
-    // Use neutral colors by default, but allow theme overrides
-    const skillTagStyle =
-        currentTheme === "default"
-            ? "bg-gray-100 text-gray-700" // Neutral colors for default theme
-            : `${colors.accent}`; // Use themed colors for other themes
+  // Use neutral colors by default, but allow theme overrides
+  const skillTagStyle =
+    currentTheme === 'default'
+      ? 'bg-gray-100 text-gray-700' // Neutral colors for default theme
+      : `${colors.accent}`; // Use themed colors for other themes
 
-    return (
-        <section
-            className={`${colors.cardBg} rounded-lg shadow-md p-8 mb-8`}
-            aria-labelledby="skills-heading"
-        >
-            <h2
-                id="skills-heading"
-                className={`text-2xl font-semibold ${colors.text} mb-4 section-header`}
-            >
-                Skills
-            </h2>
-            <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                    <span
-                        key={skill}
-                        className={`px-4 py-2 ${skillTagStyle} rounded-full text-sm font-medium`}
-                    >
-                        {skill}
-                    </span>
-                ))}
-            </div>
-        </section>
-    );
+  return (
+    <section
+      className={`${colors.cardBg} mb-8 rounded-lg p-8 shadow-md`}
+      aria-labelledby="skills-heading"
+    >
+      <h2
+        id="skills-heading"
+        className={`text-2xl font-semibold ${colors.text} section-header mb-4`}
+      >
+        Skills
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className={`px-4 py-2 ${skillTagStyle} rounded-full text-sm font-medium`}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
+  );
 };

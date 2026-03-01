@@ -1,82 +1,82 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-    font-family: "Roblox";
-    src: url("/Roblox-font.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Roblox';
+  src: url('/Roblox-font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @keyframes borderPulse {
-    0% {
-        border-color: transparent;
-        box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0.7);
-    }
-    50% {
-        border-color: rgb(var(--border-color-rgb));
-        box-shadow: 0 0 0 8px rgba(var(--border-color-rgb), 0);
-    }
-    100% {
-        border-color: transparent;
-        box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0);
-    }
+  0% {
+    border-color: transparent;
+    box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0.7);
+  }
+  50% {
+    border-color: rgb(var(--border-color-rgb));
+    box-shadow: 0 0 0 8px rgba(var(--border-color-rgb), 0);
+  }
+  100% {
+    border-color: transparent;
+    box-shadow: 0 0 0 0 rgba(var(--border-color-rgb), 0);
+  }
 }
 
 .section-highlight {
-    animation: borderPulse 1.5s ease-out forwards;
+  animation: borderPulse 1.5s ease-out forwards;
 }
 
 /* For different themes */
 .default-highlight {
-    --border-color-rgb: 59, 130, 246;
+  --border-color-rgb: 59, 130, 246;
 }
 .uwaterloo-highlight {
-    --border-color-rgb: 93, 0, 150;
+  --border-color-rgb: 93, 0, 150;
 }
 .windriver-highlight {
-    --border-color-rgb: 30, 64, 175;
+  --border-color-rgb: 30, 64, 175;
 }
 .hubhead-highlight {
-    --border-color-rgb: 22, 163, 74;
+  --border-color-rgb: 22, 163, 74;
 }
 .thomson-highlight {
-    --border-color-rgb: 234, 88, 12;
+  --border-color-rgb: 234, 88, 12;
 }
 .escrypt-highlight {
-    --border-color-rgb: 126, 34, 206;
+  --border-color-rgb: 126, 34, 206;
 }
 .imagine-highlight {
-    --border-color-rgb: 219, 39, 119;
+  --border-color-rgb: 219, 39, 119;
 }
 .oanda-highlight {
-    --border-color-rgb: 79, 70, 229;
+  --border-color-rgb: 79, 70, 229;
 }
 .roblox-highlight {
-    --border-color-rgb: 0, 0, 0;
+  --border-color-rgb: 0, 0, 0;
 }

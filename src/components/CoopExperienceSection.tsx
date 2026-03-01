@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
-import { themes, ThemeType } from "@/context/ThemeContext";
-import { Experience } from "@/data/profileData";
-import { ExperienceSection } from "./ExperienceSection";
+import { themes, ThemeType } from '@/context/ThemeContext';
+import { Experience } from '@/data/profileData';
+import { ExperienceSection } from './ExperienceSection';
 
 type CoopExperienceSectionProps = {
-    experiences: Experience[];
+  experiences: Experience[];
 };
 
 export const CoopExperienceSection = ({
-    experiences,
+  experiences,
 }: CoopExperienceSectionProps) => {
-    // Custom border color function for co-op experiences
-    const getCoopBorderColor = (experienceId: string): string => {
-        return themes[experienceId as ThemeType]?.borderColor || "blue";
-    };
+  // Custom border color function for co-op experiences
+  const getCoopBorderColor = (experienceId: string): string => {
+    return themes[experienceId as ThemeType]?.borderColor || 'blue';
+  };
 
-    return (
-        <ExperienceSection
-            title="Co-op Experience"
-            experiences={experiences}
-            headingId="coop-experience-heading"
-            getBorderColor={getCoopBorderColor}
-            showBulletPoints={true}
-        />
-    );
+  return (
+    <ExperienceSection
+      title="Co-op Experience"
+      experiences={experiences}
+      headingId="coop-experience-heading"
+      getBorderColor={getCoopBorderColor}
+      showBulletPoints={true}
+    />
+  );
 };
