@@ -62,8 +62,8 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       if (!ctx) return;
 
       // Set canvas to fixed game area
-      canvas.width = 800;
-      canvas.height = 800;
+      canvas.width = 600;
+      canvas.height = 600;
       stateRef.current.screenWidth = canvas.width;
       stateRef.current.screenHeight = canvas.height;
 
@@ -71,13 +71,13 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
       stateRef.current.player = {
         ...stateRef.current.player,
         x: canvas.width / 2 - 20,
-        y: canvas.height - 60,
+        y: canvas.height - 50,
       };
 
       // Init invaders
       const invadersList: Entity[] = [];
       const rows = 4;
-      const cols = 9; // Fixed for 800px width
+      const cols = 6; // Fixed for 600px width
 
       const startX = (canvas.width - cols * 60) / 2;
       const startY = 80;
@@ -176,7 +176,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         y: state.player.y - 10,
         width: 4,
         height: 15,
-        speed: 10,
+        speed: 6,
         active: true,
         color: '#00ff00',
       });
@@ -334,11 +334,11 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
 
   return (
     <div className="pointer-events-auto fixed inset-0 z-[100] flex items-center justify-center bg-black/80 select-none">
-      <div className="relative" style={{ width: 800, height: 800 }}>
+      <div className="relative" style={{ width: 600, height: 600 }}>
         <canvas
           ref={canvasRef}
           className="block rounded-lg border border-green-500/50"
-          style={{ width: 800, height: 800 }}
+          style={{ width: 600, height: 600 }}
         />
 
         {/* Top UI Overlay */}
