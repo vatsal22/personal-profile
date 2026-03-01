@@ -94,6 +94,7 @@ export default function Home() {
                             socialLinks={profileData.socialLinks}
                         />
                     </section>
+                    <p className="text-center text-xs opacity-20 mt-8 select-none" aria-hidden="true">👾🎮</p>
                 </div>
             </main>
         </ThemeStyleProvider>
