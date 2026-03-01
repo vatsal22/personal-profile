@@ -48,9 +48,9 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
             const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
-            // Set canvas to full screen
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            // Set canvas to fixed game area
+            canvas.width = 600;
+            canvas.height = 800;
             stateRef.current.screenWidth = canvas.width;
             stateRef.current.screenHeight = canvas.height;
 
@@ -64,7 +64,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
             // Init invaders
             const invadersList: Entity[] = [];
             const rows = 4;
-            const cols = Math.min(10, Math.floor(canvas.width / 80)); // Responsive columns
+            const cols = 8; // Fixed for 600px width
 
             const startX = (canvas.width - cols * 60) / 2;
             const startY = 80;
@@ -89,12 +89,6 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         };
 
         initGame();
-
-        const handleResize = () => {
-            initGame();
-        };
-
-        window.addEventListener("resize", handleResize);
 
         // Keyboard listeners
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -123,7 +117,6 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         document.body.style.overflow = "hidden";
 
         return () => {
-            window.removeEventListener("resize", handleResize);
             window.removeEventListener("keydown", handleKeyDown);
             window.removeEventListener("keyup", handleKeyUp);
             cancelAnimationFrame(requestRef.current);
@@ -161,7 +154,7 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
         }
 
         // Shoot Laser
-        if (state.keys.space && time - state.lastShotTime > 300) {
+        if (state.keys.space && time - state.lastShotTime > 500) {
             state.lasers.push({
                 x: state.player.x + state.player.width / 2 - 2, // Center from ship
                 y: state.player.y - 10,
@@ -273,50 +266,53 @@ export const SpaceInvaders = ({ onClose }: SpaceInvadersProps) => {
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto select-none">
-            <canvas
-                ref={canvasRef}
-                className="absolute inset-0 w-full h-full block"
-            />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 pointer-events-auto select-none">
+            <div className="relative" style={{ width: 600, height: 800 }}>
+                <canvas
+                    ref={canvasRef}
+                    className="block border border-green-500/50 rounded-lg"
+                    style={{ width: 600, height: 800 }}
+                />
 
-            {/* Top UI Overlay */}
-            <div className="absolute top-4 left-4 right-4 flex justify-between items-center text-green-400 font-mono pointer-events-none">
-                <div className="text-2xl font-bold tracking-widest">
-                    SCORE: <span className="text-white">{score}</span>
+                {/* Top UI Overlay */}
+                <div className="absolute top-2 left-2 right-2 flex justify-between items-center text-green-400 font-mono pointer-events-none">
+                    <div className="text-lg font-bold tracking-widest">
+                        SCORE: <span className="text-white">{score}</span>
+                    </div>
+                    <div className="text-xs border border-green-400/50 bg-black/50 px-2 py-1 rounded">
+                        [ARROWS] Move &bull; [SPACE] Fire &bull; [ESC] Exit
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="pointer-events-auto px-3 py-1 border border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase text-xs font-bold"
+                    >
+                        Abort Mission
+                    </button>
                 </div>
-                <div className="text-sm border border-green-400/50 bg-black/50 px-3 py-1 rounded">
-                    [ARROWS] to Move &bull; [SPACE] to Fire &bull; [ESC] to Exit
-                </div>
-                <button
-                    onClick={onClose}
-                    className="pointer-events-auto px-4 py-1 border border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase text-sm font-bold"
-                >
-                    Abort Mission
-                </button>
-            </div>
 
-            {/* Game Over / Win UI */}
-            {gameState !== "playing" && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10 backdrop-blur-sm">
-                    <div className="bg-black/90 border-2 border-green-500 p-8 rounded-lg max-w-md text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
-                        <h2 className={`text-4xl font-bold mb-4 uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}>
-                            {gameState === "won" ? "System Defended" : "System Breached"}
-                        </h2>
-                        <p className="text-xl text-white mb-8 font-mono">
-                            Final Score: <span className="font-bold text-green-400">{score}</span>
-                        </p>
+                {/* Game Over / Win UI */}
+                {gameState !== "playing" && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 z-10 backdrop-blur-sm rounded-lg">
+                        <div className="bg-black/90 border-2 border-green-500 p-8 rounded-lg max-w-md text-center shadow-[0_0_30px_rgba(0,255,0,0.3)]">
+                            <h2 className={`text-4xl font-bold mb-4 uppercase ${gameState === 'won' ? 'text-green-400' : 'text-red-500'}`}>
+                                {gameState === "won" ? "System Defended" : "System Breached"}
+                            </h2>
+                            <p className="text-xl text-white mb-8 font-mono">
+                                Final Score: <span className="font-bold text-green-400">{score}</span>
+                            </p>
 
-                        <div className="flex flex-col gap-4">
-                            <button
-                                onClick={onClose}
-                                className="px-6 py-3 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase font-bold tracking-widest"
-                            >
-                                Return Home
-                            </button>
+                            <div className="flex flex-col gap-4">
+                                <button
+                                    onClick={onClose}
+                                    className="px-6 py-3 border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-black transition-colors rounded uppercase font-bold tracking-widest"
+                                >
+                                    Return Home
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };
